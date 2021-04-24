@@ -1,24 +1,22 @@
 const sql = require("./db.js"); // get DB connection
 
-const Tutorial = function(title, description, published) {
-    this.title = title;
-    this.description = description;
-    this.published = published;
+const Model = function() {
+
 };
 
 
-Tutorial.getAllAlumni = (result) => {
+Model.getAllAlumni = (result) => {
     sql.query("SELECT * FROM Alumni", (err, res) => {
         if (err) {
             result(err, null);
             return;
         }
-        result(null, res); // the result will be sent to the CONTROLLER
+        result(null, res);
     });
 };
 
-Tutorial.createAlumni = (alumni, result) => {
-    sql.query('INSERT INTO Alumni SET ?', alumni, (err, res) => {
+Model.createAlumni = (alumni, numeroEstudante, result) => {
+    sql.query('INSERT INTO Alumni SET ? , ?', [alumni, { id_nroEstudante: numeroEstudante }], (err, res) => {
         if (err) {
             result(err, null);
         } else {
@@ -27,26 +25,8 @@ Tutorial.createAlumni = (alumni, result) => {
     });
 };
 
-
-
-
-
-/* Abaixo são funñçoes que tem que se apagar depois */
-
-// define method getAll to handle getting all Tutorials from DB
-// result = "(error, data)", meaning it will return either an error message or some sort of data
-Tutorial.getAll = (result) => {
-    sql.query("SELECT * FROM tutorials", (err, res) => {
-        if (err) {
-            result(err, null);
-            return;
-        }
-        result(null, res); // the result will be sent to the CONTROLLER
-    });
-};
-
-Tutorial.findById = (id, result) => {
-    sql.query('SELECT * FROM tutorials WHERE id = ?', [id], (err, res) => {
+Model.findAlumniByNumeroEstudante = (numeroEstudante, result) => {
+    sql.query('SELECT * FROM Alumni WHERE id_nroEstudante = ?', [numeroEstudante], (err, res) => {
         if (err) {
             result(err, null);
             return;
@@ -59,18 +39,9 @@ Tutorial.findById = (id, result) => {
     });
 };
 
-Tutorial.create = (tutorial, result) => {
-    sql.query('INSERT INTO tutorials SET ?', tutorial, (err, res) => {
-        if (err) {
-            result(err, null);
-        } else {
-            result(null, res);
-        }
-    });
-};
 
-Tutorial.updateById = (tutorial, id, result) => {
-    sql.query("UPDATE tutorials SET ? WHERE ?", [tutorial, { id: id }], (err, res) => {
+Model.updateAlumniByNumeroEstudante = (alumni, numeroEstudante, result) => {
+    sql.query("UPDATE Alumni SET ? WHERE ?", [alumni, { id_nroEstudante: numeroEstudante }], (err, res) => {
         if (err) {
             result(err, null);
             return;
@@ -83,29 +54,4 @@ Tutorial.updateById = (tutorial, id, result) => {
     });
 };
 
-Tutorial.getAllPublished = (result) => {
-    sql.query("SELECT * FROM tutorials WHERE published = true", (err, res) => {
-        if (err) {
-            result(err, null);
-            return;
-        }
-        result(null, res); // the result will be sent to the CONTROLLER
-    });
-};
-Tutorial.remove = (id, result) => {
-    sql.query("DELETE FROM tutorials WHERE id = ?", id, (err, res) => {
-        if (err) {
-            result(null, err);
-            return;
-        }
-        // affectedRows informs about the number of record(s) deleted
-        if (res.affectedRows == 0) {
-            // not found Tutorials with the specified ID: setup a new error property 'kind'
-            result({ kind: "not_found" }, null);
-            return;
-        }
-        result(null, res);
-    });
-};
-// EXPORT MODEL (required by CONTROLLER)
-module.exports = Tutorial;
+module.exports = Model;

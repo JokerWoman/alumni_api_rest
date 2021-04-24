@@ -1,7 +1,7 @@
 const express = require('express');
 let router = express.Router();
 const controller = require('../controllers/controller');
-// middleware for all routes related with tutorials
+// middleware for all routes related with alumni
 router.use((req, res, next) => {
     const start = Date.now();
     res.on("finish", () => { //finish event is emitted once the response is sent to the client
@@ -11,27 +11,18 @@ router.use((req, res, next) => {
     next()
 })
 
-//Ordenar as routas por "/", "/:tutorialID", '/published'
 router.route('/')
     .get(controller.home)
-
 
 router.route('/alumni')
     .get(controller.getAllAlumni)
     .post(controller.createAlumni);
 
-// para eliminar depois ou substituir
-//router.route('/:tutorialID')
-//    .get(controller.findOne)
-//    .delete(controller.delete)
-//    .put(controller.update);
-// para eliminar depois ou substituir
+router.route('/alumni/:numero')
+    .get(controller.findAlumniByNumeroEstudante)
+    .put(controller.updateAlumniByNumeroEstudante);
 
-//router.route('/published')
-//    .get(controller.findAll)
-
-
-//send a predefined error message for invalid routes on TUTORIALS
+//send a predefined error message for invalid routes
 router.all('*', function(req, res) {
         res.status(404).json({ message: 'Page not found!' });
     })

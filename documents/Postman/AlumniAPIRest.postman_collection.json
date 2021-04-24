@@ -1,0 +1,118 @@
+{
+	"info": {
+		"_postman_id": "6e4481d3-9eb1-4958-a66a-e83102d5b205",
+		"name": "AlumniAPIRest",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "UpdateAlumniByNumeroEstudante",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"nome\":\"Andrea Fernandes\",\r\n    \"dataNascimento\":\"1998-02-18\",\r\n    \"morada\":\"Rua das Batatas\",\r\n    \"email\":\"andrea@gmail.com\",\r\n    \"fotoLink\":\"https://ep00.epimg.net/verne/imagenes/2019/11/13/album/1573641411_551713_1573641467_album_normal.jpg\",\r\n    \"telemovel\":\"917574845\",\r\n    \"curriculumPDFLink\":\"https://www.bridgemaneducation.com/documents/how-to-guide.pdf\",\r\n    \"password\":\"8125468\",\r\n    \"id_role\":\"3\",\r\n    \"id_genero\":\"2\",\r\n    \"id_nacionalidade\":\"1\",\r\n    \"id_codigoPostal\":\"4770-440\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8080/alumni/19180048",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8080",
+					"path": [
+						"alumni",
+						"19180048"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GetAlumniByNumeroEstudante",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://127.0.0.1:8080/alumni/19180048",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8080",
+					"path": [
+						"alumni",
+						"19180048"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "CreateAlumni",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"id_nroEstudante\":\"19180048\",\r\n    \"nome\":\"Andrea Fernandes 2\",\r\n    \"dataNascimento\":\"1998-02-18\",\r\n    \"morada\":\"Rua das Batatas\",\r\n    \"email\":\"andrea@gmail.com\",\r\n    \"fotoLink\":\"https://i.pinimg.com/originals/51/fe/18/51fe180cc453fccbf05652ad051b4803.jpg\",\r\n    \"telemovel\":\"917574845\",\r\n    \"curriculumPDFLink\":\"https://www.bridgemaneducation.com/documents/how-to-guide.pdf\",\r\n    \"password\":\"123456789\",\r\n    \"id_role\":\"3\",\r\n    \"id_genero\":\"2\",\r\n    \"id_nacionalidade\":\"1\",\r\n    \"id_codigoPostal\":\"4770-440\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8080/alumni",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8080",
+					"path": [
+						"alumni"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GetAllAlumni",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://127.0.0.1:8080/alumni/",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8080",
+					"path": [
+						"alumni",
+						""
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
