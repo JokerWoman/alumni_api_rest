@@ -25,6 +25,23 @@ Model.createAlumni = (alumni, numeroEstudante, result) => {
     });
 };
 
+
+Model.createSkillFromNumeroEstudanteBySkillId = (skill, result) => {
+    sql.query('INSERT INTO Alumni_Skills SET ?', skill, (err, res) => {
+        if (err) {
+            result(null, err);
+            return;
+        }
+        // affectedRows informs about the number of record(s) deleted
+        if (res.affectedRows == 0) {
+            // not found Tutorials with the specified ID: setup a new error property 'kind'
+            result({ kind: "not_found" }, null);
+            return;
+        }
+        result(null, res);
+    });
+};
+
 Model.updateSkillFromNumeroEstudanteBySkillId = (numeroEstudante, skillId, newPercentagem, result) => {
     sql.query('UPDATE Alumni_Skills SET ? WHERE ? AND ?', [{ percentagem: newPercentagem }, { id_nroEstudante: numeroEstudante }, { id_skills: skillId }], (err, res) => {
         if (err) {
@@ -64,7 +81,7 @@ Model.getSkillsFromNumeroEstudante = (numeroEstudante, result) => {
             return;
         }
         if (res.length) {
-            result(null, res[0]);
+            result(null, res);
             return
         }
         result({ kind: "not_found" }, null);

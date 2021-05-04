@@ -120,6 +120,45 @@ exports.findAlumniByNumeroEstudante = (req, res) => {
     });
 };
 
+exports.createSkillFromNumeroEstudanteBySkillId = (req, res) => {
+
+    if (!req.body || !req.body.percentagem) {
+        res.status(400).json({ message: "Percentagem é obrigatorio no body!" });
+        return;
+    }
+
+    if (!req.body.percentagem.match(/^(0|[1-9]\d*)$/g)) {
+        res.status(400).json({ message: 'Percentagem tem que ser maior que zero e um numero positivo' });
+        return;
+    }
+
+    if (parseInt(req.body.percentagem) > 100) {
+        res.status(400).json({ message: 'Percentagem tem que ser menor que 100' });
+        return;
+    }
+
+    const skill = {
+        percentagem: parseInt(req.body.percentagem),
+        id_nroEstudante: req.params.numero,
+        id_skills: req.params.skillId
+    };
+
+    model.createSkillFromNumeroEstudanteBySkillId(skill, (err, data) => {
+        if (err)
+            res.status(500).json({
+                message: err.message || "um erro aconteceu"
+            });
+        else {
+            // all is OK, send new tutorial ID in the response
+            res.status(201).json({
+                message: "Novo Skill criada."
+            });
+        }
+
+    });
+};
+
+
 exports.updateSkillFromNumeroEstudanteBySkillId = (req, res) => {
 
     if (!req.body || !req.body.percentagem) {
