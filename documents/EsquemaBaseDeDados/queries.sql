@@ -25,6 +25,21 @@ INSERT INTO Skills (id_skills, tipoSkill) VALUES ('1', 'Designer');
 INSERT INTO Skills (id_skills, tipoSkill) VALUES ('2', 'Programador');
 INSERT INTO Skills (id_skills, tipoSkill) VALUES ('3', 'Fotografo');
 
+-- Adicionar Tools
+INSERT INTO Tools (id_tools, tipoTool) VALUES ('1', 'Illustrator');
+INSERT INTO Tools (id_tools, tipoTool) VALUES ('2', 'Visual Code');
+INSERT INTO Tools (id_tools, tipoTool) VALUES ('3', 'Photoshop');
+
+-- Adicionar Cursos
+INSERT INTO Cursos (id_cursos, tipoCurso) VALUES ('1', 'Licenciatura em Tecnologias e Sistemas de Informação Para a Web');
+INSERT INTO Cursos (id_cursos, tipoCurso) VALUES ('2', 'Licenciatura em Fotografia');
+INSERT INTO Cursos (id_cursos, tipoCurso) VALUES ('3', 'Licenciatura em Multimédia');
+
+-- Adicionar Links
+INSERT INTO Links (id_links, tipoLink) VALUES ('1', 'GitHub');
+INSERT INTO Links (id_links, tipoLink) VALUES ('2', 'Behance');
+INSERT INTO Links (id_links, tipoLink) VALUES ('3', 'GitBucket');
+
 -- Adicionar professores 
 INSERT INTO Professor (id_nroProfessor,password, nome, fotoLink, telemovel,email, id_codigoPostal) VALUES ('1000000','123456789', 'Roberto Fonseca','https://livinlavidarick.files.wordpress.com/2014/03/teacher.jpeg','964328416','roberto@roberto.com','4480-004');
 INSERT INTO Professor (id_nroProfessor,password, nome, fotoLink, telemovel,email, id_codigoPostal) VALUES ('2000000','123456789', 'Guilherme Antunes','https://drmarcelodemarzo.com/wp-content/uploads/2020/07/professor-de-matematica-envelhecido-escrevendo-na-lousa_23-2148201011.jpg','914123945','guilherme@guilherme.com','4300-095');

@@ -22,6 +22,12 @@ router.route('/alumni/:numero')
     .get(controller.findAlumniByNumeroEstudante)
     .put(controller.updateAlumniByNumeroEstudante);
 
+router.route('/alumni/:numero/skills/')
+    .get(controller.getSkillsFromNumeroEstudante);
+
+router.route('/alumni/:numero/skills/:skillId')
+    .delete(controller.deleteSkillFromNumeroEstudanteBySkillId);
+
 //send a predefined error message for invalid routes
 router.all('*', function(req, res) {
         res.status(404).json({ message: 'Page not found!' });

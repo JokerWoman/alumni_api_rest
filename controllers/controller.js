@@ -120,6 +120,38 @@ exports.findAlumniByNumeroEstudante = (req, res) => {
     });
 };
 
+exports.deleteSkillFromNumeroEstudanteBySkillId = (req, res) => {
+    model.deleteSkillFromNumeroEstudanteBySkillId(req.params.numero, req.params.skillId, (err, data) => {
+        if (err) {
+            if (err.kind === "not_found")
+                res.status(404).json({
+                    message: `Não foi encontrado o Alumni com numero estudante ${req.params.numero}.`
+                });
+            else
+                res.status(500).json({
+                    message: `Erro no servidor.`
+                });
+        } else
+            res.status(200).json(data);
+    });
+};
+
+exports.getSkillsFromNumeroEstudante = (req, res) => {
+    model.getSkillsFromNumeroEstudante(req.params.numero, (err, data) => {
+        if (err) {
+            if (err.kind === "not_found")
+                res.status(404).json({
+                    message: `Não foi encontrado o Alumni com numero estudante ${req.params.numero}.`
+                });
+            else
+                res.status(500).json({
+                    message: `Erro no servidor.`
+                });
+        } else
+            res.status(200).json(data);
+    });
+};
+
 
 exports.updateAlumniByNumeroEstudante = (req, res) => {
 

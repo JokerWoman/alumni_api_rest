@@ -25,6 +25,36 @@ Model.createAlumni = (alumni, numeroEstudante, result) => {
     });
 };
 
+Model.deleteSkillFromNumeroEstudanteBySkillId = (numeroEstudante, skillId, result) => {
+    sql.query('DELETE FROM Alumni_Skills WHERE ? AND ?', [{ id_nroEstudante: numeroEstudante }, { id_skills: skillId }], (err, res) => {
+        if (err) {
+            result(null, err);
+            return;
+        }
+        // affectedRows informs about the number of record(s) deleted
+        if (res.affectedRows == 0) {
+            // not found Tutorials with the specified ID: setup a new error property 'kind'
+            result({ kind: "not_found" }, null);
+            return;
+        }
+        result(null, res);
+    });
+};
+
+Model.getSkillsFromNumeroEstudante = (numeroEstudante, result) => {
+    sql.query('SELECT tipoSkill, percentagem FROM Alumni_Skills INNER JOIN Skills ON Skills.id_skills = Alumni_Skills.id_skills WHERE id_nroEstudante = ?', [numeroEstudante], (err, res) => {
+        if (err) {
+            result(err, null);
+            return;
+        }
+        if (res.length) {
+            result(null, res[0]);
+            return
+        }
+        result({ kind: "not_found" }, null);
+    });
+};
+
 Model.findAlumniByNumeroEstudante = (numeroEstudante, result) => {
     sql.query('SELECT * FROM Alumni WHERE id_nroEstudante = ?', [numeroEstudante], (err, res) => {
         if (err) {
