@@ -26,7 +26,8 @@ router.route('/alumni/:numero/skills/')
     .get(controller.getSkillsFromNumeroEstudante);
 
 router.route('/alumni/:numero/skills/:skillId')
-    .delete(controller.deleteSkillFromNumeroEstudanteBySkillId);
+    .delete(controller.deleteSkillFromNumeroEstudanteBySkillId)
+    .put(controller.updateSkillFromNumeroEstudanteBySkillId);
 
 //send a predefined error message for invalid routes
 router.all('*', function(req, res) {

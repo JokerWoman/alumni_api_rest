@@ -120,6 +120,38 @@ exports.findAlumniByNumeroEstudante = (req, res) => {
     });
 };
 
+exports.updateSkillFromNumeroEstudanteBySkillId = (req, res) => {
+
+    if (!req.body || !req.body.percentagem) {
+        res.status(400).json({ message: "Percentagem é obrigatorio no body!" });
+        return;
+    }
+
+    if (!req.body.percentagem.match(/^(0|[1-9]\d*)$/g)) {
+        res.status(400).json({ message: 'Percentagem tem que ser maior que zero e um numero positivo' });
+        return;
+    }
+
+    if (parseInt(req.body.percentagem) > 100) {
+        res.status(400).json({ message: 'Percentagem tem que ser menor que 100' });
+        return;
+    }
+
+    model.updateSkillFromNumeroEstudanteBySkillId(req.params.numero, req.params.skillId, parseInt(req.body.percentagem), (err, data) => {
+        if (err) {
+            if (err.kind === "not_found") {
+                res.status(404).json({
+                    message: `Not found skill with id ${req.params.skillId}.`
+                });
+            } else {
+                res.status(500).json({
+                    message: "Error updating skill with id " + req.params.skillId
+                });
+            }
+        } else res.status(200).json({ message: "Updated skill." });
+    });
+};
+
 exports.deleteSkillFromNumeroEstudanteBySkillId = (req, res) => {
     model.deleteSkillFromNumeroEstudanteBySkillId(req.params.numero, req.params.skillId, (err, data) => {
         if (err) {
