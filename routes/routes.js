@@ -30,6 +30,15 @@ router.route('/alumni/:numero/skills/:skillId')
     .put(controller.updateSkillFromNumeroEstudanteBySkillId)
     .post(controller.createSkillFromNumeroEstudanteBySkillId);
 
+    router.route('/bolsas')
+    .get(controller.getAllBolsas)
+    .post(controller.createBolsa)
+
+router.route('/bolsas/:bolsaID')
+    .delete(controller.deleteBolsa)
+    .get(controller.getBolsaById)
+    .put(controller.updateBolsaById)
+
 //send a predefined error message for invalid routes
 router.all('*', function(req, res) {
         res.status(404).json({ message: 'Page not found!' });

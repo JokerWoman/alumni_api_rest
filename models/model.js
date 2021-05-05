@@ -117,4 +117,63 @@ Model.updateAlumniByNumeroEstudante = (alumni, numeroEstudante, result) => {
     });
 };
 
+Model.getAllBolsas = (result) => {
+    sql.query("SELECT * FROM Bolsa_Emprego", (err, res) => {
+        if (err) {
+            result(err, null);
+            return;
+        }
+        result(null, res);
+    });
+};
+
+Model.createBolsa = (bolsa, result) => {
+    sql.query('INSERT INTO Bolsa_Emprego SET ?', bolsa, (err, res) => {
+        if (err) {
+            result(err, null);
+        }
+        else {
+            result(null, res);
+        }
+    });
+};
+
+Model.deleteBolsa =(id, result) => {
+    sql.query('DELETE FROM Bolsa_Emprego WHERE id_bolsas = ?', id, (err,res) =>{
+        if(err){
+            result(err,null);
+        }
+        
+        result(null, res);
+    });
+};
+
+Model.getBolsaById = (id, result) =>{
+    sql.query('SELECT * FROM Bolsa_Emprego WHERE id_bolsas = ?', [id], (err,res) =>{
+        if(err){
+            result(err,null);
+            return;
+        }
+        if(res.length){
+            result(null,res[0]);
+            return
+        }
+        result({kind: "not_found"}, null);
+    });
+};
+
+Model.updateBolsaById = (bolsa, id, result) =>{
+    sql.query('UPDATE Bolsa_Emprego SET ? WHERE ?', [bolsa,{id_bolsas:id}], (err,res) =>{
+        if (err) {
+            result(err, null);
+            return;
+        }
+        if (res.affectedRows == 0) {
+            result({ kind: "not_found" }, null);
+            return
+        }
+        result(null, res)
+    });
+};
+
 module.exports = Model;

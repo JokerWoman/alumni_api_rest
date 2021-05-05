@@ -16,6 +16,19 @@ class Alumni {
         this.id_codigoPostal = id_codigoPostal;
     }
 }
+class Bolsa {
+    constructor(descricao, fotoLink, estado, data_publicação, data_inicio, id_empresa, id_tipoEmprego, id_nroProfessor) {
+        this.descricao = descricao;
+        this.fotoLink = fotoLink;
+        this.estado = estado;
+        this.data_publicação = data_publicação;
+        this.data_inicio = data_inicio;
+        this.id_empresa = id_empresa;
+        this.id_tipoEmprego = id_tipoEmprego;
+        this.id_nroProfessor = id_nroProfessor;
+
+    }
+}
 
 exports.home = (req, res) => {
     res.status(200).json({
@@ -290,3 +303,143 @@ exports.updateAlumniByNumeroEstudante = (req, res) => {
         }
     });
 };
+exports.getAllBolsas = (req, res) => {
+    model.getAllBolsas((err, data) => {
+        if (err) { // send error response
+            res.status(500).send({
+                message: err.message || "Some error occurred while retrieving offers."
+            });
+        }
+        else
+            res.status(200).json(data); // send OK response with all bolsas data
+    });
+};
+
+
+exports.createBolsa = (req, res) => {
+
+    if (!req.body.descricao) {
+        res.status(400).json({ message: "Descricao is empty!" });
+        return;
+
+    } if (!req.body.fotoLink) {
+        res.status(400).json({ message: "Foto must be sent!" });
+        return;
+    } else if (!req.body.estado) {
+        res.status(400).json({ message: "Estado must be sent!" });
+        return;
+    } else if (!req.body.data_publicação) {
+        res.status(400).json({ message: "Data Publicação must be sent!" });
+        return;
+    } else if (!req.body.data_inicio) {
+        res.status(400).json({ message: "Data Inicio must be sent!" });
+        return;
+    } else if (!req.body.id_empresa) {
+        res.status(400).json({ message: "ID Empresa must be sent!" });
+        return;
+    } else if (!req.body.id_tipoEmprego) {
+        res.status(400).json({ message: "ID Tipo Emprego must be sent!" });
+        return;
+    } else if (!req.body.id_nroProfessor) {
+        res.status(400).json({ message: "ID Nro Professor must be sent!" });
+        return;
+    }
+    let bolsa = new Bolsa(req.body.descricao, req.body.fotoLink, req.body.estado, req.body.data_publicacao,
+        req.body.data_inicio, req.body.id_empresa, req.body.id_tipoEmprego, req.body.id_nroProfessor)
+
+    model.createBolsa(bolsa, (err, data) => {
+        if (err) // send error response
+            res.status(500).send({
+                message: err.message || "Some error occurred while creating the bolsa."
+            });
+        else
+            res.status(201).json({
+                message: "New bolsa created",
+                location: "/bolsas/" + data.insertId
+            });
+    });
+
+
+};
+
+exports.deleteBolsa = (req, res) => {
+    model.deleteBolsa(req.params.bolsaID, (err, data) => {
+
+        if (err) {
+            res.status(500).json({
+                message: `Could not delete Bolsa with id ${req.params.bolsaID}.`
+            });
+        }
+        res.status(200).json({ message: `Bolsa with id ${req.params.bolsaID} was successfully deleted!` });
+    })
+};
+
+exports.getBolsaById = (req, res) => {
+    model.getBolsaById(req.params.bolsaID, (err, data) => {
+        if (err) {
+            if (err.kind === "not_found")
+                res.status(404).json({
+                    message: `Not found Bolsa com id ${req.params.bolsaID}.`
+                });
+            else
+                res.status(500).json({
+                    message: `Error retrieving Bolsa with id ${req.params.bolsaID}.`
+                })
+        } else
+            res.status(200).json(data);
+    })
+};
+
+exports.updateBolsaById = (req, res) => {
+
+    if (!req.body.descricao) {
+        res.status(400).json({ message: "Descricao is empty!" });
+        return;
+
+    } if (!req.body.fotoLink) {
+        res.status(400).json({ message: "Foto must be sent!" });
+        return;
+    } else if (!req.body.estado) {
+        res.status(400).json({ message: "Estado must be sent!" });
+        return;
+    } else if (!req.body.data_publicação) {
+        res.status(400).json({ message: "Data Publicação must be sent!" });
+        return;
+    } else if (!req.body.data_inicio) {
+        res.status(400).json({ message: "Data Inicio must be sent!" });
+        return;
+    } else if (!req.body.id_empresa) {
+        res.status(400).json({ message: "ID Empresa must be sent!" });
+        return;
+    } else if (!req.body.id_tipoEmprego) {
+        res.status(400).json({ message: "ID Tipo Emprego must be sent!" });
+        return;
+    } else if (!req.body.id_nroProfessor) {
+        res.status(400).json({ message: "ID Nro Professor must be sent!" });
+        return;
+    }
+    let bolsa = new Bolsa(req.body.descricao, req.body.fotoLink, req.body.estado, req.body.data_publicacao,
+        req.body.data_inicio, req.body.id_empresa, req.body.id_tipoEmprego, req.body.id_nroProfessor)
+
+    model.updateBolsaById(bolsa, req.params.bolsaID, (err, data) => {
+        if (err) // send error response
+            if (err.kind === "not_found") {
+                res.status(404).send({
+                    message: `Not found bolsa with id ${req.params.bolsaID}`
+                });
+            } else {
+                res.status(500).send({
+                    message: err.message || "Error updating bolsa with id" + req.params.bolsaID
+                });
+            }
+        else {
+            res.status(200).json({
+                message: "updated bolsas ",
+                location: `/bolsas/${req.params.bolsaID}`
+            });
+        }
+    });
+};
+
+
+
