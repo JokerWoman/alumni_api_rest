@@ -4,7 +4,6 @@ const Model = function() {
 
 };
 
-
 Model.getAllAlumni = (result) => {
     sql.query("SELECT * FROM Alumni", (err, res) => {
         if (err) {
@@ -16,75 +15,130 @@ Model.getAllAlumni = (result) => {
 };
 
 Model.createAlumni = (alumni, numeroEstudante, result) => {
-    sql.query('INSERT INTO Alumni SET ? , ?', [alumni, { id_nroEstudante: numeroEstudante }], (err, res) => {
-        if (err) {
-            result(err, null);
+    Model.AlumniExisteNaBaseDeDados(numeroEstudante, (erro, data) => {
+        if (!erro) {
+            if (data.quantidade == 0) {
+                sql.query('INSERT INTO Alumni SET ? , ?', [alumni, { id_nroEstudante: numeroEstudante }], (err, res) => {
+                    if (err) {
+                        result({ kind: "erro_operacao" }, null);
+                    } else {
+                        result(null, res);
+                    }
+                });
+            } else {
+                result({ kind: "erro_alumni_ja_existe" }, null);
+            }
         } else {
-            result(null, res);
+            result = (erro, data)
         }
     });
 };
 
+Model.AlumniExisteNaBaseDeDados = (numeroEstudante, resultado) => {
+    sql.query('SELECT COUNT(*) AS quantidade FROM Alumni WHERE ?', { id_nroEstudante: numeroEstudante }, (err, res) => {
+        if (err) {
+            resultado({ kind: "erro_operacao" }, null);
+            return;
+        }
+        resultado(null, { quantidade: res[0].quantidade });
+    });
+};
 
 Model.createSkillFromNumeroEstudanteBySkillId = (skill, result) => {
-    sql.query('INSERT INTO Alumni_Skills SET ?', skill, (err, res) => {
-        if (err) {
-            result(null, err);
-            return;
+    Model.AlumniExisteNaBaseDeDados(skill.id_nroEstudante, (erro, data) => {
+        if (!erro) {
+            if (data.quantidade == 1) {
+                sql.query('INSERT INTO Alumni_Skills SET ?', skill, (err, res) => {
+                    if (err) {
+                        result({ kind: "erro_operacao" }, null);
+                        return;
+                    }
+                    if (res.affectedRows == 0) {
+                        result({ kind: "skill_nao_inserida" }, null);
+                        return;
+                    }
+                    result(null, res);
+                });
+            } else {
+                result({ kind: "not_found_alumni" }, null);
+            }
+        } else {
+            result = (erro, data)
         }
-        // affectedRows informs about the number of record(s) deleted
-        if (res.affectedRows == 0) {
-            // not found Tutorials with the specified ID: setup a new error property 'kind'
-            result({ kind: "not_found" }, null);
-            return;
-        }
-        result(null, res);
     });
 };
 
 Model.updateSkillFromNumeroEstudanteBySkillId = (numeroEstudante, skillId, newPercentagem, result) => {
-    sql.query('UPDATE Alumni_Skills SET ? WHERE ? AND ?', [{ percentagem: newPercentagem }, { id_nroEstudante: numeroEstudante }, { id_skills: skillId }], (err, res) => {
-        if (err) {
-            result(null, err);
-            return;
+    Model.AlumniExisteNaBaseDeDados(numeroEstudante, (erro, data) => {
+        if (!erro) {
+            if (data.quantidade == 1) {
+                sql.query('UPDATE Alumni_Skills SET ? WHERE ? AND ?', [{ percentagem: newPercentagem }, { id_nroEstudante: numeroEstudante }, { id_skills: skillId }], (err, res) => {
+                    if (err) {
+                        result({ kind: "erro_operacao" }, null);
+                        return;
+                    }
+
+                    if (res.affectedRows == 0) {
+                        result({ kind: "skill_nao_updated" }, null);
+                        return;
+                    }
+                    result(null, res);
+                });
+            } else {
+                result({ kind: "not_found_alumni" }, null);
+            }
+        } else {
+            result = (erro, data)
         }
-        // affectedRows informs about the number of record(s) deleted
-        if (res.affectedRows == 0) {
-            // not found Tutorials with the specified ID: setup a new error property 'kind'
-            result({ kind: "not_found" }, null);
-            return;
-        }
-        result(null, res);
     });
+
 };
 
 Model.deleteSkillFromNumeroEstudanteBySkillId = (numeroEstudante, skillId, result) => {
-    sql.query('DELETE FROM Alumni_Skills WHERE ? AND ?', [{ id_nroEstudante: numeroEstudante }, { id_skills: skillId }], (err, res) => {
-        if (err) {
-            result(null, err);
-            return;
+    Model.AlumniExisteNaBaseDeDados(numeroEstudante, (erro, data) => {
+        if (!erro) {
+            if (data.quantidade == 1) {
+                sql.query('DELETE FROM Alumni_Skills WHERE ? AND ?', [{ id_nroEstudante: numeroEstudante }, { id_skills: skillId }], (err, res) => {
+                    if (err) {
+                        result({ kind: "erro_operacao" }, null);
+                        return;
+                    }
+
+                    if (res.affectedRows == 0) {
+                        result({ kind: "skill_nao_apagada" }, null);
+                        return;
+                    }
+                    result(null, res);
+                });
+            } else {
+                result({ kind: "not_found_alumni" }, null);
+            }
+        } else {
+            result = (erro, data)
         }
-        // affectedRows informs about the number of record(s) deleted
-        if (res.affectedRows == 0) {
-            // not found Tutorials with the specified ID: setup a new error property 'kind'
-            result({ kind: "not_found" }, null);
-            return;
-        }
-        result(null, res);
     });
 };
 
 Model.getSkillsFromNumeroEstudante = (numeroEstudante, result) => {
-    sql.query('SELECT tipoSkill, percentagem FROM Alumni_Skills INNER JOIN Skills ON Skills.id_skills = Alumni_Skills.id_skills WHERE id_nroEstudante = ?', [numeroEstudante], (err, res) => {
-        if (err) {
-            result(err, null);
-            return;
+    Model.AlumniExisteNaBaseDeDados(numeroEstudante, (erro, data) => {
+        if (!erro) {
+            if (data.quantidade == 1) {
+                sql.query('SELECT tipoSkill, percentagem FROM Alumni_Skills INNER JOIN Skills ON Skills.id_skills = Alumni_Skills.id_skills WHERE id_nroEstudante = ?', [numeroEstudante], (err, res) => {
+                    if (err) {
+                        result({ kind: "erro_operacao" }, null);
+                        return;
+                    }
+                    if (res.length) {
+                        result(null, res);
+                        return
+                    }
+                });
+            } else {
+                result({ kind: "not_found_alumni" }, null);
+            }
+        } else {
+            result = (erro, data)
         }
-        if (res.length) {
-            result(null, res);
-            return
-        }
-        result({ kind: "not_found" }, null);
     });
 };
 
@@ -104,16 +158,26 @@ Model.findAlumniByNumeroEstudante = (numeroEstudante, result) => {
 
 
 Model.updateAlumniByNumeroEstudante = (alumni, numeroEstudante, result) => {
-    sql.query("UPDATE Alumni SET ? WHERE ?", [alumni, { id_nroEstudante: numeroEstudante }], (err, res) => {
-        if (err) {
-            result(err, null);
-            return;
+    Model.AlumniExisteNaBaseDeDados(numeroEstudante, (erro, data) => {
+        if (!erro) {
+            if (data.quantidade == 1) {
+                sql.query("UPDATE Alumni SET ? WHERE ?", [alumni, { id_nroEstudante: numeroEstudante }], (err, res) => {
+                    if (err) {
+                        result({ kind: "erro_operacao" }, null);
+                        return;
+                    }
+                    if (res.affectedRows == 0) {
+                        result({ kind: "alumni_nao_updated" }, null);
+                        return
+                    }
+                    result(null, res)
+                });
+            } else {
+                result({ kind: "not_found_alumni" }, null);
+            }
+        } else {
+            result = (erro, data)
         }
-        if (res.affectedRows == 0) {
-            result({ kind: "not_found" }, null);
-            return
-        }
-        result(null, res)
     });
 };
 

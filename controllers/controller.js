@@ -99,17 +99,25 @@ exports.createAlumni = (req, res) => {
         req.body.id_genero, req.body.id_nacionalidade, req.body.id_codigoPostal)
 
     model.createAlumni(alumni, req.body.id_nroEstudante, (err, data) => {
-        if (err) // send error response
-            res.status(500).send({
-            message: err.message || "Some error occurred while creating the alumni."
-        });
-        else
+        if (err) {
+            if (err.kind === "erro_operacao") {
+                res.status(500).json({
+                    message: `Error ao criar o Alumni with id ${req.body.id_nroEstudante}.`
+                })
+            } else if (err.kind === "erro_alumni_ja_existe") {
+                res.status(417).json({
+                    message: `Erro Alumni já exsite com id ${req.body.id_nroEstudante}.`
+                })
+            }
+        } else {
             res.status(201).json({
                 message: "New alumni created",
                 location: "/alumni/" + data.insertId
             });
+        }
     });
 };
+
 
 exports.home = (req, res) => {
     res.status(200).json({
@@ -157,17 +165,25 @@ exports.createSkillFromNumeroEstudanteBySkillId = (req, res) => {
     };
 
     model.createSkillFromNumeroEstudanteBySkillId(skill, (err, data) => {
-        if (err)
-            res.status(500).json({
-                message: err.message || "um erro aconteceu"
-            });
-        else {
-            // all is OK, send new tutorial ID in the response
+        if (err) {
+            if (err.kind === "erro_operacao") {
+                res.status(500).json({
+                    message: `Error na operação de inserir uma skill com id ${skill.id_skills}.`
+                })
+            } else if (err.kind === "skill_nao_inserida") {
+                res.status(404).json({
+                    message: `Erro skill não inserida com id ${skill.id_skills}.`
+                })
+            } else if (err.kind === "not_found_alumni") {
+                res.status(404).json({
+                    message: `Erro alumni não existe com id ${skill.id_nroEstudante}.`
+                })
+            }
+        } else {
             res.status(201).json({
                 message: "Novo Skill criada."
             });
         }
-
     });
 };
 
@@ -191,30 +207,41 @@ exports.updateSkillFromNumeroEstudanteBySkillId = (req, res) => {
 
     model.updateSkillFromNumeroEstudanteBySkillId(req.params.numero, req.params.skillId, parseInt(req.body.percentagem), (err, data) => {
         if (err) {
-            if (err.kind === "not_found") {
-                res.status(404).json({
-                    message: `Not found skill with id ${req.params.skillId}.`
-                });
-            } else {
+            if (err.kind === "erro_operacao") {
                 res.status(500).json({
-                    message: "Error updating skill with id " + req.params.skillId
-                });
+                    message: `Error na operação de update de uma skill com id ${req.params.skillId}.`
+                })
+            } else if (err.kind === "skill_nao_updated") {
+                res.status(404).json({
+                    message: `Erro skill não updated com id ${req.params.skillId}.`
+                })
+            } else if (err.kind === "not_found_alumni") {
+                res.status(404).json({
+                    message: `Erro alumni não existe com id ${req.params.numero}.`
+                })
             }
-        } else res.status(200).json({ message: "Updated skill." });
+        } else {
+            res.status(200).json({ message: "Updated skill." });
+        }
     });
 };
 
 exports.deleteSkillFromNumeroEstudanteBySkillId = (req, res) => {
     model.deleteSkillFromNumeroEstudanteBySkillId(req.params.numero, req.params.skillId, (err, data) => {
         if (err) {
-            if (err.kind === "not_found")
-                res.status(404).json({
-                    message: `Não foi encontrado o Alumni com numero estudante ${req.params.numero}.`
-                });
-            else
+            if (err.kind === "erro_operacao") {
                 res.status(500).json({
-                    message: `Erro no servidor.`
-                });
+                    message: `Error na operação de delete de uma skill com id ${req.params.skillId}.`
+                })
+            } else if (err.kind === "skill_nao_apagada") {
+                res.status(404).json({
+                    message: `Erro skill não apagada com id ${req.params.skillId}.`
+                })
+            } else if (err.kind === "not_found_alumni") {
+                res.status(404).json({
+                    message: `Erro alumni não existe com id ${req.params.numero}.`
+                })
+            }
         } else
             res.status(200).json(data);
     });
@@ -223,14 +250,15 @@ exports.deleteSkillFromNumeroEstudanteBySkillId = (req, res) => {
 exports.getSkillsFromNumeroEstudante = (req, res) => {
     model.getSkillsFromNumeroEstudante(req.params.numero, (err, data) => {
         if (err) {
-            if (err.kind === "not_found")
-                res.status(404).json({
-                    message: `Não foi encontrado o Alumni com numero estudante ${req.params.numero}.`
-                });
-            else
+            if (err.kind === "erro_operacao") {
                 res.status(500).json({
-                    message: `Erro no servidor.`
-                });
+                    message: `Error na operação no get das skill do estudante com id ${req.params.numero}.`
+                })
+            } else if (err.kind === "not_found_alumni") {
+                res.status(404).json({
+                    message: `Erro alumni não existe com id ${req.params.numero}.`
+                })
+            }
         } else
             res.status(200).json(data);
     });
@@ -285,17 +313,21 @@ exports.updateAlumniByNumeroEstudante = (req, res) => {
         req.body.id_genero, req.body.id_nacionalidade, req.body.id_codigoPostal)
 
     model.updateAlumniByNumeroEstudante(alumni, req.params.numero, (err, data) => {
-        if (err) // send error response
-            if (err.kind === "not_found") {
-                res.status(404).send({
-                    message: `Not found alumni with id ${req.params.numero}`
-                });
-            } else {
-                res.status(500).send({
-                    message: err.message || "Error updating alumni with id" + req.params.numero
-                });
+        if (err) {
+            if (err.kind === "erro_operacao") {
+                res.status(500).json({
+                    message: `Error na operação de update de um alumni com id ${req.params.numero}.`
+                })
+            } else if (err.kind === "alumni_nao_updated") {
+                res.status(404).json({
+                    message: `Erro alumni não updated com id ${req.params.numero}.`
+                })
+            } else if (err.kind === "not_found_alumni") {
+                res.status(404).json({
+                    message: `Erro alumni não existe com id ${req.params.numero}.`
+                })
             }
-        else {
+        } else {
             res.status(200).json({
                 message: "updated tutorial ",
                 location: `/alumni/${req.params.numero}`
