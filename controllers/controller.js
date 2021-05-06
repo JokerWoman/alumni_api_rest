@@ -188,6 +188,52 @@ exports.createSkillFromNumeroEstudanteBySkillId = (req, res) => {
 };
 
 
+exports.createToolFromNumeroEstudanteByToolId = (req, res) => {
+
+    if (!req.body || !req.body.percentagem) {
+        res.status(400).json({ message: "Percentagem é obrigatorio no body!" });
+        return;
+    }
+
+    if (!req.body.percentagem.match(/^(0|[1-9]\d*)$/g)) {
+        res.status(400).json({ message: 'Percentagem tem que ser maior que zero e um numero positivo' });
+        return;
+    }
+
+    if (parseInt(req.body.percentagem) > 100) {
+        res.status(400).json({ message: 'Percentagem tem que ser menor que 100' });
+        return;
+    }
+
+    const tool = {
+        percentagem: parseInt(req.body.percentagem),
+        id_nroEstudante: req.params.numero,
+        id_tools: req.params.toolId
+    };
+
+    model.createToolFromNumeroEstudanteByToolId(tool, (err, data) => {
+        if (err) {
+            if (err.kind === "erro_operacao") {
+                res.status(500).json({
+                    message: `Error na operação de inserir uma tool com id ${tool.id_tools}.`
+                })
+            } else if (err.kind === "tool_nao_inserida") {
+                res.status(404).json({
+                    message: `Erro tool não inserida com id ${tool.id_tools}.`
+                })
+            } else if (err.kind === "not_found_alumni") {
+                res.status(404).json({
+                    message: `Erro alumni não existe com id ${tool.id_nroEstudante}.`
+                })
+            }
+        } else {
+            res.status(201).json({
+                message: "Novo Tool criada."
+            });
+        }
+    });
+};
+
 exports.updateSkillFromNumeroEstudanteBySkillId = (req, res) => {
 
     if (!req.body || !req.body.percentagem) {
@@ -226,6 +272,46 @@ exports.updateSkillFromNumeroEstudanteBySkillId = (req, res) => {
     });
 };
 
+
+
+exports.updateToolFromNumeroEstudanteByToolId = (req, res) => {
+
+    if (!req.body || !req.body.percentagem) {
+        res.status(400).json({ message: "Percentagem é obrigatorio no body!" });
+        return;
+    }
+
+    if (!req.body.percentagem.match(/^(0|[1-9]\d*)$/g)) {
+        res.status(400).json({ message: 'Percentagem tem que ser maior que zero e um numero positivo' });
+        return;
+    }
+
+    if (parseInt(req.body.percentagem) > 100) {
+        res.status(400).json({ message: 'Percentagem tem que ser menor que 100' });
+        return;
+    }
+
+    model.updateToolFromNumeroEstudanteByToolId(req.params.numero, req.params.toolId, parseInt(req.body.percentagem), (err, data) => {
+        if (err) {
+            if (err.kind === "erro_operacao") {
+                res.status(500).json({
+                    message: `Error na operação de update de uma tool com id ${req.params.toolId}.`
+                })
+            } else if (err.kind === "tool_nao_updated") {
+                res.status(404).json({
+                    message: `Erro tool não updated com id ${req.params.toolId}.`
+                })
+            } else if (err.kind === "not_found_alumni") {
+                res.status(404).json({
+                    message: `Erro alumni não existe com id ${req.params.numero}.`
+                })
+            }
+        } else {
+            res.status(200).json({ message: "Updated tool." });
+        }
+    });
+};
+
 exports.deleteSkillFromNumeroEstudanteBySkillId = (req, res) => {
     model.deleteSkillFromNumeroEstudanteBySkillId(req.params.numero, req.params.skillId, (err, data) => {
         if (err) {
@@ -236,6 +322,28 @@ exports.deleteSkillFromNumeroEstudanteBySkillId = (req, res) => {
             } else if (err.kind === "skill_nao_apagada") {
                 res.status(404).json({
                     message: `Erro skill não apagada com id ${req.params.skillId}.`
+                })
+            } else if (err.kind === "not_found_alumni") {
+                res.status(404).json({
+                    message: `Erro alumni não existe com id ${req.params.numero}.`
+                })
+            }
+        } else
+            res.status(200).json(data);
+    });
+};
+
+
+exports.deleteToolFromNumeroEstudanteByToolId = (req, res) => {
+    model.deleteToolFromNumeroEstudanteByToolId(req.params.numero, req.params.toolId, (err, data) => {
+        if (err) {
+            if (err.kind === "erro_operacao") {
+                res.status(500).json({
+                    message: `Error na operação de delete de uma tool com id ${req.params.toolId}.`
+                })
+            } else if (err.kind === "tool_nao_apagada") {
+                res.status(404).json({
+                    message: `Erro tool não apagada com id ${req.params.toolId}.`
                 })
             } else if (err.kind === "not_found_alumni") {
                 res.status(404).json({
@@ -264,6 +372,22 @@ exports.getSkillsFromNumeroEstudante = (req, res) => {
     });
 };
 
+exports.getToolsFromNumeroEstudante = (req, res) => {
+    model.getToolsFromNumeroEstudante(req.params.numero, (err, data) => {
+        if (err) {
+            if (err.kind === "erro_operacao") {
+                res.status(500).json({
+                    message: `Error na operação no get das tool do estudante com id ${req.params.numero}.`
+                })
+            } else if (err.kind === "not_found_alumni") {
+                res.status(404).json({
+                    message: `Erro alumni não existe com id ${req.params.numero}.`
+                })
+            }
+        } else
+            res.status(200).json(data);
+    });
+};
 
 exports.updateAlumniByNumeroEstudante = (req, res) => {
 
@@ -341,8 +465,7 @@ exports.getAllBolsas = (req, res) => {
             res.status(500).send({
                 message: err.message || "Some error occurred while retrieving offers."
             });
-        }
-        else
+        } else
             res.status(200).json(data); // send OK response with all bolsas data
     });
 };
@@ -354,7 +477,8 @@ exports.createBolsa = (req, res) => {
         res.status(400).json({ message: "Descricao is empty!" });
         return;
 
-    } if (!req.body.fotoLink) {
+    }
+    if (!req.body.fotoLink) {
         res.status(400).json({ message: "Foto must be sent!" });
         return;
     } else if (!req.body.estado) {
@@ -382,8 +506,8 @@ exports.createBolsa = (req, res) => {
     model.createBolsa(bolsa, (err, data) => {
         if (err) // send error response
             res.status(500).send({
-                message: err.message || "Some error occurred while creating the bolsa."
-            });
+            message: err.message || "Some error occurred while creating the bolsa."
+        });
         else
             res.status(201).json({
                 message: "New bolsa created",
@@ -428,7 +552,8 @@ exports.updateBolsaById = (req, res) => {
         res.status(400).json({ message: "Descricao is empty!" });
         return;
 
-    } if (!req.body.fotoLink) {
+    }
+    if (!req.body.fotoLink) {
         res.status(400).json({ message: "Foto must be sent!" });
         return;
     } else if (!req.body.estado) {
@@ -472,6 +597,3 @@ exports.updateBolsaById = (req, res) => {
         }
     });
 };
-
-
-

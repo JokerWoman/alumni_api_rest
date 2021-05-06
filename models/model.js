@@ -68,6 +68,30 @@ Model.createSkillFromNumeroEstudanteBySkillId = (skill, result) => {
     });
 };
 
+Model.createToolFromNumeroEstudanteByToolId = (tool, result) => {
+    Model.AlumniExisteNaBaseDeDados(tool.id_nroEstudante, (erro, data) => {
+        if (!erro) {
+            if (data.quantidade == 1) {
+                sql.query('INSERT INTO Alumni_Tools SET ?', tool, (err, res) => {
+                    if (err) {
+                        result({ kind: "erro_operacao" }, null);
+                        return;
+                    }
+                    if (res.affectedRows == 0) {
+                        result({ kind: "tool_nao_inserida" }, null);
+                        return;
+                    }
+                    result(null, res);
+                });
+            } else {
+                result({ kind: "not_found_alumni" }, null);
+            }
+        } else {
+            result = (erro, data)
+        }
+    });
+};
+
 Model.updateSkillFromNumeroEstudanteBySkillId = (numeroEstudante, skillId, newPercentagem, result) => {
     Model.AlumniExisteNaBaseDeDados(numeroEstudante, (erro, data) => {
         if (!erro) {
@@ -80,6 +104,33 @@ Model.updateSkillFromNumeroEstudanteBySkillId = (numeroEstudante, skillId, newPe
 
                     if (res.affectedRows == 0) {
                         result({ kind: "skill_nao_updated" }, null);
+                        return;
+                    }
+                    result(null, res);
+                });
+            } else {
+                result({ kind: "not_found_alumni" }, null);
+            }
+        } else {
+            result = (erro, data)
+        }
+    });
+
+};
+
+
+Model.updateToolFromNumeroEstudanteByToolId = (numeroEstudante, toolId, newPercentagem, result) => {
+    Model.AlumniExisteNaBaseDeDados(numeroEstudante, (erro, data) => {
+        if (!erro) {
+            if (data.quantidade == 1) {
+                sql.query('UPDATE Alumni_Tools SET ? WHERE ? AND ?', [{ percentagem: newPercentagem }, { id_nroEstudante: numeroEstudante }, { id_tools: toolId }], (err, res) => {
+                    if (err) {
+                        result({ kind: "erro_operacao" }, null);
+                        return;
+                    }
+
+                    if (res.affectedRows == 0) {
+                        result({ kind: "tool_nao_updated" }, null);
                         return;
                     }
                     result(null, res);
@@ -119,6 +170,32 @@ Model.deleteSkillFromNumeroEstudanteBySkillId = (numeroEstudante, skillId, resul
     });
 };
 
+
+
+Model.deleteToolFromNumeroEstudanteByToolId = (numeroEstudante, toolId, result) => {
+    Model.AlumniExisteNaBaseDeDados(numeroEstudante, (erro, data) => {
+        if (!erro) {
+            if (data.quantidade == 1) {
+                sql.query('DELETE FROM Alumni_Tools WHERE ? AND ?', [{ id_nroEstudante: numeroEstudante }, { id_tools: toolId }], (err, res) => {
+                    if (err) {
+                        result({ kind: "erro_operacao" }, null);
+                        return;
+                    }
+
+                    if (res.affectedRows == 0) {
+                        result({ kind: "tool_nao_apagada" }, null);
+                        return;
+                    }
+                    result(null, res);
+                });
+            } else {
+                result({ kind: "not_found_alumni" }, null);
+            }
+        } else {
+            result = (erro, data)
+        }
+    });
+};
 Model.getSkillsFromNumeroEstudante = (numeroEstudante, result) => {
     Model.AlumniExisteNaBaseDeDados(numeroEstudante, (erro, data) => {
         if (!erro) {
@@ -128,10 +205,31 @@ Model.getSkillsFromNumeroEstudante = (numeroEstudante, result) => {
                         result({ kind: "erro_operacao" }, null);
                         return;
                     }
-                    if (res.length) {
-                        result(null, res);
-                        return
+                    // se nao houver skills queremos um array vazio
+                    result(null, res);
+                    return
+                });
+            } else {
+                result({ kind: "not_found_alumni" }, null);
+            }
+        } else {
+            result = (erro, data)
+        }
+    });
+};
+
+Model.getToolsFromNumeroEstudante = (numeroEstudante, result) => {
+    Model.AlumniExisteNaBaseDeDados(numeroEstudante, (erro, data) => {
+        if (!erro) {
+            if (data.quantidade == 1) {
+                sql.query('SELECT tipoTool, percentagem FROM Alumni_Tools INNER JOIN Tools ON Tools.id_tools = Alumni_Tools.id_tools WHERE id_nroEstudante = ?', [numeroEstudante], (err, res) => {
+                    if (err) {
+                        result({ kind: "erro_operacao" }, null);
+                        return;
                     }
+                    // se nao houver skills queremos um array vazio
+                    result(null, res);
+                    return
                 });
             } else {
                 result({ kind: "not_found_alumni" }, null);
@@ -195,39 +293,38 @@ Model.createBolsa = (bolsa, result) => {
     sql.query('INSERT INTO Bolsa_Emprego SET ?', bolsa, (err, res) => {
         if (err) {
             result(err, null);
-        }
-        else {
+        } else {
             result(null, res);
         }
     });
 };
 
-Model.deleteBolsa =(id, result) => {
-    sql.query('DELETE FROM Bolsa_Emprego WHERE id_bolsas = ?', id, (err,res) =>{
-        if(err){
-            result(err,null);
+Model.deleteBolsa = (id, result) => {
+    sql.query('DELETE FROM Bolsa_Emprego WHERE id_bolsas = ?', id, (err, res) => {
+        if (err) {
+            result(err, null);
         }
-        
+
         result(null, res);
     });
 };
 
-Model.getBolsaById = (id, result) =>{
-    sql.query('SELECT * FROM Bolsa_Emprego WHERE id_bolsas = ?', [id], (err,res) =>{
-        if(err){
-            result(err,null);
+Model.getBolsaById = (id, result) => {
+    sql.query('SELECT * FROM Bolsa_Emprego WHERE id_bolsas = ?', [id], (err, res) => {
+        if (err) {
+            result(err, null);
             return;
         }
-        if(res.length){
-            result(null,res[0]);
+        if (res.length) {
+            result(null, res[0]);
             return
         }
-        result({kind: "not_found"}, null);
+        result({ kind: "not_found" }, null);
     });
 };
 
-Model.updateBolsaById = (bolsa, id, result) =>{
-    sql.query('UPDATE Bolsa_Emprego SET ? WHERE ?', [bolsa,{id_bolsas:id}], (err,res) =>{
+Model.updateBolsaById = (bolsa, id, result) => {
+    sql.query('UPDATE Bolsa_Emprego SET ? WHERE ?', [bolsa, { id_bolsas: id }], (err, res) => {
         if (err) {
             result(err, null);
             return;

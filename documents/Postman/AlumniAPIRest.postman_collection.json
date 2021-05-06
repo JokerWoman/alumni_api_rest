@@ -1,375 +1,634 @@
 {
 	"info": {
-		"_postman_id": "efbba3c1-ad2c-443b-903e-80c4903361c8",
+		"_postman_id": "8c178536-266d-4124-a556-41c0beb3891b",
 		"name": "AlumniAPIRest",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
 	"item": [
 		{
-			"name": "UpdateAlumniByNumeroEstudante",
-			"request": {
-				"method": "PUT",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "{\r\n    \"nome\":\"Andrea Fernandes\",\r\n    \"dataNascimento\":\"1998-02-18\",\r\n    \"morada\":\"Rua das Batatas\",\r\n    \"email\":\"andrea@gmail.com\",\r\n    \"fotoLink\":\"https://ep00.epimg.net/verne/imagenes/2019/11/13/album/1573641411_551713_1573641467_album_normal.jpg\",\r\n    \"telemovel\":\"917574845\",\r\n    \"curriculumPDFLink\":\"https://www.bridgemaneducation.com/documents/how-to-guide.pdf\",\r\n    \"password\":\"8125468\",\r\n    \"id_role\":\"3\",\r\n    \"id_genero\":\"2\",\r\n    \"id_nacionalidade\":\"1\",\r\n    \"id_codigoPostal\":\"4770-440\"\r\n}",
-					"options": {
-						"raw": {
-							"language": "json"
+			"name": "AlumniSkills",
+			"item": [
+				{
+					"name": "DeleteSkillFromNumeroEstudanteBySkillId",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://127.0.0.1:8080/alumni/19180047/skills/1",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8080",
+							"path": [
+								"alumni",
+								"19180047",
+								"skills",
+								"1"
+							]
 						}
-					}
+					},
+					"response": []
 				},
-				"url": {
-					"raw": "http://127.0.0.1:8080/alumni/19180048",
-					"protocol": "http",
-					"host": [
-						"127",
-						"0",
-						"0",
-						"1"
-					],
-					"port": "8080",
-					"path": [
-						"alumni",
-						"19180048"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "GetAlumniByNumeroEstudante",
-			"request": {
-				"method": "PUT",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "{\r\n    \"nome\":\"Andrea Fernandes\",\r\n    \"dataNascimento\":\"1998-02-18\",\r\n    \"morada\":\"Rua das Batatas\",\r\n    \"email\":\"andrea@gmail.com\",\r\n    \"fotoLink\":\"https://ep00.epimg.net/verne/imagenes/2019/11/13/album/1573641411_551713_1573641467_album_normal.jpg\",\r\n    \"telemovel\":\"917574845\",\r\n    \"curriculumPDFLink\":\"https://www.bridgemaneducation.com/documents/how-to-guide.pdf\",\r\n    \"password\":\"8125468\",\r\n    \"id_role\":\"3\",\r\n    \"id_genero\":\"2\",\r\n    \"id_nacionalidade\":\"1\",\r\n    \"id_codigoPostal\":\"4770-440\"\r\n}",
-					"options": {
-						"raw": {
-							"language": "json"
+				{
+					"name": "CreateSkillFromNumeroEstudanteBySkill",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"percentagem\":\"99\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:8080/alumni/19180047/skills/1",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8080",
+							"path": [
+								"alumni",
+								"19180047",
+								"skills",
+								"1"
+							]
 						}
-					}
+					},
+					"response": []
 				},
-				"url": {
-					"raw": "http://127.0.0.1:8080/alumni/19180045",
-					"protocol": "http",
-					"host": [
-						"127",
-						"0",
-						"0",
-						"1"
-					],
-					"port": "8080",
-					"path": [
-						"alumni",
-						"19180045"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "CreateAlumni",
-			"request": {
-				"method": "POST",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "{\r\n    \"id_nroEstudante\":\"19180047\",\r\n    \"nome\":\"Nuno Silva\",\r\n    \"dataNascimento\":\"1998-02-18\",\r\n    \"morada\":\"Rua das Peras\",\r\n    \"email\":\"andrea@gmail.com\",\r\n    \"fotoLink\":\"https://i.pinimg.com/originals/51/fe/18/51fe180cc453fccbf05652ad051b4803.jpg\",\r\n    \"telemovel\":\"917574845\",\r\n    \"curriculumPDFLink\":\"https://www.bridgemaneducation.com/documents/how-to-guide.pdf\",\r\n    \"password\":\"123456789\",\r\n    \"id_role\":\"3\",\r\n    \"id_genero\":\"2\",\r\n    \"id_nacionalidade\":\"1\",\r\n    \"id_codigoPostal\":\"4770-440\"\r\n}",
-					"options": {
-						"raw": {
-							"language": "json"
+				{
+					"name": "GetSkillsByNumeroEstudante",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://127.0.0.1:8080/alumni/19180047/skills",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8080",
+							"path": [
+								"alumni",
+								"19180047",
+								"skills"
+							]
 						}
-					}
+					},
+					"response": []
 				},
-				"url": {
-					"raw": "http://127.0.0.1:8080/alumni",
-					"protocol": "http",
-					"host": [
-						"127",
-						"0",
-						"0",
-						"1"
-					],
-					"port": "8080",
-					"path": [
-						"alumni"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "GetAllAlumni",
-			"request": {
-				"method": "GET",
-				"header": [],
-				"url": {
-					"raw": "http://127.0.0.1:8080/alumni/",
-					"protocol": "http",
-					"host": [
-						"127",
-						"0",
-						"0",
-						"1"
-					],
-					"port": "8080",
-					"path": [
-						"alumni",
-						""
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "GetSkillsByNumeroEstudante",
-			"request": {
-				"method": "GET",
-				"header": [],
-				"url": {
-					"raw": "http://127.0.0.1:8080/alumni/19180047/skills",
-					"protocol": "http",
-					"host": [
-						"127",
-						"0",
-						"0",
-						"1"
-					],
-					"port": "8080",
-					"path": [
-						"alumni",
-						"19180047",
-						"skills"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "DeleteSkillFromNumeroEstudanteBySkillId",
-			"request": {
-				"method": "DELETE",
-				"header": [],
-				"url": {
-					"raw": "http://127.0.0.1:8080/alumni/19180047/skills/1",
-					"protocol": "http",
-					"host": [
-						"127",
-						"0",
-						"0",
-						"1"
-					],
-					"port": "8080",
-					"path": [
-						"alumni",
-						"19180047",
-						"skills",
-						"1"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "UpdateSkillFromNumeroEstudanteBySkill",
-			"request": {
-				"method": "PUT",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "{\r\n    \"percentagem\":\"60\"\r\n}",
-					"options": {
-						"raw": {
-							"language": "json"
+				{
+					"name": "UpdateSkillFromNumeroEstudanteBySkill",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"percentagem\":\"60\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:8080/alumni/19180047/skills/1",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8080",
+							"path": [
+								"alumni",
+								"19180047",
+								"skills",
+								"1"
+							]
 						}
-					}
-				},
-				"url": {
-					"raw": "http://127.0.0.1:8080/alumni/19180047/skills/1",
-					"protocol": "http",
-					"host": [
-						"127",
-						"0",
-						"0",
-						"1"
-					],
-					"port": "8080",
-					"path": [
-						"alumni",
-						"19180047",
-						"skills",
-						"1"
-					]
+					},
+					"response": []
 				}
-			},
-			"response": []
+			]
 		},
 		{
-			"name": "CreateSkillFromNumeroEstudanteBySkill",
-			"request": {
-				"method": "POST",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "{\r\n    \"percentagem\":\"99\"\r\n}",
-					"options": {
-						"raw": {
-							"language": "json"
+			"name": "AlumniTools",
+			"item": [
+				{
+					"name": "DeleteToolFromNumeroEstudanteByToolId",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://127.0.0.1:8080/alumni/19180047/tools/1",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8080",
+							"path": [
+								"alumni",
+								"19180047",
+								"tools",
+								"1"
+							]
 						}
-					}
+					},
+					"response": []
 				},
-				"url": {
-					"raw": "http://127.0.0.1:8080/alumni/19180047/skills/1",
-					"protocol": "http",
-					"host": [
-						"127",
-						"0",
-						"0",
-						"1"
-					],
-					"port": "8080",
-					"path": [
-						"alumni",
-						"19180047",
-						"skills",
-						"1"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "GetAllBolsas",
-			"request": {
-				"method": "GET",
-				"header": [],
-				"url": {
-					"raw": "http://127.0.0.1:8080/bolsas",
-					"protocol": "http",
-					"host": [
-						"127",
-						"0",
-						"0",
-						"1"
-					],
-					"port": "8080",
-					"path": [
-						"bolsas"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "DeleteBolsas",
-			"request": {
-				"method": "DELETE",
-				"header": [],
-				"url": {
-					"raw": "http://127.0.0.1:8080/bolsas/5",
-					"protocol": "http",
-					"host": [
-						"127",
-						"0",
-						"0",
-						"1"
-					],
-					"port": "8080",
-					"path": [
-						"bolsas",
-						"5"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "UpdateBolsasById",
-			"request": {
-				"method": "PUT",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "{\r\n    \"descricao\": \"bolsa444444\",\r\n    \"fotoLink\": \"https://i.pinimg.com/originals/51/fe/18/51fe180cc453fccbf05652ad051b4803.jpg\",\r\n    \"estado\": \"inativo\",\r\n    \"data_publicação\": \"2021-05-20\",\r\n    \"data_inicio\": \"2029-05-20\",\r\n    \"id_empresa\": 1,\r\n    \"id_tipoEmprego\": 2,\r\n    \"id_nroProfessor\": 1000000\r\n}",
-					"options": {
-						"raw": {
-							"language": "json"
+				{
+					"name": "CreateToolFromNumeroEstudanteByTool",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"percentagem\":\"99\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:8080/alumni/19180047/tools/1",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8080",
+							"path": [
+								"alumni",
+								"19180047",
+								"tools",
+								"1"
+							]
 						}
-					}
+					},
+					"response": []
 				},
-				"url": {
-					"raw": "http://127.0.0.1:8080/bolsas/2",
-					"protocol": "http",
-					"host": [
-						"127",
-						"0",
-						"0",
-						"1"
-					],
-					"port": "8080",
-					"path": [
-						"bolsas",
-						"2"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "CreateBolsas",
-			"request": {
-				"method": "POST",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "{\r\n    \"descricao\":\"bolsa5\",\r\n    \"fotoLink\":\"https://i.pinimg.com/originals/51/fe/18/51fe180cc453fccbf05652ad051b4803.jpg\",\r\n    \"estado\":\"ativo\",\r\n    \"data_publicação\":\"2029-05-20\",\r\n    \"data_inicio\":\"2029-05-20\",\r\n    \"id_empresa\":\"2\",\r\n    \"id_tipoEmprego\":\"3\",\r\n    \"id_nroProfessor\":\"2000000\"\r\n    \r\n}",
-					"options": {
-						"raw": {
-							"language": "json"
+				{
+					"name": "GetToolsByNumeroEstudante",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://127.0.0.1:8080/alumni/19180047/tools",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8080",
+							"path": [
+								"alumni",
+								"19180047",
+								"tools"
+							]
 						}
-					}
+					},
+					"response": []
 				},
-				"url": {
-					"raw": "http://127.0.0.1:8080/bolsas",
-					"protocol": "http",
-					"host": [
-						"127",
-						"0",
-						"0",
-						"1"
-					],
-					"port": "8080",
-					"path": [
-						"bolsas"
-					]
+				{
+					"name": "UpdateToolFromNumeroEstudanteByTool",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"percentagem\":\"60\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:8080/alumni/19180047/tools/3",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8080",
+							"path": [
+								"alumni",
+								"19180047",
+								"tools",
+								"3"
+							]
+						}
+					},
+					"response": []
 				}
-			},
-			"response": []
+			]
 		},
 		{
-			"name": "GetBolsaById",
-			"request": {
-				"method": "GET",
-				"header": [],
-				"url": {
-					"raw": "http://127.0.0.1:8080/bolsas/1",
-					"protocol": "http",
-					"host": [
-						"127",
-						"0",
-						"0",
-						"1"
-					],
-					"port": "8080",
-					"path": [
-						"bolsas",
-						"1"
-					]
+			"name": "AlumniCurso",
+			"item": [
+				{
+					"name": "DeleteCursoFromNumeroEstudanteByCursod",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://127.0.0.1:8080/alumni/19180047/cursos/1",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8080",
+							"path": [
+								"alumni",
+								"19180047",
+								"cursos",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "CreateCursoFromNumeroEstudanteByCurso",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"percentagem\":\"99\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:8080/alumni/19180047/cursos/1",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8080",
+							"path": [
+								"alumni",
+								"19180047",
+								"cursos",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GetCursoByNumeroEstudante",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://127.0.0.1:8080/alumni/19180047/cursos",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8080",
+							"path": [
+								"alumni",
+								"19180047",
+								"cursos"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "UpdateCursoFromNumeroEstudanteByCurso",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"percentagem\":\"60\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:8080/alumni/19180047/cursos/1",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8080",
+							"path": [
+								"alumni",
+								"19180047",
+								"cursos",
+								"1"
+							]
+						}
+					},
+					"response": []
 				}
-			},
-			"response": []
+			]
+		},
+		{
+			"name": "Alumni",
+			"item": [
+				{
+					"name": "UpdateAlumniByNumeroEstudante",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nome\":\"Andrea Fernandes\",\r\n    \"dataNascimento\":\"1998-02-18\",\r\n    \"morada\":\"Rua das Batatas\",\r\n    \"email\":\"andrea@gmail.com\",\r\n    \"fotoLink\":\"https://ep00.epimg.net/verne/imagenes/2019/11/13/album/1573641411_551713_1573641467_album_normal.jpg\",\r\n    \"telemovel\":\"917574845\",\r\n    \"curriculumPDFLink\":\"https://www.bridgemaneducation.com/documents/how-to-guide.pdf\",\r\n    \"password\":\"8125468\",\r\n    \"id_role\":\"3\",\r\n    \"id_genero\":\"2\",\r\n    \"id_nacionalidade\":\"1\",\r\n    \"id_codigoPostal\":\"4770-440\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:8080/alumni/19180048",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8080",
+							"path": [
+								"alumni",
+								"19180048"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GetAlumniByNumeroEstudante",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nome\":\"Andrea Fernandes\",\r\n    \"dataNascimento\":\"1998-02-18\",\r\n    \"morada\":\"Rua das Batatas\",\r\n    \"email\":\"andrea@gmail.com\",\r\n    \"fotoLink\":\"https://ep00.epimg.net/verne/imagenes/2019/11/13/album/1573641411_551713_1573641467_album_normal.jpg\",\r\n    \"telemovel\":\"917574845\",\r\n    \"curriculumPDFLink\":\"https://www.bridgemaneducation.com/documents/how-to-guide.pdf\",\r\n    \"password\":\"8125468\",\r\n    \"id_role\":\"3\",\r\n    \"id_genero\":\"2\",\r\n    \"id_nacionalidade\":\"1\",\r\n    \"id_codigoPostal\":\"4770-440\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:8080/alumni/19180045",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8080",
+							"path": [
+								"alumni",
+								"19180045"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "CreateAlumni",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id_nroEstudante\":\"19180047\",\r\n    \"nome\":\"Nuno Silva\",\r\n    \"dataNascimento\":\"1998-02-18\",\r\n    \"morada\":\"Rua das Peras\",\r\n    \"email\":\"andrea@gmail.com\",\r\n    \"fotoLink\":\"https://i.pinimg.com/originals/51/fe/18/51fe180cc453fccbf05652ad051b4803.jpg\",\r\n    \"telemovel\":\"917574845\",\r\n    \"curriculumPDFLink\":\"https://www.bridgemaneducation.com/documents/how-to-guide.pdf\",\r\n    \"password\":\"123456789\",\r\n    \"id_role\":\"3\",\r\n    \"id_genero\":\"2\",\r\n    \"id_nacionalidade\":\"1\",\r\n    \"id_codigoPostal\":\"4770-440\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:8080/alumni",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8080",
+							"path": [
+								"alumni"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GetAllAlumni",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://127.0.0.1:8080/alumni/",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8080",
+							"path": [
+								"alumni",
+								""
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Bolsas",
+			"item": [
+				{
+					"name": "GetAllBolsas",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://127.0.0.1:8080/bolsas",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8080",
+							"path": [
+								"bolsas"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "DeleteBolsas",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://127.0.0.1:8080/bolsas/5",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8080",
+							"path": [
+								"bolsas",
+								"5"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "UpdateBolsasById",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"descricao\": \"bolsa444444\",\r\n    \"fotoLink\": \"https://i.pinimg.com/originals/51/fe/18/51fe180cc453fccbf05652ad051b4803.jpg\",\r\n    \"estado\": \"inativo\",\r\n    \"data_publicação\": \"2021-05-20\",\r\n    \"data_inicio\": \"2029-05-20\",\r\n    \"id_empresa\": 1,\r\n    \"id_tipoEmprego\": 2,\r\n    \"id_nroProfessor\": 1000000\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:8080/bolsas/2",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8080",
+							"path": [
+								"bolsas",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "CreateBolsas",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"descricao\":\"bolsa5\",\r\n    \"fotoLink\":\"https://i.pinimg.com/originals/51/fe/18/51fe180cc453fccbf05652ad051b4803.jpg\",\r\n    \"estado\":\"ativo\",\r\n    \"data_publicação\":\"2029-05-20\",\r\n    \"data_inicio\":\"2029-05-20\",\r\n    \"id_empresa\":\"2\",\r\n    \"id_tipoEmprego\":\"3\",\r\n    \"id_nroProfessor\":\"2000000\"\r\n    \r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:8080/bolsas",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8080",
+							"path": [
+								"bolsas"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GetBolsaById",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://127.0.0.1:8080/bolsas/1",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8080",
+							"path": [
+								"bolsas",
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			]
 		}
 	]
 }
