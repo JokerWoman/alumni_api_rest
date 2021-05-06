@@ -117,6 +117,32 @@ Model.createCursoFromNumeroEstudanteByCursoId = (curso, result) => {
     });
 };
 
+
+
+Model.createLinkFromNumeroEstudanteByLinkId = (link, result) => {
+    Model.AlumniExisteNaBaseDeDados(link.id_nroEstudante, (erro, data) => {
+        if (!erro) {
+            if (data.quantidade == 1) {
+                sql.query('INSERT INTO Alumni_Links SET ?', link, (err, res) => {
+                    if (err) {
+                        result({ kind: "erro_operacao" }, null);
+                        return;
+                    }
+                    if (res.affectedRows == 0) {
+                        result({ kind: "link_nao_inserida" }, null);
+                        return;
+                    }
+                    result(null, res);
+                });
+            } else {
+                result({ kind: "not_found_alumni" }, null);
+            }
+        } else {
+            result = (erro, data)
+        }
+    });
+};
+
 Model.updateSkillFromNumeroEstudanteBySkillId = (numeroEstudante, skillId, newPercentagem, result) => {
     Model.AlumniExisteNaBaseDeDados(numeroEstudante, (erro, data) => {
         if (!erro) {
@@ -197,6 +223,33 @@ Model.updateCursoFromNumeroEstudanteByCursoId = (numeroEstudante, cursoId, newAn
 };
 
 
+Model.updateLinkFromNumeroEstudanteByLinkId = (numeroEstudante, linkId, newLink, result) => {
+    Model.AlumniExisteNaBaseDeDados(numeroEstudante, (erro, data) => {
+        if (!erro) {
+            if (data.quantidade == 1) {
+                sql.query('UPDATE Alumni_Links SET ? WHERE ? AND ?', [{ link: newLink }, { id_nroEstudante: numeroEstudante }, { id_links: linkId }], (err, res) => {
+                    if (err) {
+                        result({ kind: "erro_operacao" }, null);
+                        return;
+                    }
+
+                    if (res.affectedRows == 0) {
+                        result({ kind: "link_nao_updated" }, null);
+                        return;
+                    }
+                    result(null, res);
+                });
+            } else {
+                result({ kind: "not_found_alumni" }, null);
+            }
+        } else {
+            result = (erro, data)
+        }
+    });
+
+};
+
+
 
 Model.deleteSkillFromNumeroEstudanteBySkillId = (numeroEstudante, skillId, result) => {
     Model.AlumniExisteNaBaseDeDados(numeroEstudante, (erro, data) => {
@@ -252,7 +305,7 @@ Model.deleteToolFromNumeroEstudanteByToolId = (numeroEstudante, toolId, result) 
 
 
 
-Model.deleteToolFromNumeroEstudanteByCursoId = (numeroEstudante, cursoId, result) => {
+Model.deleteCursoFromNumeroEstudanteByCursoId = (numeroEstudante, cursoId, result) => {
     Model.AlumniExisteNaBaseDeDados(numeroEstudante, (erro, data) => {
         if (!erro) {
             if (data.quantidade == 1) {
@@ -264,6 +317,33 @@ Model.deleteToolFromNumeroEstudanteByCursoId = (numeroEstudante, cursoId, result
 
                     if (res.affectedRows == 0) {
                         result({ kind: "curso_nao_apagada" }, null);
+                        return;
+                    }
+                    result(null, res);
+                });
+            } else {
+                result({ kind: "not_found_alumni" }, null);
+            }
+        } else {
+            result = (erro, data)
+        }
+    });
+};
+
+
+
+Model.deleteLinkFromNumeroEstudanteByLinkId = (numeroEstudante, linkId, result) => {
+    Model.AlumniExisteNaBaseDeDados(numeroEstudante, (erro, data) => {
+        if (!erro) {
+            if (data.quantidade == 1) {
+                sql.query('DELETE FROM Alumni_Links WHERE ? AND ?', [{ id_nroEstudante: numeroEstudante }, { id_links: linkId }], (err, res) => {
+                    if (err) {
+                        result({ kind: "erro_operacao" }, null);
+                        return;
+                    }
+
+                    if (res.affectedRows == 0) {
+                        result({ kind: "link_nao_apagada" }, null);
                         return;
                     }
                     result(null, res);
@@ -328,6 +408,28 @@ Model.getCursosFromNumeroEstudante = (numeroEstudante, result) => {
         if (!erro) {
             if (data.quantidade == 1) {
                 sql.query('SELECT tipoCurso, anoCurso FROM Alumni_Cursos INNER JOIN Cursos ON Cursos.id_cursos = Alumni_Cursos.id_cursos WHERE id_nroEstudante = ?', [numeroEstudante], (err, res) => {
+                    if (err) {
+                        result({ kind: "erro_operacao" }, null);
+                        return;
+                    }
+                    // se nao houver skills queremos um array vazio
+                    result(null, res);
+                    return
+                });
+            } else {
+                result({ kind: "not_found_alumni" }, null);
+            }
+        } else {
+            result = (erro, data)
+        }
+    });
+};
+
+Model.getLinksFromNumeroEstudante = (numeroEstudante, result) => {
+    Model.AlumniExisteNaBaseDeDados(numeroEstudante, (erro, data) => {
+        if (!erro) {
+            if (data.quantidade == 1) {
+                sql.query('SELECT tipoLink, link FROM Alumni_Links INNER JOIN Links ON Links.id_links = Alumni_Links.id_links WHERE id_nroEstudante = ?', [numeroEstudante], (err, res) => {
                     if (err) {
                         result({ kind: "erro_operacao" }, null);
                         return;

@@ -1,4 +1,5 @@
 const model = require('../models/model.js');
+const validUrl = require('valid-url');
 
 class Alumni {
     constructor(nome, dataNascimento, morada, email, fotoLink, telemovel, curriculumPDFLink, password, id_role, id_genero, id_nacionalidade, id_codigoPostal) {
@@ -283,6 +284,46 @@ exports.createCursoFromNumeroEstudanteByCursoId = (req, res) => {
     });
 };
 
+exports.createLinkFromNumeroEstudanteByLinkId = (req, res) => {
+    if (!req.body || !req.body.link) {
+        res.status(400).json({ message: "link é obrigatorio no body!" });
+        return;
+    }
+
+    if (!validUrl.isUri(req.body.link)) {
+        res.status(400).json({ message: 'o link deve ser valido ' });
+        return;
+    }
+
+    const link = {
+        link: req.body.link,
+        id_nroEstudante: req.params.numero,
+        id_links: req.params.linkId
+    };
+
+    model.createLinkFromNumeroEstudanteByLinkId(link, (err, data) => {
+        if (err) {
+            if (err.kind === "erro_operacao") {
+                res.status(500).json({
+                    message: `Error na operação de inserir uma link com id ${link.id_links}.`
+                })
+            } else if (err.kind === "link_nao_inserida") {
+                res.status(404).json({
+                    message: `Erro link não inserida com id ${link.id_links}.`
+                })
+            } else if (err.kind === "not_found_alumni") {
+                res.status(404).json({
+                    message: `Erro alumni não existe com id ${link.id_nroEstudante}.`
+                })
+            }
+        } else {
+            res.status(201).json({
+                message: "Novo link criada."
+            });
+        }
+    });
+};
+
 exports.updateSkillFromNumeroEstudanteBySkillId = (req, res) => {
 
     if (!req.body || !req.body.percentagem) {
@@ -401,6 +442,41 @@ exports.updateCursoFromNumeroEstudanteByCursoId = (req, res) => {
 
 
 
+exports.updateLinkFromNumeroEstudanteByLinkId = (req, res) => {
+
+    if (!req.body || !req.body.link) {
+        res.status(400).json({ message: "link é obrigatorio no body!" });
+        return;
+    }
+
+    if (!validUrl.isUri(req.body.link)) {
+        res.status(400).json({ message: 'o link deve ser valido ' });
+        return;
+    }
+
+    model.updateLinkFromNumeroEstudanteByLinkId(req.params.numero, req.params.linkId, req.body.link, (err, data) => {
+        if (err) {
+            if (err.kind === "erro_operacao") {
+                res.status(500).json({
+                    message: `Error na operação de update de uma link com id ${req.params.linkId}.`
+                })
+            } else if (err.kind === "link_nao_updated") {
+                res.status(404).json({
+                    message: `Erro link não updated com id ${req.params.linkId}.`
+                })
+            } else if (err.kind === "not_found_alumni") {
+                res.status(404).json({
+                    message: `Erro alumni não existe com id ${req.params.numero}.`
+                })
+            }
+        } else {
+            res.status(200).json({ message: "Updated link." });
+        }
+    });
+};
+
+
+
 exports.deleteSkillFromNumeroEstudanteBySkillId = (req, res) => {
     model.deleteSkillFromNumeroEstudanteBySkillId(req.params.numero, req.params.skillId, (err, data) => {
         if (err) {
@@ -446,8 +522,8 @@ exports.deleteToolFromNumeroEstudanteByToolId = (req, res) => {
 
 
 
-exports.deleteToolFromNumeroEstudanteByCursoId = (req, res) => {
-    model.deleteToolFromNumeroEstudanteByCursoId(req.params.numero, req.params.cursoId, (err, data) => {
+exports.deleteCursoFromNumeroEstudanteByCursoId = (req, res) => {
+    model.deleteCursoFromNumeroEstudanteByCursoId(req.params.numero, req.params.cursoId, (err, data) => {
         if (err) {
             if (err.kind === "erro_operacao") {
                 res.status(500).json({
@@ -466,6 +542,29 @@ exports.deleteToolFromNumeroEstudanteByCursoId = (req, res) => {
             res.status(200).json(data);
     });
 };
+
+
+exports.deleteLinkFromNumeroEstudanteByLinkId = (req, res) => {
+    model.deleteLinkFromNumeroEstudanteByLinkId(req.params.numero, req.params.linkId, (err, data) => {
+        if (err) {
+            if (err.kind === "erro_operacao") {
+                res.status(500).json({
+                    message: `Error na operação de delete de uma link com id ${req.params.linkId}.`
+                })
+            } else if (err.kind === "link_nao_apagada") {
+                res.status(404).json({
+                    message: `Erro link não apagada com id ${req.params.linkId}.`
+                })
+            } else if (err.kind === "not_found_alumni") {
+                res.status(404).json({
+                    message: `Erro alumni não existe com id ${req.params.numero}.`
+                })
+            }
+        } else
+            res.status(200).json(data);
+    });
+};
+
 
 exports.getSkillsFromNumeroEstudante = (req, res) => {
     model.getSkillsFromNumeroEstudante(req.params.numero, (err, data) => {
@@ -508,6 +607,23 @@ exports.getCursosFromNumeroEstudante = (req, res) => {
             if (err.kind === "erro_operacao") {
                 res.status(500).json({
                     message: `Error na operação no get das curso do estudante com id ${req.params.numero}.`
+                })
+            } else if (err.kind === "not_found_alumni") {
+                res.status(404).json({
+                    message: `Erro alumni não existe com id ${req.params.numero}.`
+                })
+            }
+        } else
+            res.status(200).json(data);
+    });
+};
+
+exports.getLinksFromNumeroEstudante = (req, res) => {
+    model.getLinksFromNumeroEstudante(req.params.numero, (err, data) => {
+        if (err) {
+            if (err.kind === "erro_operacao") {
+                res.status(500).json({
+                    message: `Error na operação no get das link do estudante com id ${req.params.numero}.`
                 })
             } else if (err.kind === "not_found_alumni") {
                 res.status(404).json({
