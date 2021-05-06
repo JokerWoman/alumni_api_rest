@@ -653,11 +653,23 @@ exports.deleteBolsa = (req, res) => {
     model.deleteBolsa(req.params.bolsaID, (err, data) => {
 
         if (err) {
-            res.status(500).json({
-                message: `Could not delete Bolsa with id ${req.params.bolsaID}.`
-            });
+            if (err.kind === "erro_operacao") {
+                res.status(404).send({
+                    message: `Not found bolsa with id ${req.params.bolsaID}`
+                });
+            } else if (err.kind === "bolsa_nao_apagada") {
+                res.status(500).send({
+                    message: err.message || "Error deleting bolsa with id" + req.params.bolsaID
+                });
+            } else if (err.kind === "not_found_bolsa") {
+                res.status(404).json({
+                    message: `Erro bolsa não existe com id ${req.params.bolsaID}.`
+                })
+            }
+        } else {
+            res.status(200).json({ message: `Bolsa with id ${req.params.bolsaID} was successfully deleted!` });
         }
-        res.status(200).json({ message: `Bolsa with id ${req.params.bolsaID} was successfully deleted!` });
+
     })
 };
 
