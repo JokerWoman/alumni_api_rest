@@ -1,6 +1,6 @@
 const sql = require("./db.js"); // get DB connection
 
-const Model = function() {
+const Model = function () {
 
 };
 
@@ -385,6 +385,16 @@ Model.updateAlumniByNumeroEstudante = (alumni, numeroEstudante, result) => {
     });
 };
 
+Model.BolsaExisteNaBaseDeDados = (id, resultado) => {
+    sql.query('SELECT COUNT(*) AS quantidade FROM Bolsa_Emprego WHERE ?', { id_bolsas: id }, (err, res) => {
+        if (err) {
+            resultado({ kind: "erro_operacao" }, null);
+            return;
+        }
+        resultado(null, { quantidade: res[0].quantidade });
+    });
+};
+
 Model.getAllBolsas = (result) => {
     sql.query("SELECT * FROM Bolsa_Emprego", (err, res) => {
         if (err) {
@@ -430,16 +440,27 @@ Model.getBolsaById = (id, result) => {
 };
 
 Model.updateBolsaById = (bolsa, id, result) => {
-    sql.query('UPDATE Bolsa_Emprego SET ? WHERE ?', [bolsa, { id_bolsas: id }], (err, res) => {
-        if (err) {
-            result(err, null);
-            return;
+    Model.BolsaExisteNaBaseDeDados(id, (erro, data) => {
+        if (!erro) {
+            if (data.quantidade === 1) {
+                sql.query('UPDATE Bolsa_Emprego SET ? WHERE ?', [bolsa, { id_bolsas: id }], (err, res) => {
+                    if (err) {
+                        result({ kind: "erro_operacao" }, null);
+                        return;
+                    }
+                    if (res.affectedRows == 0) {
+                        result({ kind: "bolsa_nao_updated" }, null);
+                        return
+                    }
+                    result(null, res)
+                });
+            }else{
+                result({ kind: "not_found_bolsa" }, null);
+            }
+        }else{
+            result = (erro, data)
         }
-        if (res.affectedRows == 0) {
-            result({ kind: "not_found" }, null);
-            return
-        }
-        result(null, res)
+
     });
 };
 

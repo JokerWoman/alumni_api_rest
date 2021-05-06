@@ -40,8 +40,8 @@ exports.getAllAlumni = (req, res) => {
     model.getAllAlumni((err, data) => {
         if (err) // send error response
             res.status(500).send({
-            message: err.message || "Some error occurred while retrieving alumni."
-        });
+                message: err.message || "Some error occurred while retrieving alumni."
+            });
         else
             res.status(200).json(data); // send OK response with all alumni data
     });
@@ -637,8 +637,8 @@ exports.createBolsa = (req, res) => {
     model.createBolsa(bolsa, (err, data) => {
         if (err) // send error response
             res.status(500).send({
-            message: err.message || "Some error occurred while creating the bolsa."
-        });
+                message: err.message || "Some error occurred while creating the bolsa."
+            });
         else
             res.status(201).json({
                 message: "New bolsa created",
@@ -710,16 +710,21 @@ exports.updateBolsaById = (req, res) => {
         req.body.data_inicio, req.body.id_empresa, req.body.id_tipoEmprego, req.body.id_nroProfessor)
 
     model.updateBolsaById(bolsa, req.params.bolsaID, (err, data) => {
-        if (err) // send error response
-            if (err.kind === "not_found") {
+        if (err) {
+            if (err.kind === "erro_operacao") {
                 res.status(404).send({
                     message: `Not found bolsa with id ${req.params.bolsaID}`
                 });
-            } else {
+            } else if (err.kind === "bolsa_nao_updated") {
                 res.status(500).send({
                     message: err.message || "Error updating bolsa with id" + req.params.bolsaID
                 });
+            } else if (err.kind === "not_found_bolsa") {
+                res.status(404).json({
+                    message: `Erro bolsa não existe com id ${req.params.bolsaID}.`
+                })
             }
+        }
         else {
             res.status(200).json({
                 message: "updated bolsas ",
