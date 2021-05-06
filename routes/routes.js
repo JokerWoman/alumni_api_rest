@@ -28,6 +28,9 @@ router.route('/alumni/:numero/skills/')
 router.route('/alumni/:numero/tools/')
     .get(controller.getToolsFromNumeroEstudante);
 
+router.route('/alumni/:numero/cursos/')
+    .get(controller.getCursosFromNumeroEstudante);
+
 router.route('/alumni/:numero/skills/:skillId')
     .delete(controller.deleteSkillFromNumeroEstudanteBySkillId)
     .put(controller.updateSkillFromNumeroEstudanteBySkillId)
@@ -37,6 +40,11 @@ router.route('/alumni/:numero/tools/:toolId')
     .delete(controller.deleteToolFromNumeroEstudanteByToolId)
     .put(controller.updateToolFromNumeroEstudanteByToolId)
     .post(controller.createToolFromNumeroEstudanteByToolId);
+
+router.route('/alumni/:numero/cursos/:cursoId')
+    .delete(controller.deleteToolFromNumeroEstudanteByCursoId)
+    .put(controller.updateCursoFromNumeroEstudanteByCursoId)
+    .post(controller.createCursoFromNumeroEstudanteByCursoId);
 
 router.route('/bolsas')
     .get(controller.getAllBolsas)

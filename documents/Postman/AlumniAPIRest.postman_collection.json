@@ -170,7 +170,7 @@
 							}
 						},
 						"url": {
-							"raw": "http://127.0.0.1:8080/alumni/19180047/tools/1",
+							"raw": "http://127.0.0.1:8080/alumni/19180047/tools/3",
 							"protocol": "http",
 							"host": [
 								"127",
@@ -183,7 +183,7 @@
 								"alumni",
 								"19180047",
 								"tools",
-								"1"
+								"3"
 							]
 						}
 					},
@@ -284,7 +284,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"percentagem\":\"99\"\r\n}",
+							"raw": "{\r\n    \"anoCurso\":\"2016\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -342,7 +342,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"percentagem\":\"60\"\r\n}",
+							"raw": "{\r\n    \"anoCurso\":\"2017\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"

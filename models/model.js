@@ -92,6 +92,31 @@ Model.createToolFromNumeroEstudanteByToolId = (tool, result) => {
     });
 };
 
+
+Model.createCursoFromNumeroEstudanteByCursoId = (curso, result) => {
+    Model.AlumniExisteNaBaseDeDados(curso.id_nroEstudante, (erro, data) => {
+        if (!erro) {
+            if (data.quantidade == 1) {
+                sql.query('INSERT INTO Alumni_Cursos SET ?', curso, (err, res) => {
+                    if (err) {
+                        result({ kind: "erro_operacao" }, null);
+                        return;
+                    }
+                    if (res.affectedRows == 0) {
+                        result({ kind: "curso_nao_inserida" }, null);
+                        return;
+                    }
+                    result(null, res);
+                });
+            } else {
+                result({ kind: "not_found_alumni" }, null);
+            }
+        } else {
+            result = (erro, data)
+        }
+    });
+};
+
 Model.updateSkillFromNumeroEstudanteBySkillId = (numeroEstudante, skillId, newPercentagem, result) => {
     Model.AlumniExisteNaBaseDeDados(numeroEstudante, (erro, data) => {
         if (!erro) {
@@ -145,6 +170,34 @@ Model.updateToolFromNumeroEstudanteByToolId = (numeroEstudante, toolId, newPerce
 
 };
 
+Model.updateCursoFromNumeroEstudanteByCursoId = (numeroEstudante, cursoId, newAno, result) => {
+    Model.AlumniExisteNaBaseDeDados(numeroEstudante, (erro, data) => {
+        if (!erro) {
+            if (data.quantidade == 1) {
+                sql.query('UPDATE Alumni_Cursos SET ? WHERE ? AND ?', [{ anoCurso: newAno }, { id_nroEstudante: numeroEstudante }, { id_cursos: cursoId }], (err, res) => {
+                    if (err) {
+                        result({ kind: "erro_operacao" }, null);
+                        return;
+                    }
+
+                    if (res.affectedRows == 0) {
+                        result({ kind: "curso_nao_updated" }, null);
+                        return;
+                    }
+                    result(null, res);
+                });
+            } else {
+                result({ kind: "not_found_alumni" }, null);
+            }
+        } else {
+            result = (erro, data)
+        }
+    });
+
+};
+
+
+
 Model.deleteSkillFromNumeroEstudanteBySkillId = (numeroEstudante, skillId, result) => {
     Model.AlumniExisteNaBaseDeDados(numeroEstudante, (erro, data) => {
         if (!erro) {
@@ -196,6 +249,34 @@ Model.deleteToolFromNumeroEstudanteByToolId = (numeroEstudante, toolId, result) 
         }
     });
 };
+
+
+
+Model.deleteToolFromNumeroEstudanteByCursoId = (numeroEstudante, cursoId, result) => {
+    Model.AlumniExisteNaBaseDeDados(numeroEstudante, (erro, data) => {
+        if (!erro) {
+            if (data.quantidade == 1) {
+                sql.query('DELETE FROM Alumni_Cursos WHERE ? AND ?', [{ id_nroEstudante: numeroEstudante }, { id_cursos: cursoId }], (err, res) => {
+                    if (err) {
+                        result({ kind: "erro_operacao" }, null);
+                        return;
+                    }
+
+                    if (res.affectedRows == 0) {
+                        result({ kind: "curso_nao_apagada" }, null);
+                        return;
+                    }
+                    result(null, res);
+                });
+            } else {
+                result({ kind: "not_found_alumni" }, null);
+            }
+        } else {
+            result = (erro, data)
+        }
+    });
+};
+
 Model.getSkillsFromNumeroEstudante = (numeroEstudante, result) => {
     Model.AlumniExisteNaBaseDeDados(numeroEstudante, (erro, data) => {
         if (!erro) {
@@ -239,6 +320,31 @@ Model.getToolsFromNumeroEstudante = (numeroEstudante, result) => {
         }
     });
 };
+
+
+
+Model.getCursosFromNumeroEstudante = (numeroEstudante, result) => {
+    Model.AlumniExisteNaBaseDeDados(numeroEstudante, (erro, data) => {
+        if (!erro) {
+            if (data.quantidade == 1) {
+                sql.query('SELECT tipoCurso, anoCurso FROM Alumni_Cursos INNER JOIN Cursos ON Cursos.id_cursos = Alumni_Cursos.id_cursos WHERE id_nroEstudante = ?', [numeroEstudante], (err, res) => {
+                    if (err) {
+                        result({ kind: "erro_operacao" }, null);
+                        return;
+                    }
+                    // se nao houver skills queremos um array vazio
+                    result(null, res);
+                    return
+                });
+            } else {
+                result({ kind: "not_found_alumni" }, null);
+            }
+        } else {
+            result = (erro, data)
+        }
+    });
+};
+
 
 Model.findAlumniByNumeroEstudante = (numeroEstudante, result) => {
     sql.query('SELECT * FROM Alumni WHERE id_nroEstudante = ?', [numeroEstudante], (err, res) => {

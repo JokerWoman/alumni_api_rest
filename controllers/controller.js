@@ -234,6 +234,55 @@ exports.createToolFromNumeroEstudanteByToolId = (req, res) => {
     });
 };
 
+
+
+
+exports.createCursoFromNumeroEstudanteByCursoId = (req, res) => {
+
+    if (!req.body || !req.body.anoCurso) {
+        res.status(400).json({ message: "Ano do curso é obrigatorio no body!" });
+        return;
+    }
+
+    if (!req.body.anoCurso.match(/^(0|[1-9]\d*)$/g)) {
+        res.status(400).json({ message: 'o Ano do curso tem que ser maior que zero e um numero positivo' });
+        return;
+    }
+
+    if (parseInt(req.body.anoCurso) < 2016) {
+        res.status(400).json({ message: 'Ano do curso tem que ser mayor a que 2016' });
+        return;
+    }
+
+    const curso = {
+        anoCurso: parseInt(req.body.anoCurso),
+        id_nroEstudante: req.params.numero,
+        id_cursos: req.params.cursoId
+    };
+
+    model.createCursoFromNumeroEstudanteByCursoId(curso, (err, data) => {
+        if (err) {
+            if (err.kind === "erro_operacao") {
+                res.status(500).json({
+                    message: `Error na operação de inserir uma curso com id ${curso.id_cursos}.`
+                })
+            } else if (err.kind === "curso_nao_inserida") {
+                res.status(404).json({
+                    message: `Erro curso não inserida com id ${curso.id_cursos}.`
+                })
+            } else if (err.kind === "not_found_alumni") {
+                res.status(404).json({
+                    message: `Erro alumni não existe com id ${curso.id_nroEstudante}.`
+                })
+            }
+        } else {
+            res.status(201).json({
+                message: "Novo curso criada."
+            });
+        }
+    });
+};
+
 exports.updateSkillFromNumeroEstudanteBySkillId = (req, res) => {
 
     if (!req.body || !req.body.percentagem) {
@@ -312,6 +361,46 @@ exports.updateToolFromNumeroEstudanteByToolId = (req, res) => {
     });
 };
 
+exports.updateCursoFromNumeroEstudanteByCursoId = (req, res) => {
+
+    if (!req.body || !req.body.anoCurso) {
+        res.status(400).json({ message: "Ano Curso é obrigatorio no body!" });
+        return;
+    }
+
+    if (!req.body.anoCurso.match(/^(0|[1-9]\d*)$/g)) {
+        res.status(400).json({ message: 'Ano Curso tem que ser maior que zero e um numero positivo' });
+        return;
+    }
+
+    if (parseInt(req.body.anoCurso) < 2016) {
+        res.status(400).json({ message: 'Ano Curso tem que ser menor que 2016' });
+        return;
+    }
+
+    model.updateCursoFromNumeroEstudanteByCursoId(req.params.numero, req.params.cursoId, parseInt(req.body.anoCurso), (err, data) => {
+        if (err) {
+            if (err.kind === "erro_operacao") {
+                res.status(500).json({
+                    message: `Error na operação de update de uma curso com id ${req.params.cursoId}.`
+                })
+            } else if (err.kind === "curso_nao_updated") {
+                res.status(404).json({
+                    message: `Erro curso não updated com id ${req.params.cursoId}.`
+                })
+            } else if (err.kind === "not_found_alumni") {
+                res.status(404).json({
+                    message: `Erro alumni não existe com id ${req.params.numero}.`
+                })
+            }
+        } else {
+            res.status(200).json({ message: "Updated curso." });
+        }
+    });
+};
+
+
+
 exports.deleteSkillFromNumeroEstudanteBySkillId = (req, res) => {
     model.deleteSkillFromNumeroEstudanteBySkillId(req.params.numero, req.params.skillId, (err, data) => {
         if (err) {
@@ -344,6 +433,29 @@ exports.deleteToolFromNumeroEstudanteByToolId = (req, res) => {
             } else if (err.kind === "tool_nao_apagada") {
                 res.status(404).json({
                     message: `Erro tool não apagada com id ${req.params.toolId}.`
+                })
+            } else if (err.kind === "not_found_alumni") {
+                res.status(404).json({
+                    message: `Erro alumni não existe com id ${req.params.numero}.`
+                })
+            }
+        } else
+            res.status(200).json(data);
+    });
+};
+
+
+
+exports.deleteToolFromNumeroEstudanteByCursoId = (req, res) => {
+    model.deleteToolFromNumeroEstudanteByCursoId(req.params.numero, req.params.cursoId, (err, data) => {
+        if (err) {
+            if (err.kind === "erro_operacao") {
+                res.status(500).json({
+                    message: `Error na operação de delete de uma curso com id ${req.params.cursoId}.`
+                })
+            } else if (err.kind === "curso_nao_apagada") {
+                res.status(404).json({
+                    message: `Erro curso não apagada com id ${req.params.cursoId}.`
                 })
             } else if (err.kind === "not_found_alumni") {
                 res.status(404).json({
@@ -388,6 +500,25 @@ exports.getToolsFromNumeroEstudante = (req, res) => {
             res.status(200).json(data);
     });
 };
+
+
+exports.getCursosFromNumeroEstudante = (req, res) => {
+    model.getCursosFromNumeroEstudante(req.params.numero, (err, data) => {
+        if (err) {
+            if (err.kind === "erro_operacao") {
+                res.status(500).json({
+                    message: `Error na operação no get das curso do estudante com id ${req.params.numero}.`
+                })
+            } else if (err.kind === "not_found_alumni") {
+                res.status(404).json({
+                    message: `Erro alumni não existe com id ${req.params.numero}.`
+                })
+            }
+        } else
+            res.status(200).json(data);
+    });
+};
+
 
 exports.updateAlumniByNumeroEstudante = (req, res) => {
 
