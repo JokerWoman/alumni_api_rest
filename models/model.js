@@ -415,32 +415,7 @@ Model.createBolsa = (bolsa, result) => {
     });
 };
 
-/*
-Model.deleteBolsa = (id, result) => {
-    Model.BolsaExisteNaBaseDeDados = (id,(erro,data) =>{
-        if(!erro){
-            if(data.quantidade ===1){
-                sql.query('DELETE FROM Bolsa_Emprego WHERE ?', [{id_bolsas: id}], (err, res) => {
-                    if (err) {
-                        result({ kind: "erro_operacao" }, null);
-                        return;
-                    }
-                    if (res.affectedRows == 0) {
-                        result({ kind: "bolsa_nao_apagada" }, null);
-                        return
-                    }
-            
-                    result(null, res);
-                });
-            }else{
-                result({ kind: "not_found_bolsa" }, null);
-            }
-        }else{
-            result = (erro, data)
-        }
-    })
-    
-};*/
+
 Model.deleteBolsa = (id, result) => {
     Model.BolsaExisteNaBaseDeDados(id, (erro, data) => {
         if (!erro) {
