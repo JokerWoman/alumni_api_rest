@@ -549,7 +549,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"descricao\": \"bolsa444444\",\r\n    \"fotoLink\": \"https://i.pinimg.com/originals/51/fe/18/51fe180cc453fccbf05652ad051b4803.jpg\",\r\n    \"estado\": \"inativo\",\r\n    \"data_publicação\": \"2021-05-20\",\r\n    \"data_inicio\": \"2029-05-20\",\r\n    \"id_empresa\": 1,\r\n    \"id_tipoEmprego\": 2,\r\n    \"id_nroProfessor\": 1000000\r\n}",
+							"raw": "{\r\n    \"descricao\": \"bolsa444444\",\r\n    \"fotoLink\": \"https://i.pinimg.com/originals/51/fe/18/51fe180cc453fccbf05652ad051b4803.jpg\",\r\n    \"estado\": \"inativo\",\r\n    \"data_publicacao\": \"2021-05-20\",\r\n    \"data_inicio\": \"2029-05-20\",\r\n    \"id_empresa\": 1,\r\n    \"id_tipoEmprego\": 2,\r\n    \"id_nroProfessor\": 1000000\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -581,7 +581,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"descricao\":\"bolsa5\",\r\n    \"fotoLink\":\"https://i.pinimg.com/originals/51/fe/18/51fe180cc453fccbf05652ad051b4803.jpg\",\r\n    \"estado\":\"ativo\",\r\n    \"data_publicação\":\"2029-05-20\",\r\n    \"data_inicio\":\"2029-05-20\",\r\n    \"id_empresa\":\"2\",\r\n    \"id_tipoEmprego\":\"3\",\r\n    \"id_nroProfessor\":\"2000000\"\r\n    \r\n}",
+							"raw": "{\r\n    \"descricao\":\"bolsa5\",\r\n    \"fotoLink\":\"https://i.pinimg.com/originals/51/fe/18/51fe180cc453fccbf05652ad051b4803.jpg\",\r\n    \"estado\":\"ativo\",\r\n    \"data_publicacao\":\"2029-05-20\",\r\n    \"data_inicio\":\"2029-05-20\",\r\n    \"id_empresa\":\"2\",\r\n    \"id_tipoEmprego\":\"3\",\r\n    \"id_nroProfessor\":\"2000000\"\r\n    \r\n}",
 							"options": {
 								"raw": {
 									"language": "json"

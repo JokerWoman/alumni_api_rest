@@ -17,11 +17,11 @@ class Alumni {
     }
 }
 class Bolsa {
-    constructor(descricao, fotoLink, estado, data_publicação, data_inicio, id_empresa, id_tipoEmprego, id_nroProfessor) {
+    constructor(descricao, fotoLink, estado, data_publicacao, data_inicio, id_empresa, id_tipoEmprego, id_nroProfessor) {
         this.descricao = descricao;
         this.fotoLink = fotoLink;
         this.estado = estado;
-        this.data_publicação = data_publicação;
+        this.data_publicacao = data_publicacao;
         this.data_inicio = data_inicio;
         this.id_empresa = id_empresa;
         this.id_tipoEmprego = id_tipoEmprego;
@@ -615,7 +615,7 @@ exports.createBolsa = (req, res) => {
     } else if (!req.body.estado) {
         res.status(400).json({ message: "Estado must be sent!" });
         return;
-    } else if (!req.body.data_publicação) {
+    } else if (!req.body.data_publicacao) {
         res.status(400).json({ message: "Data Publicação must be sent!" });
         return;
     } else if (!req.body.data_inicio) {
@@ -702,7 +702,7 @@ exports.updateBolsaById = (req, res) => {
     } else if (!req.body.estado) {
         res.status(400).json({ message: "Estado must be sent!" });
         return;
-    } else if (!req.body.data_publicação) {
+    } else if (!req.body.data_publicacao) {
         res.status(400).json({ message: "Data Publicação must be sent!" });
         return;
     } else if (!req.body.data_inicio) {
