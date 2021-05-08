@@ -529,11 +529,11 @@ Model.getAllBolsas = (result) => {
 Model.createBolsa = (bolsa, empresaId, empregoId, result) => {
     Model.EmpresaExisteNaBaseDeDados(empresaId, (erro1, data1) => {
         if (!erro1) {
-            //verificar se foi encontrada alguma empresa com esse na base de dados
+            //verificar se foi encontrada alguma empresa com esse empresaId na base de dados
             if (data1.quantidade == 1) {
                 Model.EmpregoExisteNaBaseDeDados(empregoId, (erro2, data2) => {
                     if (!erro2) {
-                        //verificar se foi encontrada algum emprego com esse na base de dados
+                        //verificar se foi encontrada algum emprego com esse empregoId na base de dados
                         if (data2.quantidade == 1) {
                             sql.query('INSERT INTO Bolsa_Emprego SET ?', bolsa, (err, res) => {
                                 if (err) {
@@ -604,43 +604,55 @@ Model.getBolsaById = (id, result) => {
     });
 };
 
-Model.updateBolsaById = (bolsa, empresaId, empregoId, result) => {
-    Model.EmpresaExisteNaBaseDeDados(empresaId, (erro1, data1) => {
-        if (!erro1) {
-            //verificar se foi encontrada alguma empresa com esse na base de dados
-            if (data1.quantidade == 1) {
-                Model.EmpregoExisteNaBaseDeDados(empregoId, (erro2, data2) => {
-                    if (!erro2) {
-                        //verificar se foi encontrada algum emprego com esse na base de dados
-                        if (data2.quantidade == 1) {
-                            sql.query('UPDATE Bolsa_Emprego SET ? WHERE ?', [bolsa, { id_bolsas: id }], (err, res) => {
-                                if (err) {
-                                    result({ kind: "erro_operacao" }, null);
-                                    return;
-                                }
+Model.updateBolsaById = (bolsa, bolsaId, empresaId, empregoId, result) => {
+    Model.BolsaExisteNaBaseDeDados(bolsaId, (erro, data) => {
+        if (!erro) {
+            //verificar se foi encontrada alguma bolsa com bolsaId na base de dados
+            if (data.quantidade == 1) {
+                Model.EmpresaExisteNaBaseDeDados(empresaId, (erro1, data1) => {
+                    if (!erro1) {
+                        //verificar se foi encontrada alguma empresa com esse empresaId na base de dados
+                        if (data1.quantidade == 1) {
+                            Model.EmpregoExisteNaBaseDeDados(empregoId, (erro2, data2) => {
+                                if (!erro2) {
+                                    //verificar se foi encontrada algum emprego com esse empregoId na base de dados
+                                    if (data2.quantidade == 1) {
+                                        sql.query('UPDATE Bolsa_Emprego SET ? WHERE ?', [bolsa, { id_bolsas: bolsaId }], (err, res) => {
+                                            if (err) {
+                                                result({ kind: "erro_operacao" }, null);
+                                                return;
+                                            }
 
-                                if (res.affectedRows == 0) {
-                                    result({ kind: "bolsa_nao_updated" }, null);
-                                    return;
+                                            if (res.affectedRows == 0) {
+                                                result({ kind: "bolsa_nao_updated" }, null);
+                                                return;
+                                            }
+                                            result(null, res);
+                                        });
+                                    }
+                                    else {
+                                        result({ kind: "not_found_idEmprego" }, null);
+                                    }
                                 }
-                                result(null, res);
-                            });
+                                else {
+                                    result = (erro2, data2)
+                                }
+                            })
+                        } else {
+                            result({ kind: "not_found_idEmpresa" }, null);
                         }
-                        else {
-                            result({ kind: "not_found_idEmprego" }, null);
-                        }
+                    } else {
+                        result = (erro1, data1)
                     }
-                    else {
-                        result = (erro2, data2)
-                    }
-                })
+                });
             } else {
-                result({ kind: "not_found_idEmpresa" }, null);
+                result({ kind: "not_found_bolsa" }, null);
             }
-        } else {
-            result = (erro1, data1)
+        }else{
+            result = (erro, data)
         }
-    });
+    })
+
 };
 
 
