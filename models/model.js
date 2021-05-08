@@ -497,6 +497,25 @@ Model.BolsaExisteNaBaseDeDados = (id, resultado) => {
     });
 };
 
+Model.EmpresaExisteNaBaseDeDados = (id, resultado) => {
+    sql.query('SELECT COUNT(*) AS quantidade FROM Empresa WHERE ?', { id_empresa: id }, (err, res) => {
+        if (err) {
+            resultado({ kind: "erro_operacao" }, null);
+            return;
+        }
+        resultado(null, { quantidade: res[0].quantidade });
+    });
+};
+Model.EmpregoExisteNaBaseDeDados = (id, resultado) => {
+    sql.query('SELECT COUNT(*) AS quantidade FROM Tipo_Emprego WHERE ?', { id_tipoEmprego: id }, (err, res) => {
+        if (err) {
+            resultado({ kind: "erro_operacao" }, null);
+            return;
+        }
+        resultado(null, { quantidade: res[0].quantidade });
+    });
+};
+
 Model.getAllBolsas = (result) => {
     sql.query("SELECT * FROM Bolsa_Emprego", (err, res) => {
         if (err) {
@@ -507,22 +526,50 @@ Model.getAllBolsas = (result) => {
     });
 };
 
-Model.createBolsa = (bolsa, result) => {
-    sql.query('INSERT INTO Bolsa_Emprego SET ?', bolsa, (err, res) => {
-        if (err) {
-            result(err, null);
+Model.createBolsa = (bolsa, empresaId, empregoId, result) => {
+    Model.EmpresaExisteNaBaseDeDados(empresaId, (erro1, data1) => {
+        if (!erro1) {
+            //verificar se foi encontrada alguma empresa com esse na base de dados
+            if (data1.quantidade == 1) {
+                Model.EmpregoExisteNaBaseDeDados(empregoId, (erro2, data2) => {
+                    if (!erro2) {
+                        //verificar se foi encontrada algum emprego com esse na base de dados
+                        if (data2.quantidade == 1) {
+                            sql.query('INSERT INTO Bolsa_Emprego SET ?', bolsa, (err, res) => {
+                                if (err) {
+                                    result({ kind: "erro_operacao" }, null);
+                                    return;
+                                }
+
+                                if (res.affectedRows == 0) {
+                                    result({ kind: "bolsa_nao_criada" }, null);
+                                    return;
+                                }
+                                result(null, res);
+                            });
+                        }
+                        else {
+                            result({ kind: "not_found_idEmprego" }, null);
+                        }
+                    }
+                    else {
+                        result = (erro2, data2)
+                    }
+                })
+            } else {
+                result({ kind: "not_found_idEmpresa" }, null);
+            }
         } else {
-            result(null, res);
+            result = (erro1, data1)
         }
     });
 };
-
 
 Model.deleteBolsa = (id, result) => {
     Model.BolsaExisteNaBaseDeDados(id, (erro, data) => {
         if (!erro) {
             if (data.quantidade == 1) {
-                sql.query('DELETE FROM Bolsa_Emprego WHERE ?', [{id_bolsas: id}], (err, res) => {
+                sql.query('DELETE FROM Bolsa_Emprego WHERE ?', [{ id_bolsas: id }], (err, res) => {
                     if (err) {
                         result({ kind: "erro_operacao" }, null);
                         return;
@@ -557,29 +604,45 @@ Model.getBolsaById = (id, result) => {
     });
 };
 
-Model.updateBolsaById = (bolsa, id, result) => {
-    Model.BolsaExisteNaBaseDeDados(id, (erro, data) => {
-        if (!erro) {
-            if (data.quantidade === 1) {
-                sql.query('UPDATE Bolsa_Emprego SET ? WHERE ?', [bolsa, { id_bolsas: id }], (err, res) => {
-                    if (err) {
-                        result({ kind: "erro_operacao" }, null);
-                        return;
-                    }
-                    if (res.affectedRows == 0) {
-                        result({ kind: "bolsa_nao_updated" }, null);
-                        return
-                    }
-                    result(null, res)
-                });
-            }else{
-                result({ kind: "not_found_bolsa" }, null);
-            }
-        }else{
-            result = (erro, data)
-        }
+Model.updateBolsaById = (bolsa, empresaId, empregoId, result) => {
+    Model.EmpresaExisteNaBaseDeDados(empresaId, (erro1, data1) => {
+        if (!erro1) {
+            //verificar se foi encontrada alguma empresa com esse na base de dados
+            if (data1.quantidade == 1) {
+                Model.EmpregoExisteNaBaseDeDados(empregoId, (erro2, data2) => {
+                    if (!erro2) {
+                        //verificar se foi encontrada algum emprego com esse na base de dados
+                        if (data2.quantidade == 1) {
+                            sql.query('UPDATE Bolsa_Emprego SET ? WHERE ?', [bolsa, { id_bolsas: id }], (err, res) => {
+                                if (err) {
+                                    result({ kind: "erro_operacao" }, null);
+                                    return;
+                                }
 
+                                if (res.affectedRows == 0) {
+                                    result({ kind: "bolsa_nao_updated" }, null);
+                                    return;
+                                }
+                                result(null, res);
+                            });
+                        }
+                        else {
+                            result({ kind: "not_found_idEmprego" }, null);
+                        }
+                    }
+                    else {
+                        result = (erro2, data2)
+                    }
+                })
+            } else {
+                result({ kind: "not_found_idEmpresa" }, null);
+            }
+        } else {
+            result = (erro1, data1)
+        }
     });
 };
+
+
 
 module.exports = Model;

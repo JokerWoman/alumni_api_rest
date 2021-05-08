@@ -747,19 +747,39 @@ exports.createBolsa = (req, res) => {
         res.status(400).json({ message: "ID Nro Professor must be sent!" });
         return;
     }
+   
+
     let bolsa = new Bolsa(req.body.descricao, req.body.fotoLink, req.body.estado, req.body.data_publicacao,
         req.body.data_inicio, req.body.id_empresa, req.body.id_tipoEmprego, req.body.id_nroProfessor)
 
-    model.createBolsa(bolsa, (err, data) => {
-        if (err) // send error response
-            res.status(500).send({
-                message: err.message || "Some error occurred while creating the bolsa."
-            });
-        else
-            res.status(201).json({
-                message: "New bolsa created",
-                location: "/bolsas/" + data.insertId
-            });
+    model.createBolsa(bolsa, req.body.id_empresa, req.body.id_tipoEmprego, (err, data) => {
+
+        if (err) {
+            if (err.kind === "erro_operacao") {
+                res.status(404).send({
+                    message: `Not found bolsa with id_empresa ${req.body.id_empresa} and/or id_tipoEmprego ${req.body.id_tipoEmprego}`
+                });
+            } else if (err.kind === "bolsa_nao_criada") {
+                res.status(500).send({
+                    message: "Error deleting bolsa with id_empresa" + req.body.id_empresa + "and id_tipoEmprego" + req.body.id_tipoEmprego
+                });
+            }else if (err.kind === "not_found_idEmprego") {
+                res.status(500).send({
+                    message: `Erro bolsa não existe com id_tipoEmprego ${req.body.id_tipoEmprego}.`
+                });
+            }
+            else if (err.kind === "not_found_idEmpresa") {
+                res.status(500).send({
+                    message: `Erro bolsa não existe com id_empresa ${req.body.id_empresa}.`
+                });
+            }
+
+        } else
+        res.status(201).json({
+            message: "New bolsa created",
+            location: "/bolsas/" + data.insertId
+        });
+    
     });
 
 
@@ -779,9 +799,14 @@ exports.deleteBolsa = (req, res) => {
                 });
             } else if (err.kind === "not_found_bolsa") {
                 res.status(404).json({
-                    message: `Erro bolsa não existe com id ${req.params.bolsaID}.`
-                })
+                    message: `Erro bolsa não existe com Tipo Empregoid ${req.params.bolsaID}.`
+                });
+            }else if (err.kind === "not_found_idEmpresa") {
+                res.status(500).send({
+                    message: `Erro bolsa não existe com empresa id ${req.params.body.id_empresa}.`
+                });
             }
+
         } else {
             res.status(200).json({ message: `Bolsa with id ${req.params.bolsaID} was successfully deleted!` });
         }
@@ -837,21 +862,28 @@ exports.updateBolsaById = (req, res) => {
     let bolsa = new Bolsa(req.body.descricao, req.body.fotoLink, req.body.estado, req.body.data_publicacao,
         req.body.data_inicio, req.body.id_empresa, req.body.id_tipoEmprego, req.body.id_nroProfessor)
 
-    model.updateBolsaById(bolsa, req.params.bolsaID, (err, data) => {
+    model.updateBolsaById(bolsa,req.body.id_empresa,req.body.id_tipoEmprego, (err, data) => {
+       
         if (err) {
             if (err.kind === "erro_operacao") {
                 res.status(404).send({
-                    message: `Not found bolsa with id ${req.params.bolsaID}`
+                    message: `Not found bolsa with id_empresa ${req.body.id_empresa} and/or id_tipoEmprego ${req.body.id_tipoEmprego}`
                 });
             } else if (err.kind === "bolsa_nao_updated") {
                 res.status(500).send({
-                    message: err.message || "Error updating bolsa with id" + req.params.bolsaID
+                    message: "Error deleting bolsa with id_empresa" + req.body.id_empresa + "and id_tipoEmprego" + req.body.id_tipoEmprego
                 });
-            } else if (err.kind === "not_found_bolsa") {
-                res.status(404).json({
-                    message: `Erro bolsa não existe com id ${req.params.bolsaID}.`
-                })
+            }else if (err.kind === "not_found_idEmprego") {
+                res.status(500).send({
+                    message: `Erro bolsa não existe com id_tipoEmprego ${req.body.id_tipoEmprego}.`
+                });
             }
+            else if (err.kind === "not_found_idEmpresa") {
+                res.status(500).send({
+                    message: `Erro bolsa não existe com id_empresa ${req.body.id_empresa}.`
+                });
+            }
+
         }
         else {
             res.status(200).json({
