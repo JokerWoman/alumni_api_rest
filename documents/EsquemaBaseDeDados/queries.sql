@@ -53,3 +53,25 @@ INSERT INTO Tipo_Emprego (id_tipoEmprego, descricao) VALUES ('1', 'Estágio');
 INSERT INTO Tipo_Emprego (id_tipoEmprego, descricao) VALUES ('2', 'PartTime');
 INSERT INTO Tipo_Emprego (id_tipoEmprego, descricao) VALUES ('3', 'FullTime');
 
+-- Adicionar Alumnis
+INSERT INTO Alumni (id_nroEstudante, nome, dataNascimento, morada, email, fotoLink, telemovel, curriculumPDFLink, password, id_role, id_genero, id_nacionalidade, id_codigoPostal) VALUES ('19180045', 'Wisin Yandel', '1998-02-18', 'Rua das Batatas', 'ansssa@gmail.com', 'https://i.pinimg.com/originals/51/fe/18/51fe180cc453fccbf05652ad051b4803.jpg', '917574845', 'https://www.bridgemaneducation.com/documents/how-to-guide.pdf', '123456789', '3', '2', '1', '4770-440');
+INSERT INTO Alumni (id_nroEstudante, nome, dataNascimento, morada, email, fotoLink, telemovel, curriculumPDFLink, password, id_role, id_genero, id_nacionalidade, id_codigoPostal) VALUES ('19180047', 'Rogelia Hernandes', '1998-02-18', 'Rua das Batatas', 'ansssa@gmail.com', 'https://i.pinimg.com/originals/51/fe/18/51fe180cc453fccbf05652ad051b4803.jpg', '917574845', 'https://www.bridgemaneducation.com/documents/how-to-guide.pdf', '123456789', '3', '2', '1', '4770-440');
+INSERT INTO Alumni (id_nroEstudante, nome, dataNascimento, morada, email, fotoLink, telemovel, curriculumPDFLink, password, id_role, id_genero, id_nacionalidade, id_codigoPostal) VALUES ('19180048', 'Rogelia Hddddernandes', '1998-02-18', 'Rua das Batatas', 'ansssa@gmail.com', 'https://i.pinimg.com/originals/51/fe/18/51fe180cc453fccbf05652ad051b4803.jpg', '917574845', 'https://www.bridgemaneducation.com/documents/how-to-guide.pdf', '123456789', '3', '2', '1', '4770-440');
+
+-- Adicionar Skill a Alumni
+INSERT INTO Alumni_Skills (id_nroEstudante, id_skills, percentagem) VALUES(19180045, 3, 50);
+INSERT INTO Alumni_Skills (id_nroEstudante, id_skills, percentagem) VALUES(19180047, 2, 50);
+
+-- Adicionar Tool a Alumni
+INSERT INTO Alumni_Tools (id_nroEstudante, id_tools, percentagem) VALUES(19180048, 3, 50);
+INSERT INTO Alumni_Tools (id_nroEstudante, id_tools, percentagem) VALUES(19180047, 2, 63);
+
+-- Adicionar curso a Alumni
+INSERT INTO Alumni_Cursos (id_nroEstudante, id_cursos, anoCurso) VALUES(19180048, 3, 2017);
+INSERT INTO Alumni_Cursos (id_nroEstudante, id_cursos, anoCurso) VALUES(19180047, 2, 2020);
+
+-- Adicionar link a Alumni
+INSERT INTO Alumni_Links (id_nroEstudante, id_links, link) VALUES(19180048, 3, 'githubcom/JokerWoman');
+INSERT INTO Alumni_Links (id_nroEstudante, id_links, link) VALUES(19180047, 2, 'behancenet/ilseweisfelt');
+
+
