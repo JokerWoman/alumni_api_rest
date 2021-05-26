@@ -2173,6 +2173,445 @@
 			"description": "Nesta secção encontra-se todas as routas das Bolsas de Emprego, estas routas são:\n\n1.- Obter todas as bolsas de emprego existentes\n2.-Eliminar uma bolsa de emprego pelo seu Id.\n3.- Atualizar a informaçãos de uma bolsa pelo seu Id.\n4.-Adicionar uma bolsa de emprego.\n5.-Obter a informação de uma bolsa pelo seu Id."
 		},
 		{
+			"name": "Eventos",
+			"item": [
+				{
+					"name": "GetAllEventos",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://127.0.0.1:8080/eventos",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8080",
+							"path": [
+								"eventos"
+							]
+						},
+						"description": "Aqui nesta routa obtemos todas as routes que existem registadas no sistema."
+					},
+					"response": [
+						{
+							"name": "GetAllEventos-Error",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://127.0.0.1:8080/eventos",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "8080",
+									"path": [
+										"eventos"
+									]
+								}
+							},
+							"_postman_previewlanguage": null,
+							"header": null,
+							"cookie": [],
+							"body": "{\r\n    \"message\": \"Page not found!\"\r\n}"
+						},
+						{
+							"name": "GetAllEventos",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://127.0.0.1:8080/eventos",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "8080",
+									"path": [
+										"eventos"
+									]
+								}
+							},
+							"_postman_previewlanguage": "json",
+							"header": null,
+							"cookie": [],
+							"body": "[\n    {\n        \"id_eventos\": 1,\n        \"descricao\": \"Boa oportunidade de emprego FULL-TIME\",\n        \"fotoLink\": \"https://talentportugal.com/wp-content/uploads/listing-uploads/logo/2020/03/80788861_10157714516653818_5380503984958078976_o.jpg\",\n        \"estado\": \"ativo\",\n               \"data\": \"2021-01-25\",\n        \"id_evento\": 1,\n        \"id_tipoEvento\": 3,\n        \"id_nroProfessor\": 1000000\n    },\n    {\n        \"id_eventos\": 2,\n        \"descricao\": \"Avanços tecnologicos\",\n        \"fotoLink\": \"https://knoow.net/wp-content/uploads/2016/04/presentation.design.jpg\",\n        \"estado\": \"ativo\",\n              \"data\": \"2021-01-25\",\n        \"id_evento\": 2,\n        \"id_tipoEvento\": 2,\n        \"id_nroProfessor\": 2000000\n    },\n    {\n        \"id_eventos\": 3,\n        \"descricao\": \" área do design\",\n        \"fotoLink\": \"https://knoow.net/wp-content/uploads/2016/04/presentation.design.jpg\",\n        \"estado\": \"terminado\",\n                \"data_inicio\": \"2021-01-25\",\n        \"id_evento\": 2,\n        \"id_tipoEvento\": 1,\n        \"id_nroProfessor\": 2000000\n    }\n]"
+						}
+					]
+				},
+				{
+					"name": "DeleteEventos",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://127.0.0.1:8080/eventos/1",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8080",
+							"path": [
+								"eventos",
+								"1"
+							]
+						},
+						"description": "Nesta routa eliminamos um evento pelo seu Id."
+					},
+					"response": [
+						{
+							"name": "DeleteEventoscomSucesso",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "http://127.0.0.1:8080/eventos/1",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "8080",
+									"path": [
+										"eventos",
+										"1"
+									]
+								}
+							},
+							"_postman_previewlanguage": "json",
+							"header": null,
+							"cookie": [],
+							"body": "{\n    \"message\": \"Evento with id 1 was successfully deleted!\"\n}"
+						},
+						{
+							"name": "DeleteEventos",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "http://127.0.0.1:8080/eventos/1",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "8080",
+									"path": [
+										"eventos",
+										"1"
+									]
+								}
+							},
+							"_postman_previewlanguage": "json",
+							"header": null,
+							"cookie": [],
+							"body": "{\n    \"message\": \"Erro evento não existe com id 1.\"\n}"
+						}
+					]
+				},
+				{
+					"name": "UpdateEventoById",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"descricao\": \"evento444444\",\r\n    \"fotoLink\": \"https://i.pinimg.com/originals/51/fe/18/51fe180cc453fccbf05652ad051b4803.jpg\",\r\n    \"estado\": \"inativo\",\r\n        \"data_inicio\": \"2029-05-20\",\r\n    \"id_evento\": 1,\r\n    \"id_tipoEvento\": 1,\r\n    \"id_nroProfessor\": 1000000\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:8080/eventos/2",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8080",
+							"path": [
+								"eventos",
+								"2"
+							]
+						},
+						"description": "Nesta routa fazemos atualizações da informação de um evento pelo seu Id. Esta informação é alterada no body."
+					},
+					"response": [
+						{
+							"name": "UpdateEventosById",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"descricao\": \"evento444444\",\r\n    \"fotoLink\": \"https://i.pinimg.com/originals/51/fe/18/51fe180cc453fccbf05652ad051b4803.jpg\",\r\n    \"estado\": \"inativo\",\r\n        \"data\": \"2029-05-20\",\r\n    \"id_evento\": 1,\r\n    \"id_tipoEvento\": 1,\r\n    \"id_nroProfessor\": 1000000\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://127.0.0.1:8080/evetos/2",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "8080",
+									"path": [
+										"eventos",
+										"2"
+									]
+								}
+							},
+							"_postman_previewlanguage": "json",
+							"header": null,
+							"cookie": [],
+							"body": "{\n    \"message\": \"updated eventos \",\n    \"location\": \"/eventos/2\"\n}"
+						},
+						{
+							"name": "UpdateEventoById-Error",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"descricao\": \"evento444444\",\r\n    \"fotoLink\": \"https://i.pinimg.com/originals/51/fe/18/51fe180cc453fccbf05652ad051b4803.jpg\",\r\n    \"estado\": \"inativo\",\r\n        \"data\": \"2029-05-20\",\r\n    \"id_evento\": 1,\r\n    \"id_tipoEvento\": 5,\r\n    \"id_nroProfessor\": 1000000\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://127.0.0.1:8080/eventos/2",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "8080",
+									"path": [
+										"eventos",
+										"2"
+									]
+								}
+							},
+							"_postman_previewlanguage": "json",
+							"header": null,
+							"cookie": [],
+							"body": "{\n    \"message\": \"Erro evento não existe com id_tipoEvento 5.\"\n}"
+						}
+					]
+				},
+				{
+					"name": "CreateEventos",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"titulo\":\"evento5\",\r\n    \"fotoLink\":\"https://i.pinimg.com/originals/51/fe/18/51fe180cc453fccbf05652ad051b4803.jpg\",\r\n    \"estado\":\"ativo\",\r\n    \"data\":\"2029-05-20\",\r\n    \"informacao\":\"Lorem\",\r\n    \"id_evento\":\"1\",\r\n    \"id_tipoEvento\":\"3\",\r\n    \"id_nroProfessor\":\"2000000\"\r\n    \r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:8080/eventos",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8080",
+							"path": [
+								"eventos"
+							]
+						},
+						"description": "Nesta routa adicionamos um evento. Esta informação é alterada no body"
+					},
+					"response": [
+						{
+							"name": "CreateEventos-erro",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"titulo\":\"evento5\",\r\n    \"fotoLink\":\"https://i.pinimg.com/originals/51/fe/18/51fe180cc453fccbf05652ad051b4803.jpg\",\r\n    \"estado\":\"ativo\",\r\n    \"data\":\"2029-05-20\",\r\n    \"informacao\":\"Lorem\",\r\n    \"id_evento\":\"1\",\r\n    \"id_tipoEvento\":\"3\",\r\n    \"id_nroProfessor\":\"2000000\"\r\n    \r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://127.0.0.1:8080/eventos",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "8080",
+									"path": [
+										"eventos"
+									]
+								}
+							},
+							"_postman_previewlanguage": "json",
+							"header": null,
+							"cookie": [],
+							"body": "{\n    \"message\": \"Erro evento não existe com id_evento 5.\"\n}"
+						},
+						{
+							"name": "CreateEventos",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"titulo\":\"evento5\",\r\n    \"fotoLink\":\"https://i.pinimg.com/originals/51/fe/18/51fe180cc453fccbf05652ad051b4803.jpg\",\r\n    \"estado\":\"ativo\",\r\n    \"data\":\"2029-05-20\",\r\n    \"informacao\":\"Lorem\",\r\n    \"id_evento\":\"1\",\r\n    \"id_tipoEvento\":\"3\",\r\n    \"id_nroProfessor\":\"2000000\"\r\n    \r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://127.0.0.1:8080/eventos",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "8080",
+									"path": [
+										"eventos"
+									]
+								}
+							},
+							"_postman_previewlanguage": "json",
+							"header": null,
+							"cookie": [],
+							"body": "{\n    \"message\": \"New evento created\",\n    \"location\": \"/eventos/26\"\n}"
+						}
+					]
+				},
+				{
+					"name": "GetEventoById",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://127.0.0.1:8080/eventos/1",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8080",
+							"path": [
+								"eventos",
+								"1"
+							]
+						},
+						"description": "Aqui obtemos a informação de um evento pelo seu Id."
+					},
+					"response": [
+						{
+							"name": "GetEventoById",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://127.0.0.1:8080/eventos/2",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "8080",
+									"path": [
+										"eventos",
+										"2"
+									]
+								}
+							},
+							"_postman_previewlanguage": "json",
+							"header": null,
+							"cookie": [],
+							"body": "{\n    \"id_eventos\": 2,\n    \"descricao\": \"evento444444\",\n    \"fotoLink\": \"https://i.pinimg.com/originals/51/fe/18/51fe180cc453fccbf05652ad051b4803.jpg\",\n    \"estado\": \"inativo\",\n        \"data\": \"2029-05-20\",\n    \"id_evento\": 1,\n    \"id_tipoEvento\": 1,\n    \"id_nroProfessor\": 1000000\n}"
+						},
+						{
+							"name": "GetEventoById-Erro",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://127.0.0.1:8080/eventos/1",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "8080",
+									"path": [
+										"eventos",
+										"1"
+									]
+								}
+							},
+							"_postman_previewlanguage": "json",
+							"header": null,
+							"cookie": [],
+							"body": "{\n    \"message\": \"Not found Evento com id 1.\"\n}"
+						}
+					]
+				}
+			],
+			"description": "Nesta secção encontra-se todas as routas de Eventos , estas routas são:\n\n1.- Obter todos os eventos existentes\n2.-Eliminar um evento pelo seu Id.\n3.- Atualizar a informaçãos de um evento pelo seu Id.\n4.-Adicionar um evento.\n5.-Obter a informação de um evento pelo seu Id."
+		},
+		{
 			"name": "AlumniLink",
 			"item": [
 				{
@@ -2605,5 +3044,6 @@
 			],
 			"description": "Aqui encontra-se documentadas todas as routas dos links dos alumnis, aquelas links são:\n1.- Obter todas as links pelo numero de estudante.\n2.- Eliminar uma as links pelo numero de estudante e seu id.\n3.- Criar uma links pelo numero de estudante e seu id.\n4.- Atualizar uma links pelo numero de estudante e seu id."
 		}
+		
 	]
 }

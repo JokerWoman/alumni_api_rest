@@ -655,6 +655,94 @@ Model.updateBolsaById = (bolsa, bolsaId, empresaId, empregoId, result) => {
 
 };
 
+Model.EventoExisteNaBaseDeDados = (id, resultado) => {
+    sql.query('SELECT COUNT(*) AS quantidade FROM Evento WHERE ?', { id_evento: id }, (err, res) => {
+        if (err) {
+            resultado({ kind: "erro_operacao" }, null);
+            return;
+        }
+        resultado(null, { quantidade: res[0].quantidade });
+    });
+};
+Model.getAllEventos = (result) => {
+    sql.query("SELECT * FROM Evento", (err, res) => {
+        if (err) {
+            result(err, null);
+            return;
+        }
+        result(null, res);
+    });
+};
+Model.createEvento = (evento, result) => {
+    sql.query('INSERT INTO Evento SET ?', [evento], (err, res) => {
+        if (err) {
+            result(err, null);
+        } else {
+            result(null, res);
+        }
+    });
+};
+Model.deleteEvento = (id, result) => {
+    Model.EventoExisteNaBaseDeDados(id, (erro, data) => {
+        if (!erro) {
+            if (data.quantidade == 1) {
+                sql.query('DELETE FROM Evento WHERE id_evento = ?', [id], (err, res) => {
+                    if (err) {
+                        result({ kind: "erro_operacao" }, null);
+                        return;
+                    }
+
+                    if (res.affectedRows == 0) {
+                        result({ kind: "evento_nao_apagada" }, null);
+                        return;
+                    }
+                    result(null, res);
+                });
+            } else {
+                result({ kind: "not_found_evento" }, null);
+            }
+        } else {
+            result = (erro, data)
+        }
+    });
+};
+Model.getEventoById = (id, result) => {
+    sql.query('SELECT * FROM Evento WHERE id_evento = ?', [id], (err, res) => {
+        if (err) {
+            result(err, null);
+            return;
+        }
+        if (res.length) {
+            result(null, res[0]);
+            return
+        }
+        result({ kind: "not_found" }, null);
+    });
+};
+Model.updateEventoById = (evento, id, result) => {
+    Model.EventoExisteNaBaseDeDados(id, (erro, data) => {
+        if (!erro) {
+            if (data.quantidade === 1) {
+                sql.query('UPDATE Evento SET ? WHERE ?', [evento, { id_evento: id }], (err, res) => {
+                    if (err) {
+                        result({ kind: "erro_operacao" }, null);
+                        return;
+                    }
+                    if (res.affectedRows == 0) {
+                        result({ kind: "evento_nao_updated" }, null);
+                        return
+                    }
+                    result(null, res)
+                });
+            }else{
+                result({ kind: "not_found_evento" }, null);
+            }
+        }else{
+            result = (erro, data)
+        }
+
+    });
+};
 
 
 module.exports = Model;

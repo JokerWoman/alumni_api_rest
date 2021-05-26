@@ -30,6 +30,16 @@ class Bolsa {
 
     }
 }
+class Evento {
+    constructor( titulo , data, fotoLink, informacao,  id_nroProfessor, id_tipoEvento) {
+        this.fotoLink = fotoLink;
+        this.titulo = titulo;
+        this.data = data;
+        this.informacao = informacao;
+        this.id_nroProfessor = id_nroProfessor;
+        this.id_tipoEvento = id_tipoEvento;
+    }
+}
 
 exports.home = (req, res) => {
     res.status(200).json({
@@ -747,39 +757,19 @@ exports.createBolsa = (req, res) => {
         res.status(400).json({ message: "ID Nro Professor must be sent!" });
         return;
     }
-
-
     let bolsa = new Bolsa(req.body.descricao, req.body.fotoLink, req.body.estado, req.body.data_publicacao,
         req.body.data_inicio, req.body.id_empresa, req.body.id_tipoEmprego, req.body.id_nroProfessor)
 
-    model.createBolsa(bolsa, req.body.id_empresa, req.body.id_tipoEmprego, (err, data) => {
-
-        if (err) {
-            if (err.kind === "erro_operacao") {
-                res.status(404).send({
-                    message: `Not found bolsa with id_empresa ${req.body.id_empresa} and/or id_tipoEmprego ${req.body.id_tipoEmprego}`
-                });
-            } else if (err.kind === "bolsa_nao_criada") {
-                res.status(500).send({
-                    message: "Error deleting bolsa with id_empresa" + req.body.id_empresa + "and id_tipoEmprego" + req.body.id_tipoEmprego
-                });
-            } else if (err.kind === "not_found_idEmprego") {
-                res.status(500).send({
-                    message: `Erro bolsa não existe com id_tipoEmprego ${req.body.id_tipoEmprego}.`
-                });
-            }
-            else if (err.kind === "not_found_idEmpresa") {
-                res.status(500).send({
-                    message: `Erro bolsa não existe com id_empresa ${req.body.id_empresa}.`
-                });
-            }
-
-        } else
+    model.createBolsa(bolsa, (err, data) => {
+        if (err) // send error response
+            res.status(500).send({
+                message: err.message || "Some error occurred while creating the bolsa."
+            });
+        else
             res.status(201).json({
                 message: "New bolsa created",
                 location: "/bolsas/" + data.insertId
             });
-
     });
 
 
@@ -799,14 +789,9 @@ exports.deleteBolsa = (req, res) => {
                 });
             } else if (err.kind === "not_found_bolsa") {
                 res.status(404).json({
-                    message: `Erro bolsa não existe com Tipo Empregoid ${req.params.bolsaID}.`
-                });
-            } else if (err.kind === "not_found_idEmpresa") {
-                res.status(500).send({
-                    message: `Erro bolsa não existe com empresa id ${req.params.body.id_empresa}.`
-                });
+                    message: `Erro bolsa não existe com id ${req.params.bolsaID}.`
+                })
             }
-
         } else {
             res.status(200).json({ message: `Bolsa with id ${req.params.bolsaID} was successfully deleted!` });
         }
@@ -862,37 +847,166 @@ exports.updateBolsaById = (req, res) => {
     let bolsa = new Bolsa(req.body.descricao, req.body.fotoLink, req.body.estado, req.body.data_publicacao,
         req.body.data_inicio, req.body.id_empresa, req.body.id_tipoEmprego, req.body.id_nroProfessor)
 
-    model.updateBolsaById(bolsa, req.params.bolsaID, req.body.id_empresa, req.body.id_tipoEmprego, (err, data) => {
-
+    model.updateBolsaById(bolsa, req.params.bolsaID, (err, data) => {
         if (err) {
             if (err.kind === "erro_operacao") {
                 res.status(404).send({
-                    message: `Not found bolsa with id_empresa ${req.body.id_empresa} and/or id_tipoEmprego ${req.body.id_tipoEmprego}`
+                    message: `Not found bolsa with id ${req.params.bolsaID}`
                 });
             } else if (err.kind === "bolsa_nao_updated") {
                 res.status(500).send({
-                    message: "Error deleting bolsa with id_empresa" + req.params.bolsaID
+                    message: err.message || "Error updating bolsa with id" + req.params.bolsaID
                 });
-            } else if (err.kind === "not_found_idEmprego") {
-                res.status(500).send({
-                    message: `Erro bolsa não existe com id_tipoEmprego ${req.body.id_tipoEmprego}.`
-                });
-            }
-            else if (err.kind === "not_found_idEmpresa") {
-                res.status(500).send({
-                    message: `Erro bolsa não existe com id_empresa ${req.body.id_empresa}.`
-                });
-            }else if (err.kind === "not_found_bolsa") {
+            } else if (err.kind === "not_found_bolsa") {
                 res.status(404).json({
                     message: `Erro bolsa não existe com id ${req.params.bolsaID}.`
                 })
             }
-
         }
         else {
             res.status(200).json({
                 message: "updated bolsas ",
                 location: `/bolsas/${req.params.bolsaID}`
+            });
+        }
+    });
+};
+exports.getAllEventos = (req, res) => {
+    model.getAllEventos((err, data) => {
+        if (err) { // send error response
+            res.status(500).send({
+                message: err.message || "Some error occurred while retrieving offers."
+            });
+        } else
+            res.status(200).json(data); // send OK response with all eventos data
+    });
+};
+exports.createEvento = (req, res) => {
+
+    if (!req.body.titulo) {
+        res.status(400).json({ message: "Titulo is empty!" });
+        return;
+
+    }
+    if (!req.body.fotoLink) {
+        res.status(400).json({ message: "Foto must be sent!" });
+        return;
+    } else if (!req.body.data) {
+        res.status(400).json({ message: "Data must be sent!" });
+        return;
+    } else if (!req.body.informacao) {
+        res.status(400).json({ message: "Informação must be sent!" });
+        return;
+    } else if (!req.body.id_tipoEvento) {
+        res.status(400).json({ message: "ID Tipo Evento must be sent!" });
+        return;
+    } else if (!req.body.id_nroProfessor) {
+        res.status(400).json({ message: "ID Nro Professor must be sent!" });
+        return;
+    }   
+     let evento = new Evento( req.body.titulo , req.body.data, req.body.fotoLink, req.body.informacao,  req.body.id_nroProfessor, req.body.id_tipoEvento)
+
+
+
+    model.createEvento(evento, (err, data) => {
+        if (err) // send error response
+            res.status(500).send({
+                message: err.message || "Some error occurred while creating the evento."
+            });
+        else
+            res.status(201).json({
+                message: "New evento created",
+                location: "/eventos/" + data.insertId
+            });
+    });
+
+
+};
+
+exports.deleteEvento = (req, res) => {
+    model.deleteEvento(req.params.eventoID, (err, data) => {
+
+        if (err) {
+            if (err.kind === "erro_operacao") {
+                res.status(404).send({
+                    message: `Not found evento with id ${req.params.eventoID}`
+                });
+            } else if (err.kind === "evento_nao_apagada") {
+                res.status(500).send({
+                    message: err.message || "Error deleting evento with id" + req.params.eventoID
+                });
+            } else if (err.kind === "not_found_evento") {
+                res.status(404).json({
+                    message: `Erro evento não existe com id ${req.params.eventoID}.`
+                })
+            }
+        } else {
+            res.status(200).json({ message: `Evento with id ${req.params.eventoID} was successfully deleted!` });
+        }
+
+    })
+};
+exports.getEventoById = (req, res) => {
+    model.getEventoById(req.params.eventoID, (err, data) => {
+        if (err) {
+            if (err.kind === "not_found")
+                res.status(404).json({
+                    message: `Not found Evento com id ${req.params.eventoID}.`
+                });
+            else
+                res.status(500).json({
+                    message: `Error retrieving Evento with id ${req.params.eventoID}.`
+                })
+        } else
+            res.status(200).json(data);
+    })
+};
+exports.updateEventoById = (req, res) => {
+
+    if (!req.body.titulo) {
+        res.status(400).json({ message: "Titulo is empty!" });
+        return;
+
+    }
+    if (!req.body.fotoLink) {
+        res.status(400).json({ message: "Foto must be sent!" });
+        return;
+    } else if (!req.body.data) {
+        res.status(400).json({ message: "Data must be sent!" });
+        return;
+    } else if (!req.body.informacao) {
+        res.status(400).json({ message: "Informação must be sent!" });
+        return;
+    } else if (!req.body.id_tipoEvento) {
+        res.status(400).json({ message: "ID Tipo Evento must be sent!" });
+        return;
+    } else if (!req.body.id_nroProfessor) {
+        res.status(400).json({ message: "ID Nro Professor must be sent!" });
+        return;
+    }
+    let evento = new Evento( req.body.titulo , req.body.data, req.body.fotoLink, req.body.informacao,  req.body.id_nroProfessor, req.body.id_tipoEvento)
+    
+
+    model.updateEventoById(evento, req.params.eventoID, (err, data) => {
+        if (err) {
+            if (err.kind === "erro_operacao") {
+                res.status(404).send({
+                    message: `Not found evento with id ${req.params.eventoID}`
+                });
+            } else if (err.kind === "evento_nao_updated") {
+                res.status(500).send({
+                    message: err.message || "Error updating evento with id" + req.params.eventoID
+                });
+            } else if (err.kind === "not_found_evento") {
+                res.status(404).json({
+                    message: `Erro evento não existe com id ${req.params.eventoID}.`
+                })
+            }
+        }
+        else {
+            res.status(200).json({
+                message: "updated evento ",
+                location: `/eventos/${req.params.eventoID}`
             });
         }
     });
