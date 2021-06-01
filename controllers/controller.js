@@ -726,28 +726,32 @@ exports.getAllBolsas = (req, res) => {
             res.status(500).send({
                 message: err.message || "Some error occurred while retrieving offers."
             });
-        } else{
+        } else {
 
             const filters = req.query;
             const filteredBolsas = data.filter(bolsa => {
                 let isValid = true;
+
                 for (filter in filters) {
-                    console.log(filter, bolsa[filter], filter[filter])
-                    isValid = isValid && bolsa[filter] == filters[filter]
+                    if (filter == "estado" || filter == "id_tipoEmprego") {
+                        console.log(filter, bolsa[filter], filter[filter])
+                        isValid = isValid && bolsa[filter] == filters[filter]
+                    }
+
                 }
-            
+
                 return isValid;
             });
             //res.send(filteredBolsas);
 
             res.status(200).json(filteredBolsas); // send OK response with all bolsas data
 
-            
+
         }
-          
 
 
-        
+
+
 
 
 
