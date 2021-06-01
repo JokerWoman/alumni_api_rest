@@ -31,7 +31,7 @@ class Bolsa {
     }
 }
 class Evento {
-    constructor( titulo , data, fotoLink, informacao,  id_nroProfessor, id_tipoEvento) {
+    constructor(titulo, data, fotoLink, informacao, id_nroProfessor, id_tipoEvento) {
         this.fotoLink = fotoLink;
         this.titulo = titulo;
         this.data = data;
@@ -717,13 +717,43 @@ exports.updateAlumniByNumeroEstudante = (req, res) => {
     });
 };
 exports.getAllBolsas = (req, res) => {
+
     model.getAllBolsas((err, data) => {
+
+
+
         if (err) { // send error response
             res.status(500).send({
                 message: err.message || "Some error occurred while retrieving offers."
             });
-        } else
-            res.status(200).json(data); // send OK response with all bolsas data
+        } else{
+
+            const filters = req.query;
+            const filteredBolsas = data.filter(bolsa => {
+                let isValid = true;
+                for (filter in filters) {
+                    console.log(filter, bolsa[filter], filter[filter])
+                    isValid = isValid && bolsa[filter] == filters[filter]
+                }
+            
+                return isValid;
+            });
+            //res.send(filteredBolsas);
+
+            res.status(200).json(filteredBolsas); // send OK response with all bolsas data
+
+            
+        }
+          
+
+
+        
+
+
+
+
+
+
     });
 };
 
@@ -903,8 +933,8 @@ exports.createEvento = (req, res) => {
     } else if (!req.body.id_nroProfessor) {
         res.status(400).json({ message: "ID Nro Professor must be sent!" });
         return;
-    }   
-     let evento = new Evento( req.body.titulo , req.body.data, req.body.fotoLink, req.body.informacao,  req.body.id_nroProfessor, req.body.id_tipoEvento)
+    }
+    let evento = new Evento(req.body.titulo, req.body.data, req.body.fotoLink, req.body.informacao, req.body.id_nroProfessor, req.body.id_tipoEvento)
 
 
 
@@ -984,8 +1014,8 @@ exports.updateEventoById = (req, res) => {
         res.status(400).json({ message: "ID Nro Professor must be sent!" });
         return;
     }
-    let evento = new Evento( req.body.titulo , req.body.data, req.body.fotoLink, req.body.informacao,  req.body.id_nroProfessor, req.body.id_tipoEvento)
-    
+    let evento = new Evento(req.body.titulo, req.body.data, req.body.fotoLink, req.body.informacao, req.body.id_nroProfessor, req.body.id_tipoEvento)
+
 
     model.updateEventoById(evento, req.params.eventoID, (err, data) => {
         if (err) {
