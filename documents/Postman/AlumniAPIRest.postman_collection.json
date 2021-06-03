@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "f5511157-3503-44bc-8a99-637aef1ac905",
+		"_postman_id": "f0798931-d22f-4539-87f2-b1a994b65399",
 		"name": "AlumniAPIRest",
 		"description": "O AlumniAPIRest têm todas as routas implementadas para a nossa página alumni.",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
@@ -16,7 +16,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"nome\":\"Andrea Fernandes\",\r\n    \"dataNascimento\":\"1998-02-18\",\r\n    \"morada\":\"Rua das Loucas\",\r\n    \"email\":\"andrea@gmail.com\",\r\n    \"fotoLink\":\"https://ep00.epimg.net/verne/imagenes/2019/11/13/album/1573641411_551713_1573641467_album_normal.jpg\",\r\n    \"telemovel\":\"9175744444\",\r\n    \"curriculumPDFLink\":\"https://www.bridgemaneducation.com/documents/how-to-guide.pdf\",\r\n    \"password\":\"8125468\",\r\n    \"id_role\":\"3\",\r\n    \"id_genero\":\"5\",\r\n    \"id_nacionalidade\":\"1\",\r\n    \"id_codigoPostal\":\"4770-440\"\r\n}",
+							"raw": "{\r\n    \"nome\":\"Andrea Fernandes\",\r\n    \"dataNascimento\":\"1998-02-18\",\r\n    \"morada\":\"Rua das Loucas\",\r\n    \"email\":\"andrea@gmail.com\",\r\n    \"fotoLink\":\"https://ep00.epimg.net/verne/imagenes/2019/11/13/album/1573641411_551713_1573641467_album_normal.jpg\",\r\n    \"telemovel\":\"9175744444\",\r\n    \"curriculumPDFLink\":\"https://www.bridgemaneducation.com/documents/how-to-guide.pdf\",\r\n    \"password\":\"8125468\",\r\n    \"id_role\":\"3\",\r\n    \"id_genero\":\"1\",\r\n    \"id_nacionalidade\":\"1\",\r\n    \"id_codigoPostal\":\"4770-440\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -24,7 +24,7 @@
 							}
 						},
 						"url": {
-							"raw": "http://127.0.0.1:8080/alumni/19180048",
+							"raw": "http://127.0.0.1:3000/alumni/8888888",
 							"protocol": "http",
 							"host": [
 								"127",
@@ -32,10 +32,10 @@
 								"0",
 								"1"
 							],
-							"port": "8080",
+							"port": "3000",
 							"path": [
 								"alumni",
-								"19180048"
+								"8888888"
 							]
 						},
 						"description": "Atualizamos todos os dados de um alumni pelo o numero de estudante."
@@ -53,15 +53,6 @@
 										"type": "text"
 									}
 								],
-								"body": {
-									"mode": "raw",
-									"raw": "{\r\n    \"nome\":\"Andrea Fernandes\",\r\n    \"dataNascimento\":\"1998-02-18\",\r\n    \"morada\":\"Rua das Loucas\",\r\n    \"email\":\"andrea@gmail.com\",\r\n    \"fotoLink\":\"https://ep00.epimg.net/verne/imagenes/2019/11/13/album/1573641411_551713_1573641467_album_normal.jpg\",\r\n    \"telemovel\":\"9175744444\",\r\n    \"curriculumPDFLink\":\"https://www.bridgemaneducation.com/documents/how-to-guide.pdf\",\r\n    \"password\":\"8125468\",\r\n    \"id_role\":\"3\",\r\n    \"id_genero\":\"2\",\r\n    \"id_nacionalidade\":\"1\",\r\n    \"id_codigoPostal\":\"4770-440\"\r\n}",
-									"options": {
-										"raw": {
-											"language": "json"
-										}
-									}
-								},
 								"url": {
 									"raw": "http://127.0.0.1:8080/alumni/19180048",
 									"protocol": "http",
@@ -79,7 +70,7 @@
 								}
 							},
 							"_postman_previewlanguage": "json",
-							"header": null,
+							"header": [],
 							"cookie": [],
 							"body": "{\n    \"message\": \"updated tutorial \",\n    \"location\": \"/alumni/19180048\"\n}"
 						},
@@ -95,15 +86,6 @@
 										"type": "text"
 									}
 								],
-								"body": {
-									"mode": "raw",
-									"raw": "{\r\n    \"nome\":\"Andrea Fernandes\",\r\n    \"dataNascimento\":\"1998-02-18\",\r\n    \"morada\":\"Rua das Loucas\",\r\n    \"email\":\"andrea@gmail.com\",\r\n    \"fotoLink\":\"https://ep00.epimg.net/verne/imagenes/2019/11/13/album/1573641411_551713_1573641467_album_normal.jpg\",\r\n    \"telemovel\":\"9175744444\",\r\n    \"curriculumPDFLink\":\"https://www.bridgemaneducation.com/documents/how-to-guide.pdf\",\r\n    \"password\":\"8125468\",\r\n    \"id_role\":\"3\",\r\n    \"id_genero\":\"5\",\r\n    \"id_nacionalidade\":\"1\",\r\n    \"id_codigoPostal\":\"4770-440\"\r\n}",
-									"options": {
-										"raw": {
-											"language": "json"
-										}
-									}
-								},
 								"url": {
 									"raw": "http://127.0.0.1:8080/alumni/19180043",
 									"protocol": "http",
@@ -128,7 +110,7 @@
 								}
 							},
 							"_postman_previewlanguage": "json",
-							"header": null,
+							"header": [],
 							"cookie": [],
 							"body": "{\n    \"message\": \"Error na operação de update de um alumni com id 19180048.\"\n}"
 						}
@@ -152,7 +134,7 @@
 							}
 						},
 						"url": {
-							"raw": "http://127.0.0.1:8080/alumni/19180048",
+							"raw": "http://127.0.0.1:3000/alumni/8888888",
 							"protocol": "http",
 							"host": [
 								"127",
@@ -160,10 +142,10 @@
 								"0",
 								"1"
 							],
-							"port": "8080",
+							"port": "3000",
 							"path": [
 								"alumni",
-								"19180048"
+								"8888888"
 							]
 						},
 						"description": "obtemos todos os dados de um alumni pelo o numero de estudante."
@@ -181,15 +163,6 @@
 										"type": "text"
 									}
 								],
-								"body": {
-									"mode": "raw",
-									"raw": "",
-									"options": {
-										"raw": {
-											"language": "json"
-										}
-									}
-								},
 								"url": {
 									"raw": "http://127.0.0.1:8080/alumni/19180047",
 									"protocol": "http",
@@ -207,7 +180,7 @@
 								}
 							},
 							"_postman_previewlanguage": "json",
-							"header": null,
+							"header": [],
 							"cookie": [],
 							"body": "{\n    \"id_nroEstudante\": 19180047,\n    \"nome\": \"Rogelia Hernandes\",\n    \"dataNascimento\": \"1998-02-18T00:00:00.000Z\",\n    \"morada\": \"Rua das Batatas\",\n    \"email\": \"ansssa@gmail.com\",\n    \"fotoLink\": \"https://i.pinimg.com/originals/51/fe/18/51fe180cc453fccbf05652ad051b4803.jpg\",\n    \"telemovel\": \"917574845\",\n    \"curriculumPDFLink\": \"https://www.bridgemaneducation.com/documents/how-to-guide.pdf\",\n    \"password\": \"123456789\",\n    \"id_role\": 3,\n    \"id_genero\": 2,\n    \"id_nacionalidade\": 1,\n    \"id_codigoPostal\": \"4770-440\"\n}"
 						},
@@ -223,15 +196,6 @@
 										"type": "text"
 									}
 								],
-								"body": {
-									"mode": "raw",
-									"raw": "",
-									"options": {
-										"raw": {
-											"language": "json"
-										}
-									}
-								},
 								"url": {
 									"raw": "http://127.0.0.1:8080/alumni/19180043",
 									"protocol": "http",
@@ -256,7 +220,7 @@
 								}
 							},
 							"_postman_previewlanguage": "json",
-							"header": null,
+							"header": [],
 							"cookie": [],
 							"body": "{\n    \"message\": \"Not found Alumni com numero estudante 19180043.\"\n}"
 						}
@@ -269,7 +233,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"id_nroEstudante\":\"19180044\",\r\n    \"nome\":\"Nuno Silva\",\r\n    \"dataNascimento\":\"1998-02-18\",\r\n    \"morada\":\"Rua das Peras\",\r\n    \"email\":\"andrea@gmail.com\",\r\n    \"fotoLink\":\"https://i.pinimg.com/originals/51/fe/18/51fe180cc453fccbf05652ad051b4803.jpg\",\r\n    \"telemovel\":\"917574845\",\r\n    \"curriculumPDFLink\":\"https://www.bridgemaneducation.com/documents/how-to-guide.pdf\",\r\n    \"password\":\"123456789\",\r\n    \"id_role\":\"3\",\r\n    \"id_genero\":\"2\",\r\n    \"id_nacionalidade\":\"1\",\r\n    \"id_codigoPostal\":\"4770-440\"\r\n}",
+							"raw": "{\r\n    \"id_nroEstudante\":\"99977755\",\r\n    \"nome\":\"Nuno Silva\",\r\n    \"dataNascimento\":\"1998-02-18\",\r\n    \"morada\":\"Rua das Peras\",\r\n    \"email\":\"andrea@gmail.com\",\r\n    \"fotoLink\":\"https://i.pinimg.com/originals/51/fe/18/51fe180cc453fccbf05652ad051b4803.jpg\",\r\n    \"telemovel\":\"917574845\",\r\n    \"curriculumPDFLink\":\"https://www.bridgemaneducation.com/documents/how-to-guide.pdf\",\r\n    \"password\":\"123456789\",\r\n    \"id_role\":\"3\",\r\n    \"id_genero\":\"2\",\r\n    \"id_nacionalidade\":\"1\",\r\n    \"id_codigoPostal\":\"4770-440\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -277,7 +241,7 @@
 							}
 						},
 						"url": {
-							"raw": "http://127.0.0.1:8080/alumni",
+							"raw": "http://127.0.0.1:3000/alumni",
 							"protocol": "http",
 							"host": [
 								"127",
@@ -285,7 +249,7 @@
 								"0",
 								"1"
 							],
-							"port": "8080",
+							"port": "3000",
 							"path": [
 								"alumni"
 							]
@@ -305,15 +269,6 @@
 										"type": "text"
 									}
 								],
-								"body": {
-									"mode": "raw",
-									"raw": "{\r\n    \"id_nroEstudante\":\"19180044\",\r\n    \"nome\":\"Nuno Silva\",\r\n    \"dataNascimento\":\"1998-02-18\",\r\n    \"morada\":\"Rua das Peras\",\r\n    \"email\":\"andrea@gmail.com\",\r\n    \"fotoLink\":\"https://i.pinimg.com/originals/51/fe/18/51fe180cc453fccbf05652ad051b4803.jpg\",\r\n    \"telemovel\":\"917574845\",\r\n    \"curriculumPDFLink\":\"https://www.bridgemaneducation.com/documents/how-to-guide.pdf\",\r\n    \"password\":\"123456789\",\r\n    \"id_role\":\"3\",\r\n    \"id_genero\":\"2\",\r\n    \"id_nacionalidade\":\"1\",\r\n    \"id_codigoPostal\":\"4770-440\"\r\n}",
-									"options": {
-										"raw": {
-											"language": "json"
-										}
-									}
-								},
 								"url": {
 									"raw": "http://127.0.0.1:8080/alumni/",
 									"protocol": "http",
@@ -331,7 +286,7 @@
 								}
 							},
 							"_postman_previewlanguage": "json",
-							"header": null,
+							"header": [],
 							"cookie": [],
 							"body": "{\n    \"message\": \"New alumni created\",\n    \"location\": \"/alumni/0\"\n}"
 						},
@@ -347,15 +302,6 @@
 										"type": "text"
 									}
 								],
-								"body": {
-									"mode": "raw",
-									"raw": "{\r\n    \"id_nroEstudante\":\"19180047\",\r\n    \"nome\":\"Nuno Silva\",\r\n    \"dataNascimento\":\"1998-02-18\",\r\n    \"morada\":\"Rua das Peras\",\r\n    \"email\":\"andrea@gmail.com\",\r\n    \"fotoLink\":\"https://i.pinimg.com/originals/51/fe/18/51fe180cc453fccbf05652ad051b4803.jpg\",\r\n    \"telemovel\":\"917574845\",\r\n    \"curriculumPDFLink\":\"https://www.bridgemaneducation.com/documents/how-to-guide.pdf\",\r\n    \"password\":\"123456789\",\r\n    \"id_role\":\"3\",\r\n    \"id_genero\":\"2\",\r\n    \"id_nacionalidade\":\"1\",\r\n    \"id_codigoPostal\":\"4770-440\"\r\n}",
-									"options": {
-										"raw": {
-											"language": "json"
-										}
-									}
-								},
 								"url": {
 									"raw": "http://127.0.0.1:8080/alumni/",
 									"protocol": "http",
@@ -373,7 +319,7 @@
 								}
 							},
 							"_postman_previewlanguage": "json",
-							"header": null,
+							"header": [],
 							"cookie": [],
 							"body": "{\n    \"message\": \"Erro Alumni já exsite com id 19180047.\"\n}"
 						}
@@ -385,7 +331,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://127.0.0.1:8080/alumnis/",
+							"raw": "http://127.0.0.1:3000/alumni/",
 							"protocol": "http",
 							"host": [
 								"127",
@@ -393,9 +339,9 @@
 								"0",
 								"1"
 							],
-							"port": "8080",
+							"port": "3000",
 							"path": [
-								"alumnis",
+								"alumni",
 								""
 							]
 						},
@@ -431,7 +377,7 @@
 								}
 							},
 							"_postman_previewlanguage": "json",
-							"header": null,
+							"header": [],
 							"cookie": [],
 							"body": "[\n    {\n        \"id_nroEstudante\": 19180045,\n        \"nome\": \"Wisin Yandel\",\n        \"dataNascimento\": \"1998-02-18T00:00:00.000Z\",\n        \"morada\": \"Rua das Batatas\",\n        \"email\": \"ansssa@gmail.com\",\n        \"fotoLink\": \"https://i.pinimg.com/originals/51/fe/18/51fe180cc453fccbf05652ad051b4803.jpg\",\n        \"telemovel\": \"917574845\",\n        \"curriculumPDFLink\": \"https://www.bridgemaneducation.com/documents/how-to-guide.pdf\",\n        \"password\": \"123456789\",\n        \"id_role\": 3,\n        \"id_genero\": 2,\n        \"id_nacionalidade\": 1,\n        \"id_codigoPostal\": \"4770-440\"\n    },\n    {\n        \"id_nroEstudante\": 19180047,\n        \"nome\": \"Rogelia Hernandes\",\n        \"dataNascimento\": \"1998-02-18T00:00:00.000Z\",\n        \"morada\": \"Rua das Batatas\",\n        \"email\": \"ansssa@gmail.com\",\n        \"fotoLink\": \"https://i.pinimg.com/originals/51/fe/18/51fe180cc453fccbf05652ad051b4803.jpg\",\n        \"telemovel\": \"917574845\",\n        \"curriculumPDFLink\": \"https://www.bridgemaneducation.com/documents/how-to-guide.pdf\",\n        \"password\": \"123456789\",\n        \"id_role\": 3,\n        \"id_genero\": 2,\n        \"id_nacionalidade\": 1,\n        \"id_codigoPostal\": \"4770-440\"\n    },\n    {\n        \"id_nroEstudante\": 19180048,\n        \"nome\": \"Andrea Fernandes\",\n        \"dataNascimento\": \"1998-02-18T00:00:00.000Z\",\n        \"morada\": \"Rua das Batatas\",\n        \"email\": \"andrea@gmail.com\",\n        \"fotoLink\": \"https://i.pinimg.com/originals/51/fe/18/51fe180cc453fccbf05652ad051b4803.jpg\",\n        \"telemovel\": \"917574845\",\n        \"curriculumPDFLink\": \"https://www.bridgemaneducation.com/documents/how-to-guide.pdf\",\n        \"password\": \"123456789\",\n        \"id_role\": 3,\n        \"id_genero\": 2,\n        \"id_nacionalidade\": 1,\n        \"id_codigoPostal\": \"4770-440\"\n    }\n]"
 						},
@@ -457,7 +403,7 @@
 								}
 							},
 							"_postman_previewlanguage": "json",
-							"header": null,
+							"header": [],
 							"cookie": [],
 							"body": "{\n    \"message\": \"Page not found!\"\n}"
 						}
@@ -475,7 +421,7 @@
 						"method": "DELETE",
 						"header": [],
 						"url": {
-							"raw": "http://127.0.0.1:8080/alumni/19180048/skills/1",
+							"raw": "http://127.0.0.1:3000/alumni/19180047/skills/2",
 							"protocol": "http",
 							"host": [
 								"127",
@@ -483,12 +429,12 @@
 								"0",
 								"1"
 							],
-							"port": "8080",
+							"port": "3000",
 							"path": [
 								"alumni",
-								"19180048",
+								"19180047",
 								"skills",
-								"1"
+								"2"
 							]
 						},
 						"description": "Nesta routa elimina uma skill pelo id e numero de estudante."
@@ -518,7 +464,7 @@
 								}
 							},
 							"_postman_previewlanguage": "json",
-							"header": null,
+							"header": [],
 							"cookie": [],
 							"body": "{\r\n    \"message\": \"Erro skill não apagada com id 1.\"\r\n}"
 						},
@@ -546,7 +492,7 @@
 								}
 							},
 							"_postman_previewlanguage": "json",
-							"header": null,
+							"header": [],
 							"cookie": [],
 							"body": "{\n    \"fieldCount\": 0,\n    \"affectedRows\": 1,\n    \"insertId\": 0,\n    \"serverStatus\": 2,\n    \"warningCount\": 0,\n    \"message\": \"\",\n    \"protocol41\": true,\n    \"changedRows\": 0\n}"
 						}
@@ -567,7 +513,7 @@
 							}
 						},
 						"url": {
-							"raw": "http://127.0.0.1:8080/alumni/19180048/skills/1",
+							"raw": "http://127.0.0.1:3000/alumni/19180047/skills/1",
 							"protocol": "http",
 							"host": [
 								"127",
@@ -575,10 +521,10 @@
 								"0",
 								"1"
 							],
-							"port": "8080",
+							"port": "3000",
 							"path": [
 								"alumni",
-								"19180048",
+								"19180047",
 								"skills",
 								"1"
 							]
@@ -610,7 +556,7 @@
 								}
 							},
 							"_postman_previewlanguage": "json",
-							"header": null,
+							"header": [],
 							"cookie": [],
 							"body": "{\r\n    \"message\": \"Error na operação de inserir uma skill com id 1.\"\r\n}"
 						},
@@ -654,7 +600,7 @@
 								}
 							},
 							"_postman_previewlanguage": "json",
-							"header": null,
+							"header": [],
 							"cookie": [],
 							"body": "{\n    \"message\": \"Error na operação de inserir uma skill com id 4.\"\n}"
 						}
@@ -666,7 +612,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://127.0.0.1:8080/alumni/19180047/skills",
+							"raw": "http://127.0.0.1:3000/alumni/19180047/skills",
 							"protocol": "http",
 							"host": [
 								"127",
@@ -674,7 +620,7 @@
 								"0",
 								"1"
 							],
-							"port": "8080",
+							"port": "3000",
 							"path": [
 								"alumni",
 								"19180047",
@@ -723,7 +669,7 @@
 								}
 							},
 							"_postman_previewlanguage": "json",
-							"header": null,
+							"header": [],
 							"cookie": [],
 							"body": "[\n    {\n        \"tipoSkill\": \"Programador\",\n        \"percentagem\": 50\n    }\n]"
 						},
@@ -750,7 +696,7 @@
 								}
 							},
 							"_postman_previewlanguage": "json",
-							"header": null,
+							"header": [],
 							"cookie": [],
 							"body": "{\r\n    \"message\": \"Erro alumni não existe com id 19180041.\"\r\n}"
 						}
@@ -771,7 +717,7 @@
 							}
 						},
 						"url": {
-							"raw": "http://127.0.0.1:8080/alumni/19180047/skills/1",
+							"raw": "http://127.0.0.1:3000/alumni/19180047/skills/1",
 							"protocol": "http",
 							"host": [
 								"127",
@@ -779,7 +725,7 @@
 								"0",
 								"1"
 							],
-							"port": "8080",
+							"port": "3000",
 							"path": [
 								"alumni",
 								"19180047",
@@ -830,7 +776,7 @@
 								}
 							},
 							"_postman_previewlanguage": "json",
-							"header": null,
+							"header": [],
 							"cookie": [],
 							"body": "{\r\n    \"message\": \"Erro skill não updated com id 1.\"\r\n}"
 						},
@@ -874,7 +820,7 @@
 								}
 							},
 							"_postman_previewlanguage": "json",
-							"header": null,
+							"header": [],
 							"cookie": [],
 							"body": "{\n    \"message\": \"Updated skill.\"\n}"
 						}
@@ -892,7 +838,7 @@
 						"method": "DELETE",
 						"header": [],
 						"url": {
-							"raw": "http://127.0.0.1:8080/alumni/19180048/tools/3",
+							"raw": "http://127.0.0.1:3000/alumni/19180047/tools/3",
 							"protocol": "http",
 							"host": [
 								"127",
@@ -900,10 +846,10 @@
 								"0",
 								"1"
 							],
-							"port": "8080",
+							"port": "3000",
 							"path": [
 								"alumni",
-								"19180048",
+								"19180047",
 								"tools",
 								"3"
 							]
@@ -935,7 +881,7 @@
 								}
 							},
 							"_postman_previewlanguage": "json",
-							"header": null,
+							"header": [],
 							"cookie": [],
 							"body": "{\r\n    \"message\": \"Erro tool não apagada com id 3.\"\r\n}"
 						},
@@ -963,7 +909,7 @@
 								}
 							},
 							"_postman_previewlanguage": "json",
-							"header": null,
+							"header": [],
 							"cookie": [],
 							"body": "{\n    \"fieldCount\": 0,\n    \"affectedRows\": 1,\n    \"insertId\": 0,\n    \"serverStatus\": 2,\n    \"warningCount\": 0,\n    \"message\": \"\",\n    \"protocol41\": true,\n    \"changedRows\": 0\n}"
 						}
@@ -984,7 +930,7 @@
 							}
 						},
 						"url": {
-							"raw": "http://127.0.0.1:8080/alumni/19180047/tools/3",
+							"raw": "http://127.0.0.1:3000/alumni/19180047/tools/3",
 							"protocol": "http",
 							"host": [
 								"127",
@@ -992,7 +938,7 @@
 								"0",
 								"1"
 							],
-							"port": "8080",
+							"port": "3000",
 							"path": [
 								"alumni",
 								"19180047",
@@ -1027,7 +973,7 @@
 								}
 							},
 							"_postman_previewlanguage": "json",
-							"header": null,
+							"header": [],
 							"cookie": [],
 							"body": "{\r\n    \"message\": \"Erro alumni não existe com id 19180041.\"\r\n}"
 						},
@@ -1071,7 +1017,7 @@
 								}
 							},
 							"_postman_previewlanguage": "json",
-							"header": null,
+							"header": [],
 							"cookie": [],
 							"body": "{\n    \"message\": \"Novo Tool criada.\"\n}"
 						}
@@ -1083,7 +1029,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://127.0.0.1:8080/alumni/19180044/tools",
+							"raw": "http://127.0.0.1:3000/alumni/19180047/tools",
 							"protocol": "http",
 							"host": [
 								"127",
@@ -1091,10 +1037,10 @@
 								"0",
 								"1"
 							],
-							"port": "8080",
+							"port": "3000",
 							"path": [
 								"alumni",
-								"19180044",
+								"19180047",
 								"tools"
 							]
 						},
@@ -1140,7 +1086,7 @@
 								}
 							},
 							"_postman_previewlanguage": "json",
-							"header": null,
+							"header": [],
 							"cookie": [],
 							"body": "[\n    {\n        \"tipoTool\": \"Visual Code\",\n        \"percentagem\": 63\n    },\n    {\n        \"tipoTool\": \"Photoshop\",\n        \"percentagem\": 99\n    }\n]"
 						},
@@ -1167,7 +1113,7 @@
 								}
 							},
 							"_postman_previewlanguage": "json",
-							"header": null,
+							"header": [],
 							"cookie": [],
 							"body": "{\r\n    \"message\": \"Erro alumni não existe com id 19180044.\"\r\n}"
 						}
@@ -1180,7 +1126,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"percentagem\":\"60\"\r\n}",
+							"raw": "{\r\n    \"percentagem\":\"99\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -1188,7 +1134,7 @@
 							}
 						},
 						"url": {
-							"raw": "http://127.0.0.1:8080/alumni/19180044/tools/3",
+							"raw": "http://127.0.0.1:3000/alumni/19180047/tools/3",
 							"protocol": "http",
 							"host": [
 								"127",
@@ -1196,10 +1142,10 @@
 								"0",
 								"1"
 							],
-							"port": "8080",
+							"port": "3000",
 							"path": [
 								"alumni",
-								"19180044",
+								"19180047",
 								"tools",
 								"3"
 							]
@@ -1247,7 +1193,7 @@
 								}
 							},
 							"_postman_previewlanguage": "json",
-							"header": null,
+							"header": [],
 							"cookie": [],
 							"body": "{\r\n    \"message\": \"Erro alumni não existe com id 19180044.\"\r\n}"
 						},
@@ -1291,7 +1237,7 @@
 								}
 							},
 							"_postman_previewlanguage": "json",
-							"header": null,
+							"header": [],
 							"cookie": [],
 							"body": "{\n    \"message\": \"Updated tool.\"\n}"
 						}
@@ -1309,7 +1255,7 @@
 						"method": "DELETE",
 						"header": [],
 						"url": {
-							"raw": "http://127.0.0.1:8080/alumni/19180048/cursos/1",
+							"raw": "http://127.0.0.1:3000/alumni/19180047/cursos/1",
 							"protocol": "http",
 							"host": [
 								"127",
@@ -1317,10 +1263,10 @@
 								"0",
 								"1"
 							],
-							"port": "8080",
+							"port": "3000",
 							"path": [
 								"alumni",
-								"19180048",
+								"19180047",
 								"cursos",
 								"1"
 							]
@@ -1352,7 +1298,7 @@
 								}
 							},
 							"_postman_previewlanguage": "json",
-							"header": null,
+							"header": [],
 							"cookie": [],
 							"body": "{\r\n    \"message\": \"Erro curso não apagada com id 1.\"\r\n}"
 						},
@@ -1380,7 +1326,7 @@
 								}
 							},
 							"_postman_previewlanguage": "json",
-							"header": null,
+							"header": [],
 							"cookie": [],
 							"body": "{\n    \"fieldCount\": 0,\n    \"affectedRows\": 1,\n    \"insertId\": 0,\n    \"serverStatus\": 2,\n    \"warningCount\": 0,\n    \"message\": \"\",\n    \"protocol41\": true,\n    \"changedRows\": 0\n}"
 						}
@@ -1401,7 +1347,7 @@
 							}
 						},
 						"url": {
-							"raw": "http://127.0.0.1:8080/alumni/19180041/cursos/1",
+							"raw": "http://127.0.0.1:3000/alumni/19180047/cursos/1",
 							"protocol": "http",
 							"host": [
 								"127",
@@ -1409,10 +1355,10 @@
 								"0",
 								"1"
 							],
-							"port": "8080",
+							"port": "3000",
 							"path": [
 								"alumni",
-								"19180041",
+								"19180047",
 								"cursos",
 								"1"
 							]
@@ -1460,7 +1406,7 @@
 								}
 							},
 							"_postman_previewlanguage": "json",
-							"header": null,
+							"header": [],
 							"cookie": [],
 							"body": "{\r\n    \"message\": \"Erro alumni não existe com id 19180041.\"\r\n}"
 						},
@@ -1504,7 +1450,7 @@
 								}
 							},
 							"_postman_previewlanguage": "json",
-							"header": null,
+							"header": [],
 							"cookie": [],
 							"body": "{\n    \"message\": \"Novo curso criada.\"\n}"
 						}
@@ -1516,7 +1462,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://127.0.0.1:8080/alumni/19180044/cursos",
+							"raw": "http://127.0.0.1:3000/alumni/19180047/cursos",
 							"protocol": "http",
 							"host": [
 								"127",
@@ -1524,10 +1470,10 @@
 								"0",
 								"1"
 							],
-							"port": "8080",
+							"port": "3000",
 							"path": [
 								"alumni",
-								"19180044",
+								"19180047",
 								"cursos"
 							]
 						},
@@ -1573,7 +1519,7 @@
 								}
 							},
 							"_postman_previewlanguage": "json",
-							"header": null,
+							"header": [],
 							"cookie": [],
 							"body": "[\n    {\n        \"tipoCurso\": \"Licenciatura em Tecnologias e Sistemas de Informação Para a Web\",\n        \"anoCurso\": 2016\n    },\n    {\n        \"tipoCurso\": \"Licenciatura em Fotografia\",\n        \"anoCurso\": 2020\n    }\n]"
 						},
@@ -1600,7 +1546,7 @@
 								}
 							},
 							"_postman_previewlanguage": "json",
-							"header": null,
+							"header": [],
 							"cookie": [],
 							"body": "{\r\n    \"message\": \"Erro alumni não existe com id 19180044.\"\r\n}"
 						}
@@ -1613,7 +1559,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"anoCurso\":\"2017\"\r\n}",
+							"raw": "{\r\n    \"anoCurso\":\"2034\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -1621,7 +1567,7 @@
 							}
 						},
 						"url": {
-							"raw": "http://127.0.0.1:8080/alumni/19180047/cursos/1",
+							"raw": "http://127.0.0.1:3000/alumni/19180047/cursos/1",
 							"protocol": "http",
 							"host": [
 								"127",
@@ -1629,7 +1575,7 @@
 								"0",
 								"1"
 							],
-							"port": "8080",
+							"port": "3000",
 							"path": [
 								"alumni",
 								"19180047",
@@ -1680,7 +1626,7 @@
 								}
 							},
 							"_postman_previewlanguage": "json",
-							"header": null,
+							"header": [],
 							"cookie": [],
 							"body": "{\r\n    \"message\": \"Erro alumni não existe com id 19180044.\"\r\n}"
 						},
@@ -1724,7 +1670,7 @@
 								}
 							},
 							"_postman_previewlanguage": "json",
-							"header": null,
+							"header": [],
 							"cookie": [],
 							"body": "{\n    \"message\": \"Updated curso.\"\n}"
 						}
@@ -1732,884 +1678,6 @@
 				}
 			],
 			"description": "Aqui encontra-se documentadas todas as routas dos cursos dos alumnis, aquelas routas são:\n1.- Obter todas as cursos  pelo numero de estudante.\n2.- Eliminar uma as cursos pelo numero de estudante e seu id.\n3.- Criar uma cursos pelo numero de estudante e seu id.\n4.- Atualizar uma cursos pelo numero de estudante e seu id."
-		},
-		{
-			"name": "Bolsas",
-			"item": [
-				{
-					"name": "GetAllBolsas",
-					"request": {
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "http://127.0.0.1:8080/bolsas",
-							"protocol": "http",
-							"host": [
-								"127",
-								"0",
-								"0",
-								"1"
-							],
-							"port": "8080",
-							"path": [
-								"bolsas"
-							]
-						},
-						"description": "Aqui nesta routa obtemos todas as routes que existem registadas no sistema."
-					},
-					"response": [
-						{
-							"name": "GetAllBolsas-Error",
-							"originalRequest": {
-								"method": "GET",
-								"header": [],
-								"url": {
-									"raw": "http://127.0.0.1:8080/bolsa",
-									"protocol": "http",
-									"host": [
-										"127",
-										"0",
-										"0",
-										"1"
-									],
-									"port": "8080",
-									"path": [
-										"bolsa"
-									]
-								}
-							},
-							"_postman_previewlanguage": null,
-							"header": null,
-							"cookie": [],
-							"body": "{\r\n    \"message\": \"Page not found!\"\r\n}"
-						},
-						{
-							"name": "GetAllBolsas",
-							"originalRequest": {
-								"method": "GET",
-								"header": [],
-								"url": {
-									"raw": "http://127.0.0.1:8080/bolsas",
-									"protocol": "http",
-									"host": [
-										"127",
-										"0",
-										"0",
-										"1"
-									],
-									"port": "8080",
-									"path": [
-										"bolsas"
-									]
-								}
-							},
-							"_postman_previewlanguage": "json",
-							"header": null,
-							"cookie": [],
-							"body": "[\n    {\n        \"id_bolsas\": 1,\n        \"descricao\": \"Boa oportunidade de emprego FULL-TIME\",\n        \"fotoLink\": \"https://talentportugal.com/wp-content/uploads/listing-uploads/logo/2020/03/80788861_10157714516653818_5380503984958078976_o.jpg\",\n        \"estado\": \"ativo\",\n        \"data_publicacao\": \"2021-01-22\",\n        \"data_inicio\": \"2021-01-25\",\n        \"id_empresa\": 1,\n        \"id_tipoEmprego\": 3,\n        \"id_nroProfessor\": 1000000\n    },\n    {\n        \"id_bolsas\": 2,\n        \"descricao\": \"Boa oportunidade de emprego PART-TIME\",\n        \"fotoLink\": \"https://knoow.net/wp-content/uploads/2016/04/presentation.design.jpg\",\n        \"estado\": \"ativo\",\n        \"data_publicacao\": \"2021-01-23\",\n        \"data_inicio\": \"2021-01-25\",\n        \"id_empresa\": 2,\n        \"id_tipoEmprego\": 2,\n        \"id_nroProfessor\": 2000000\n    },\n    {\n        \"id_bolsas\": 3,\n        \"descricao\": \"Estágio na área do design\",\n        \"fotoLink\": \"https://knoow.net/wp-content/uploads/2016/04/presentation.design.jpg\",\n        \"estado\": \"terminado\",\n        \"data_publicacao\": \"2021-01-23\",\n        \"data_inicio\": \"2021-01-25\",\n        \"id_empresa\": 2,\n        \"id_tipoEmprego\": 1,\n        \"id_nroProfessor\": 2000000\n    }\n]"
-						}
-					]
-				},
-				{
-					"name": "DeleteBolsas",
-					"request": {
-						"method": "DELETE",
-						"header": [],
-						"url": {
-							"raw": "http://127.0.0.1:8080/bolsas/1",
-							"protocol": "http",
-							"host": [
-								"127",
-								"0",
-								"0",
-								"1"
-							],
-							"port": "8080",
-							"path": [
-								"bolsas",
-								"1"
-							]
-						},
-						"description": "Nesta routa eliminamos uma bolsa de emprego pelo seu Id."
-					},
-					"response": [
-						{
-							"name": "DeleteBolsascomSucesso",
-							"originalRequest": {
-								"method": "DELETE",
-								"header": [],
-								"url": {
-									"raw": "http://127.0.0.1:8080/bolsas/1",
-									"protocol": "http",
-									"host": [
-										"127",
-										"0",
-										"0",
-										"1"
-									],
-									"port": "8080",
-									"path": [
-										"bolsas",
-										"1"
-									]
-								}
-							},
-							"_postman_previewlanguage": "json",
-							"header": null,
-							"cookie": [],
-							"body": "{\n    \"message\": \"Bolsa with id 1 was successfully deleted!\"\n}"
-						},
-						{
-							"name": "DeleteBolsas",
-							"originalRequest": {
-								"method": "DELETE",
-								"header": [],
-								"url": {
-									"raw": "http://127.0.0.1:8080/bolsas/1",
-									"protocol": "http",
-									"host": [
-										"127",
-										"0",
-										"0",
-										"1"
-									],
-									"port": "8080",
-									"path": [
-										"bolsas",
-										"1"
-									]
-								}
-							},
-							"_postman_previewlanguage": "json",
-							"header": null,
-							"cookie": [],
-							"body": "{\n    \"message\": \"Erro bolsa não existe com id 1.\"\n}"
-						}
-					]
-				},
-				{
-					"name": "UpdateBolsasById",
-					"request": {
-						"method": "PUT",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\r\n    \"descricao\": \"bolsa444444\",\r\n    \"fotoLink\": \"https://i.pinimg.com/originals/51/fe/18/51fe180cc453fccbf05652ad051b4803.jpg\",\r\n    \"estado\": \"inativo\",\r\n    \"data_publicacao\": \"2021-05-20\",\r\n    \"data_inicio\": \"2029-05-20\",\r\n    \"id_empresa\": 1,\r\n    \"id_tipoEmprego\": 1,\r\n    \"id_nroProfessor\": 1000000\r\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "http://127.0.0.1:8080/bolsas/2",
-							"protocol": "http",
-							"host": [
-								"127",
-								"0",
-								"0",
-								"1"
-							],
-							"port": "8080",
-							"path": [
-								"bolsas",
-								"2"
-							]
-						},
-						"description": "Nesta routa fazemos atualizações da informação de uma bolsa de emprego pelo seu Id. Esta informação é alterada no body."
-					},
-					"response": [
-						{
-							"name": "UpdateBolsasById",
-							"originalRequest": {
-								"method": "PUT",
-								"header": [],
-								"body": {
-									"mode": "raw",
-									"raw": "{\r\n    \"descricao\": \"bolsa444444\",\r\n    \"fotoLink\": \"https://i.pinimg.com/originals/51/fe/18/51fe180cc453fccbf05652ad051b4803.jpg\",\r\n    \"estado\": \"inativo\",\r\n    \"data_publicacao\": \"2021-05-20\",\r\n    \"data_inicio\": \"2029-05-20\",\r\n    \"id_empresa\": 1,\r\n    \"id_tipoEmprego\": 1,\r\n    \"id_nroProfessor\": 1000000\r\n}",
-									"options": {
-										"raw": {
-											"language": "json"
-										}
-									}
-								},
-								"url": {
-									"raw": "http://127.0.0.1:8080/bolsas/2",
-									"protocol": "http",
-									"host": [
-										"127",
-										"0",
-										"0",
-										"1"
-									],
-									"port": "8080",
-									"path": [
-										"bolsas",
-										"2"
-									]
-								}
-							},
-							"_postman_previewlanguage": "json",
-							"header": null,
-							"cookie": [],
-							"body": "{\n    \"message\": \"updated bolsas \",\n    \"location\": \"/bolsas/2\"\n}"
-						},
-						{
-							"name": "UpdateBolsasById-Error",
-							"originalRequest": {
-								"method": "PUT",
-								"header": [],
-								"body": {
-									"mode": "raw",
-									"raw": "{\r\n    \"descricao\": \"bolsa444444\",\r\n    \"fotoLink\": \"https://i.pinimg.com/originals/51/fe/18/51fe180cc453fccbf05652ad051b4803.jpg\",\r\n    \"estado\": \"inativo\",\r\n    \"data_publicacao\": \"2021-05-20\",\r\n    \"data_inicio\": \"2029-05-20\",\r\n    \"id_empresa\": 1,\r\n    \"id_tipoEmprego\": 5,\r\n    \"id_nroProfessor\": 1000000\r\n}",
-									"options": {
-										"raw": {
-											"language": "json"
-										}
-									}
-								},
-								"url": {
-									"raw": "http://127.0.0.1:8080/bolsas/2",
-									"protocol": "http",
-									"host": [
-										"127",
-										"0",
-										"0",
-										"1"
-									],
-									"port": "8080",
-									"path": [
-										"bolsas",
-										"2"
-									]
-								}
-							},
-							"_postman_previewlanguage": "json",
-							"header": null,
-							"cookie": [],
-							"body": "{\n    \"message\": \"Erro bolsa não existe com id_tipoEmprego 5.\"\n}"
-						}
-					]
-				},
-				{
-					"name": "CreateBolsas",
-					"request": {
-						"method": "POST",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\r\n    \"descricao\":\"bolsa5\",\r\n    \"fotoLink\":\"https://i.pinimg.com/originals/51/fe/18/51fe180cc453fccbf05652ad051b4803.jpg\",\r\n    \"estado\":\"ativo\",\r\n    \"data_publicacao\":\"2029-05-20\",\r\n    \"data_inicio\":\"2029-05-20\",\r\n    \"id_empresa\":\"1\",\r\n    \"id_tipoEmprego\":\"3\",\r\n    \"id_nroProfessor\":\"2000000\"\r\n    \r\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "http://127.0.0.1:8080/bolsas",
-							"protocol": "http",
-							"host": [
-								"127",
-								"0",
-								"0",
-								"1"
-							],
-							"port": "8080",
-							"path": [
-								"bolsas"
-							]
-						},
-						"description": "Nesta routa adicionamos uma bolsa de emprego. Esta informação é alterada no body"
-					},
-					"response": [
-						{
-							"name": "CreateBolsas-erro",
-							"originalRequest": {
-								"method": "POST",
-								"header": [],
-								"body": {
-									"mode": "raw",
-									"raw": "{\r\n    \"descricao\":\"bolsa5\",\r\n    \"fotoLink\":\"https://i.pinimg.com/originals/51/fe/18/51fe180cc453fccbf05652ad051b4803.jpg\",\r\n    \"estado\":\"ativo\",\r\n    \"data_publicacao\":\"2029-05-20\",\r\n    \"data_inicio\":\"2029-05-20\",\r\n    \"id_empresa\":\"5\",\r\n    \"id_tipoEmprego\":\"3\",\r\n    \"id_nroProfessor\":\"2000000\"\r\n    \r\n}",
-									"options": {
-										"raw": {
-											"language": "json"
-										}
-									}
-								},
-								"url": {
-									"raw": "http://127.0.0.1:8080/bolsas",
-									"protocol": "http",
-									"host": [
-										"127",
-										"0",
-										"0",
-										"1"
-									],
-									"port": "8080",
-									"path": [
-										"bolsas"
-									]
-								}
-							},
-							"_postman_previewlanguage": "json",
-							"header": null,
-							"cookie": [],
-							"body": "{\n    \"message\": \"Erro bolsa não existe com id_empresa 5.\"\n}"
-						},
-						{
-							"name": "CreateBolsas",
-							"originalRequest": {
-								"method": "POST",
-								"header": [],
-								"body": {
-									"mode": "raw",
-									"raw": "{\r\n    \"descricao\":\"bolsa5\",\r\n    \"fotoLink\":\"https://i.pinimg.com/originals/51/fe/18/51fe180cc453fccbf05652ad051b4803.jpg\",\r\n    \"estado\":\"ativo\",\r\n    \"data_publicacao\":\"2029-05-20\",\r\n    \"data_inicio\":\"2029-05-20\",\r\n    \"id_empresa\":\"1\",\r\n    \"id_tipoEmprego\":\"3\",\r\n    \"id_nroProfessor\":\"2000000\"\r\n    \r\n}",
-									"options": {
-										"raw": {
-											"language": "json"
-										}
-									}
-								},
-								"url": {
-									"raw": "http://127.0.0.1:8080/bolsas",
-									"protocol": "http",
-									"host": [
-										"127",
-										"0",
-										"0",
-										"1"
-									],
-									"port": "8080",
-									"path": [
-										"bolsas"
-									]
-								}
-							},
-							"_postman_previewlanguage": "json",
-							"header": null,
-							"cookie": [],
-							"body": "{\n    \"message\": \"New bolsa created\",\n    \"location\": \"/bolsas/26\"\n}"
-						}
-					]
-				},
-				{
-					"name": "GetBolsaById",
-					"request": {
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "http://127.0.0.1:8080/bolsas/1",
-							"protocol": "http",
-							"host": [
-								"127",
-								"0",
-								"0",
-								"1"
-							],
-							"port": "8080",
-							"path": [
-								"bolsas",
-								"1"
-							]
-						},
-						"description": "Aqui obtemos a informação de uma bolsa de emprego pelo seu Id."
-					},
-					"response": [
-						{
-							"name": "GetBolsaById",
-							"originalRequest": {
-								"method": "GET",
-								"header": [],
-								"url": {
-									"raw": "http://127.0.0.1:8080/bolsas/2",
-									"protocol": "http",
-									"host": [
-										"127",
-										"0",
-										"0",
-										"1"
-									],
-									"port": "8080",
-									"path": [
-										"bolsas",
-										"2"
-									]
-								}
-							},
-							"_postman_previewlanguage": "json",
-							"header": null,
-							"cookie": [],
-							"body": "{\n    \"id_bolsas\": 2,\n    \"descricao\": \"bolsa444444\",\n    \"fotoLink\": \"https://i.pinimg.com/originals/51/fe/18/51fe180cc453fccbf05652ad051b4803.jpg\",\n    \"estado\": \"inativo\",\n    \"data_publicacao\": \"2021-05-20\",\n    \"data_inicio\": \"2029-05-20\",\n    \"id_empresa\": 1,\n    \"id_tipoEmprego\": 1,\n    \"id_nroProfessor\": 1000000\n}"
-						},
-						{
-							"name": "GetBolsaById-Erro",
-							"originalRequest": {
-								"method": "GET",
-								"header": [],
-								"url": {
-									"raw": "http://127.0.0.1:8080/bolsas/1",
-									"protocol": "http",
-									"host": [
-										"127",
-										"0",
-										"0",
-										"1"
-									],
-									"port": "8080",
-									"path": [
-										"bolsas",
-										"1"
-									]
-								}
-							},
-							"_postman_previewlanguage": "json",
-							"header": null,
-							"cookie": [],
-							"body": "{\n    \"message\": \"Not found Bolsa com id 1.\"\n}"
-						}
-					]
-				}
-			],
-			"description": "Nesta secção encontra-se todas as routas das Bolsas de Emprego, estas routas são:\n\n1.- Obter todas as bolsas de emprego existentes\n2.-Eliminar uma bolsa de emprego pelo seu Id.\n3.- Atualizar a informaçãos de uma bolsa pelo seu Id.\n4.-Adicionar uma bolsa de emprego.\n5.-Obter a informação de uma bolsa pelo seu Id."
-		},
-		{
-			"name": "Eventos",
-			"item": [
-				{
-					"name": "GetAllEventos",
-					"request": {
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "http://127.0.0.1:8080/eventos",
-							"protocol": "http",
-							"host": [
-								"127",
-								"0",
-								"0",
-								"1"
-							],
-							"port": "8080",
-							"path": [
-								"eventos"
-							]
-						},
-						"description": "Aqui nesta routa obtemos todas as routes que existem registadas no sistema."
-					},
-					"response": [
-						{
-							"name": "GetAllEventos-Error",
-							"originalRequest": {
-								"method": "GET",
-								"header": [],
-								"url": {
-									"raw": "http://127.0.0.1:8080/eventos",
-									"protocol": "http",
-									"host": [
-										"127",
-										"0",
-										"0",
-										"1"
-									],
-									"port": "8080",
-									"path": [
-										"eventos"
-									]
-								}
-							},
-							"_postman_previewlanguage": null,
-							"header": null,
-							"cookie": [],
-							"body": "{\r\n    \"message\": \"Page not found!\"\r\n}"
-						},
-						{
-							"name": "GetAllEventos",
-							"originalRequest": {
-								"method": "GET",
-								"header": [],
-								"url": {
-									"raw": "http://127.0.0.1:8080/eventos",
-									"protocol": "http",
-									"host": [
-										"127",
-										"0",
-										"0",
-										"1"
-									],
-									"port": "8080",
-									"path": [
-										"eventos"
-									]
-								}
-							},
-							"_postman_previewlanguage": "json",
-							"header": null,
-							"cookie": [],
-							"body": "[\n    {\n        \"id_eventos\": 1,\n        \"descricao\": \"Boa oportunidade de emprego FULL-TIME\",\n        \"fotoLink\": \"https://talentportugal.com/wp-content/uploads/listing-uploads/logo/2020/03/80788861_10157714516653818_5380503984958078976_o.jpg\",\n        \"estado\": \"ativo\",\n               \"data\": \"2021-01-25\",\n        \"id_evento\": 1,\n        \"id_tipoEvento\": 3,\n        \"id_nroProfessor\": 1000000\n    },\n    {\n        \"id_eventos\": 2,\n        \"descricao\": \"Avanços tecnologicos\",\n        \"fotoLink\": \"https://knoow.net/wp-content/uploads/2016/04/presentation.design.jpg\",\n        \"estado\": \"ativo\",\n              \"data\": \"2021-01-25\",\n        \"id_evento\": 2,\n        \"id_tipoEvento\": 2,\n        \"id_nroProfessor\": 2000000\n    },\n    {\n        \"id_eventos\": 3,\n        \"descricao\": \" área do design\",\n        \"fotoLink\": \"https://knoow.net/wp-content/uploads/2016/04/presentation.design.jpg\",\n        \"estado\": \"terminado\",\n                \"data_inicio\": \"2021-01-25\",\n        \"id_evento\": 2,\n        \"id_tipoEvento\": 1,\n        \"id_nroProfessor\": 2000000\n    }\n]"
-						}
-					]
-				},
-				{
-					"name": "DeleteEventos",
-					"request": {
-						"method": "DELETE",
-						"header": [],
-						"url": {
-							"raw": "http://127.0.0.1:8080/eventos/1",
-							"protocol": "http",
-							"host": [
-								"127",
-								"0",
-								"0",
-								"1"
-							],
-							"port": "8080",
-							"path": [
-								"eventos",
-								"1"
-							]
-						},
-						"description": "Nesta routa eliminamos um evento pelo seu Id."
-					},
-					"response": [
-						{
-							"name": "DeleteEventoscomSucesso",
-							"originalRequest": {
-								"method": "DELETE",
-								"header": [],
-								"url": {
-									"raw": "http://127.0.0.1:8080/eventos/1",
-									"protocol": "http",
-									"host": [
-										"127",
-										"0",
-										"0",
-										"1"
-									],
-									"port": "8080",
-									"path": [
-										"eventos",
-										"1"
-									]
-								}
-							},
-							"_postman_previewlanguage": "json",
-							"header": null,
-							"cookie": [],
-							"body": "{\n    \"message\": \"Evento with id 1 was successfully deleted!\"\n}"
-						},
-						{
-							"name": "DeleteEventos",
-							"originalRequest": {
-								"method": "DELETE",
-								"header": [],
-								"url": {
-									"raw": "http://127.0.0.1:8080/eventos/1",
-									"protocol": "http",
-									"host": [
-										"127",
-										"0",
-										"0",
-										"1"
-									],
-									"port": "8080",
-									"path": [
-										"eventos",
-										"1"
-									]
-								}
-							},
-							"_postman_previewlanguage": "json",
-							"header": null,
-							"cookie": [],
-							"body": "{\n    \"message\": \"Erro evento não existe com id 1.\"\n}"
-						}
-					]
-				},
-				{
-					"name": "UpdateEventoById",
-					"request": {
-						"method": "PUT",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\r\n    \"descricao\": \"evento444444\",\r\n    \"fotoLink\": \"https://i.pinimg.com/originals/51/fe/18/51fe180cc453fccbf05652ad051b4803.jpg\",\r\n    \"estado\": \"inativo\",\r\n        \"data_inicio\": \"2029-05-20\",\r\n    \"id_evento\": 1,\r\n    \"id_tipoEvento\": 1,\r\n    \"id_nroProfessor\": 1000000\r\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "http://127.0.0.1:8080/eventos/2",
-							"protocol": "http",
-							"host": [
-								"127",
-								"0",
-								"0",
-								"1"
-							],
-							"port": "8080",
-							"path": [
-								"eventos",
-								"2"
-							]
-						},
-						"description": "Nesta routa fazemos atualizações da informação de um evento pelo seu Id. Esta informação é alterada no body."
-					},
-					"response": [
-						{
-							"name": "UpdateEventosById",
-							"originalRequest": {
-								"method": "PUT",
-								"header": [],
-								"body": {
-									"mode": "raw",
-									"raw": "{\r\n    \"descricao\": \"evento444444\",\r\n    \"fotoLink\": \"https://i.pinimg.com/originals/51/fe/18/51fe180cc453fccbf05652ad051b4803.jpg\",\r\n    \"estado\": \"inativo\",\r\n        \"data\": \"2029-05-20\",\r\n    \"id_evento\": 1,\r\n    \"id_tipoEvento\": 1,\r\n    \"id_nroProfessor\": 1000000\r\n}",
-									"options": {
-										"raw": {
-											"language": "json"
-										}
-									}
-								},
-								"url": {
-									"raw": "http://127.0.0.1:8080/evetos/2",
-									"protocol": "http",
-									"host": [
-										"127",
-										"0",
-										"0",
-										"1"
-									],
-									"port": "8080",
-									"path": [
-										"eventos",
-										"2"
-									]
-								}
-							},
-							"_postman_previewlanguage": "json",
-							"header": null,
-							"cookie": [],
-							"body": "{\n    \"message\": \"updated eventos \",\n    \"location\": \"/eventos/2\"\n}"
-						},
-						{
-							"name": "UpdateEventoById-Error",
-							"originalRequest": {
-								"method": "PUT",
-								"header": [],
-								"body": {
-									"mode": "raw",
-									"raw": "{\r\n    \"descricao\": \"evento444444\",\r\n    \"fotoLink\": \"https://i.pinimg.com/originals/51/fe/18/51fe180cc453fccbf05652ad051b4803.jpg\",\r\n    \"estado\": \"inativo\",\r\n        \"data\": \"2029-05-20\",\r\n    \"id_evento\": 1,\r\n    \"id_tipoEvento\": 5,\r\n    \"id_nroProfessor\": 1000000\r\n}",
-									"options": {
-										"raw": {
-											"language": "json"
-										}
-									}
-								},
-								"url": {
-									"raw": "http://127.0.0.1:8080/eventos/2",
-									"protocol": "http",
-									"host": [
-										"127",
-										"0",
-										"0",
-										"1"
-									],
-									"port": "8080",
-									"path": [
-										"eventos",
-										"2"
-									]
-								}
-							},
-							"_postman_previewlanguage": "json",
-							"header": null,
-							"cookie": [],
-							"body": "{\n    \"message\": \"Erro evento não existe com id_tipoEvento 5.\"\n}"
-						}
-					]
-				},
-				{
-					"name": "CreateEventos",
-					"request": {
-						"method": "POST",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\r\n    \"titulo\":\"evento5\",\r\n    \"fotoLink\":\"https://i.pinimg.com/originals/51/fe/18/51fe180cc453fccbf05652ad051b4803.jpg\",\r\n    \"estado\":\"ativo\",\r\n    \"data\":\"2029-05-20\",\r\n    \"informacao\":\"Lorem\",\r\n    \"id_evento\":\"1\",\r\n    \"id_tipoEvento\":\"3\",\r\n    \"id_nroProfessor\":\"2000000\"\r\n    \r\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "http://127.0.0.1:8080/eventos",
-							"protocol": "http",
-							"host": [
-								"127",
-								"0",
-								"0",
-								"1"
-							],
-							"port": "8080",
-							"path": [
-								"eventos"
-							]
-						},
-						"description": "Nesta routa adicionamos um evento. Esta informação é alterada no body"
-					},
-					"response": [
-						{
-							"name": "CreateEventos-erro",
-							"originalRequest": {
-								"method": "POST",
-								"header": [],
-								"body": {
-									"mode": "raw",
-									"raw": "{\r\n    \"titulo\":\"evento5\",\r\n    \"fotoLink\":\"https://i.pinimg.com/originals/51/fe/18/51fe180cc453fccbf05652ad051b4803.jpg\",\r\n    \"estado\":\"ativo\",\r\n    \"data\":\"2029-05-20\",\r\n    \"informacao\":\"Lorem\",\r\n    \"id_evento\":\"1\",\r\n    \"id_tipoEvento\":\"3\",\r\n    \"id_nroProfessor\":\"2000000\"\r\n    \r\n}",
-									"options": {
-										"raw": {
-											"language": "json"
-										}
-									}
-								},
-								"url": {
-									"raw": "http://127.0.0.1:8080/eventos",
-									"protocol": "http",
-									"host": [
-										"127",
-										"0",
-										"0",
-										"1"
-									],
-									"port": "8080",
-									"path": [
-										"eventos"
-									]
-								}
-							},
-							"_postman_previewlanguage": "json",
-							"header": null,
-							"cookie": [],
-							"body": "{\n    \"message\": \"Erro evento não existe com id_evento 5.\"\n}"
-						},
-						{
-							"name": "CreateEventos",
-							"originalRequest": {
-								"method": "POST",
-								"header": [],
-								"body": {
-									"mode": "raw",
-									"raw": "{\r\n    \"titulo\":\"evento5\",\r\n    \"fotoLink\":\"https://i.pinimg.com/originals/51/fe/18/51fe180cc453fccbf05652ad051b4803.jpg\",\r\n    \"estado\":\"ativo\",\r\n    \"data\":\"2029-05-20\",\r\n    \"informacao\":\"Lorem\",\r\n    \"id_evento\":\"1\",\r\n    \"id_tipoEvento\":\"3\",\r\n    \"id_nroProfessor\":\"2000000\"\r\n    \r\n}",
-									"options": {
-										"raw": {
-											"language": "json"
-										}
-									}
-								},
-								"url": {
-									"raw": "http://127.0.0.1:8080/eventos",
-									"protocol": "http",
-									"host": [
-										"127",
-										"0",
-										"0",
-										"1"
-									],
-									"port": "8080",
-									"path": [
-										"eventos"
-									]
-								}
-							},
-							"_postman_previewlanguage": "json",
-							"header": null,
-							"cookie": [],
-							"body": "{\n    \"message\": \"New evento created\",\n    \"location\": \"/eventos/26\"\n}"
-						}
-					]
-				},
-				{
-					"name": "GetEventoById",
-					"request": {
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "http://127.0.0.1:8080/eventos/1",
-							"protocol": "http",
-							"host": [
-								"127",
-								"0",
-								"0",
-								"1"
-							],
-							"port": "8080",
-							"path": [
-								"eventos",
-								"1"
-							]
-						},
-						"description": "Aqui obtemos a informação de um evento pelo seu Id."
-					},
-					"response": [
-						{
-							"name": "GetEventoById",
-							"originalRequest": {
-								"method": "GET",
-								"header": [],
-								"url": {
-									"raw": "http://127.0.0.1:8080/eventos/2",
-									"protocol": "http",
-									"host": [
-										"127",
-										"0",
-										"0",
-										"1"
-									],
-									"port": "8080",
-									"path": [
-										"eventos",
-										"2"
-									]
-								}
-							},
-							"_postman_previewlanguage": "json",
-							"header": null,
-							"cookie": [],
-							"body": "{\n    \"id_eventos\": 2,\n    \"descricao\": \"evento444444\",\n    \"fotoLink\": \"https://i.pinimg.com/originals/51/fe/18/51fe180cc453fccbf05652ad051b4803.jpg\",\n    \"estado\": \"inativo\",\n        \"data\": \"2029-05-20\",\n    \"id_evento\": 1,\n    \"id_tipoEvento\": 1,\n    \"id_nroProfessor\": 1000000\n}"
-						},
-						{
-							"name": "GetEventoById-Erro",
-							"originalRequest": {
-								"method": "GET",
-								"header": [],
-								"url": {
-									"raw": "http://127.0.0.1:8080/eventos/1",
-									"protocol": "http",
-									"host": [
-										"127",
-										"0",
-										"0",
-										"1"
-									],
-									"port": "8080",
-									"path": [
-										"eventos",
-										"1"
-									]
-								}
-							},
-							"_postman_previewlanguage": "json",
-							"header": null,
-							"cookie": [],
-							"body": "{\n    \"message\": \"Not found Evento com id 1.\"\n}"
-						}
-					]
-				}
-			],
-			"description": "Nesta secção encontra-se todas as routas de Eventos , estas routas são:\n\n1.- Obter todos os eventos existentes\n2.-Eliminar um evento pelo seu Id.\n3.- Atualizar a informaçãos de um evento pelo seu Id.\n4.-Adicionar um evento.\n5.-Obter a informação de um evento pelo seu Id."
 		},
 		{
 			"name": "AlumniLink",
@@ -2620,7 +1688,7 @@
 						"method": "DELETE",
 						"header": [],
 						"url": {
-							"raw": "http://127.0.0.1:8080/alumni/19180048/links/1",
+							"raw": "http://127.0.0.1:3000/alumni/19180047/links/1",
 							"protocol": "http",
 							"host": [
 								"127",
@@ -2628,10 +1696,10 @@
 								"0",
 								"1"
 							],
-							"port": "8080",
+							"port": "3000",
 							"path": [
 								"alumni",
-								"19180048",
+								"19180047",
 								"links",
 								"1"
 							]
@@ -2663,7 +1731,7 @@
 								}
 							},
 							"_postman_previewlanguage": "json",
-							"header": null,
+							"header": [],
 							"cookie": [],
 							"body": "{\r\n    \"message\": \"Erro link não apagada com id 1.\"\r\n}"
 						},
@@ -2691,7 +1759,7 @@
 								}
 							},
 							"_postman_previewlanguage": "json",
-							"header": null,
+							"header": [],
 							"cookie": [],
 							"body": "{\n    \"fieldCount\": 0,\n    \"affectedRows\": 1,\n    \"insertId\": 0,\n    \"serverStatus\": 2,\n    \"warningCount\": 0,\n    \"message\": \"\",\n    \"protocol41\": true,\n    \"changedRows\": 0\n}"
 						}
@@ -2704,7 +1772,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"link\":\"https://github.com/JokerWoman\"\r\n}",
+							"raw": "{\r\n    \"link\":\"https://github.com/aasdsa\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -2712,7 +1780,7 @@
 							}
 						},
 						"url": {
-							"raw": "http://127.0.0.1:8080/alumni/19180041/links/1",
+							"raw": "http://127.0.0.1:3000/alumni/19180047/links/1",
 							"protocol": "http",
 							"host": [
 								"127",
@@ -2720,10 +1788,10 @@
 								"0",
 								"1"
 							],
-							"port": "8080",
+							"port": "3000",
 							"path": [
 								"alumni",
-								"19180041",
+								"19180047",
 								"links",
 								"1"
 							]
@@ -2771,7 +1839,7 @@
 								}
 							},
 							"_postman_previewlanguage": "json",
-							"header": null,
+							"header": [],
 							"cookie": [],
 							"body": "{\r\n    \"message\": \"Erro alumni não existe com id 19180041.\"\r\n}"
 						},
@@ -2815,7 +1883,7 @@
 								}
 							},
 							"_postman_previewlanguage": "json",
-							"header": null,
+							"header": [],
 							"cookie": [],
 							"body": "{\n    \"message\": \"Novo link criada.\"\n}"
 						}
@@ -2827,7 +1895,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://127.0.0.1:8080/alumni/19180047/links",
+							"raw": "http://127.0.0.1:3000/alumni/19180047/links",
 							"protocol": "http",
 							"host": [
 								"127",
@@ -2835,7 +1903,7 @@
 								"0",
 								"1"
 							],
-							"port": "8080",
+							"port": "3000",
 							"path": [
 								"alumni",
 								"19180047",
@@ -2884,7 +1952,7 @@
 								}
 							},
 							"_postman_previewlanguage": "json",
-							"header": null,
+							"header": [],
 							"cookie": [],
 							"body": "[\n    {\n        \"tipoLink\": \"GitHub\",\n        \"link\": \"https://github.com/JokerWoman\"\n    },\n    {\n        \"tipoLink\": \"Behance\",\n        \"link\": \"behancenet/ilseweisfelt\"\n    }\n]"
 						},
@@ -2911,7 +1979,7 @@
 								}
 							},
 							"_postman_previewlanguage": "json",
-							"header": null,
+							"header": [],
 							"cookie": [],
 							"body": "{\r\n    \"message\": \"Erro alumni não existe com id 19180046.\"\r\n}"
 						}
@@ -2924,7 +1992,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"link\":\"https://github.com/JokerWoman2\"\r\n}",
+							"raw": "{\r\n    \"link\":\"https://github.com/JokerWoman5\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -2932,7 +2000,7 @@
 							}
 						},
 						"url": {
-							"raw": "http://127.0.0.1:8080/alumni/19180043/links/1",
+							"raw": "http://127.0.0.1:3000/alumni/19180047/links/1",
 							"protocol": "http",
 							"host": [
 								"127",
@@ -2940,10 +2008,10 @@
 								"0",
 								"1"
 							],
-							"port": "8080",
+							"port": "3000",
 							"path": [
 								"alumni",
-								"19180043",
+								"19180047",
 								"links",
 								"1"
 							]
@@ -2991,7 +2059,7 @@
 								}
 							},
 							"_postman_previewlanguage": "json",
-							"header": null,
+							"header": [],
 							"cookie": [],
 							"body": "{\r\n    \"message\": \"Erro alumni não existe com id 19180043.\"\r\n}"
 						},
@@ -3035,7 +2103,7 @@
 								}
 							},
 							"_postman_previewlanguage": "json",
-							"header": null,
+							"header": [],
 							"cookie": [],
 							"body": "{\n    \"message\": \"Updated link.\"\n}"
 						}
@@ -3043,7 +2111,963 @@
 				}
 			],
 			"description": "Aqui encontra-se documentadas todas as routas dos links dos alumnis, aquelas links são:\n1.- Obter todas as links pelo numero de estudante.\n2.- Eliminar uma as links pelo numero de estudante e seu id.\n3.- Criar uma links pelo numero de estudante e seu id.\n4.- Atualizar uma links pelo numero de estudante e seu id."
+		},
+		{
+			"name": "Eventos",
+			"item": [
+				{
+					"name": "GetAllEventos",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://127.0.0.1:3000/eventos",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "3000",
+							"path": [
+								"eventos"
+							]
+						},
+						"description": "Aqui nesta routa obtemos todas as routes que existem registadas no sistema."
+					},
+					"response": [
+						{
+							"name": "GetAllEventos-Error",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://127.0.0.1:8080/eventos",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "8080",
+									"path": [
+										"eventos"
+									]
+								}
+							},
+							"_postman_previewlanguage": "Text",
+							"header": [],
+							"cookie": [],
+							"body": "{\r\n    \"message\": \"Page not found!\"\r\n}"
+						},
+						{
+							"name": "GetAllEventos",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://127.0.0.1:8080/eventos",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "8080",
+									"path": [
+										"eventos"
+									]
+								}
+							},
+							"_postman_previewlanguage": "json",
+							"header": [],
+							"cookie": [],
+							"body": "[\n    {\n        \"id_eventos\": 1,\n        \"descricao\": \"Boa oportunidade de emprego FULL-TIME\",\n        \"fotoLink\": \"https://talentportugal.com/wp-content/uploads/listing-uploads/logo/2020/03/80788861_10157714516653818_5380503984958078976_o.jpg\",\n        \"estado\": \"ativo\",\n               \"data\": \"2021-01-25\",\n        \"id_evento\": 1,\n        \"id_tipoEvento\": 3,\n        \"id_nroProfessor\": 1000000\n    },\n    {\n        \"id_eventos\": 2,\n        \"descricao\": \"Avanços tecnologicos\",\n        \"fotoLink\": \"https://knoow.net/wp-content/uploads/2016/04/presentation.design.jpg\",\n        \"estado\": \"ativo\",\n              \"data\": \"2021-01-25\",\n        \"id_evento\": 2,\n        \"id_tipoEvento\": 2,\n        \"id_nroProfessor\": 2000000\n    },\n    {\n        \"id_eventos\": 3,\n        \"descricao\": \" área do design\",\n        \"fotoLink\": \"https://knoow.net/wp-content/uploads/2016/04/presentation.design.jpg\",\n        \"estado\": \"terminado\",\n                \"data_inicio\": \"2021-01-25\",\n        \"id_evento\": 2,\n        \"id_tipoEvento\": 1,\n        \"id_nroProfessor\": 2000000\n    }\n]"
+						}
+					]
+				},
+				{
+					"name": "DeleteEventos",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://127.0.0.1:3000/eventos/3",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "3000",
+							"path": [
+								"eventos",
+								"3"
+							]
+						},
+						"description": "Nesta routa eliminamos um evento pelo seu Id."
+					},
+					"response": [
+						{
+							"name": "DeleteEventoscomSucesso",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "http://127.0.0.1:8080/eventos/1",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "8080",
+									"path": [
+										"eventos",
+										"1"
+									]
+								}
+							},
+							"_postman_previewlanguage": "json",
+							"header": [],
+							"cookie": [],
+							"body": "{\n    \"message\": \"Evento with id 1 was successfully deleted!\"\n}"
+						},
+						{
+							"name": "DeleteEventos",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "http://127.0.0.1:8080/eventos/1",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "8080",
+									"path": [
+										"eventos",
+										"1"
+									]
+								}
+							},
+							"_postman_previewlanguage": "json",
+							"header": [],
+							"cookie": [],
+							"body": "{\n    \"message\": \"Erro evento não existe com id 1.\"\n}"
+						}
+					]
+				},
+				{
+					"name": "UpdateEventoById",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"titulo\": \"evento444444\",\r\n    \"fotoLink\": \"https://i.pinimg.com/originals/51/fe/18/51fe180cc453fccbf05652ad051b4803.jpg\",\r\n    \"estado\": \"inativo\",\r\n    \"data\": \"2029-05-20\",\r\n    \"informacao\":\"Lorem\",\r\n    \"id_evento\": 1,\r\n    \"id_tipoEvento\": 1,\r\n    \"id_nroProfessor\": 1000000\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:3000/eventos/3",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "3000",
+							"path": [
+								"eventos",
+								"3"
+							]
+						},
+						"description": "Nesta routa fazemos atualizações da informação de um evento pelo seu Id. Esta informação é alterada no body."
+					},
+					"response": [
+						{
+							"name": "UpdateEventosById",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"descricao\": \"evento444444\",\r\n    \"fotoLink\": \"https://i.pinimg.com/originals/51/fe/18/51fe180cc453fccbf05652ad051b4803.jpg\",\r\n    \"estado\": \"inativo\",\r\n        \"data\": \"2029-05-20\",\r\n    \"id_evento\": 1,\r\n    \"id_tipoEvento\": 1,\r\n    \"id_nroProfessor\": 1000000\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://127.0.0.1:8080/eventos/2",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "8080",
+									"path": [
+										"eventos",
+										"2"
+									]
+								}
+							},
+							"_postman_previewlanguage": "json",
+							"header": [],
+							"cookie": [],
+							"body": "{\n    \"message\": \"updated eventos \",\n    \"location\": \"/eventos/2\"\n}"
+						},
+						{
+							"name": "UpdateEventoById-Error",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"descricao\": \"evento444444\",\r\n    \"fotoLink\": \"https://i.pinimg.com/originals/51/fe/18/51fe180cc453fccbf05652ad051b4803.jpg\",\r\n    \"estado\": \"inativo\",\r\n        \"data\": \"2029-05-20\",\r\n    \"id_evento\": 1,\r\n    \"id_tipoEvento\": 5,\r\n    \"id_nroProfessor\": 1000000\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://127.0.0.1:8080/eventos/2",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "8080",
+									"path": [
+										"eventos",
+										"2"
+									]
+								}
+							},
+							"_postman_previewlanguage": "json",
+							"header": [],
+							"cookie": [],
+							"body": "{\n    \"message\": \"Erro evento não existe com id_tipoEvento 5.\"\n}"
+						}
+					]
+				},
+				{
+					"name": "CreateEventos",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"titulo\":\"evento5\",\r\n    \"fotoLink\":\"https://i.pinimg.com/originals/51/fe/18/51fe180cc453fccbf05652ad051b4803.jpg\",\r\n    \"estado\":\"ativo\",\r\n    \"data\":\"2029-05-20\",\r\n    \"informacao\":\"Lorem\",\r\n    \"id_evento\":\"1\",\r\n    \"id_tipoEvento\":\"3\",\r\n    \"id_nroProfessor\":\"2000000\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:3000/eventos",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "3000",
+							"path": [
+								"eventos"
+							]
+						},
+						"description": "Nesta routa adicionamos um evento. Esta informação é alterada no body"
+					},
+					"response": [
+						{
+							"name": "CreateEventos-erro",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"titulo\":\"evento5\",\r\n    \"fotoLink\":\"https://i.pinimg.com/originals/51/fe/18/51fe180cc453fccbf05652ad051b4803.jpg\",\r\n    \"estado\":\"ativo\",\r\n    \"data\":\"2029-05-20\",\r\n    \"informacao\":\"Lorem\",\r\n    \"id_evento\":\"1\",\r\n    \"id_tipoEvento\":\"3\",\r\n    \"id_nroProfessor\":\"2000000\"\r\n    \r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://127.0.0.1:8080/eventos",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "8080",
+									"path": [
+										"eventos"
+									]
+								}
+							},
+							"_postman_previewlanguage": "json",
+							"header": [],
+							"cookie": [],
+							"body": "{\n    \"message\": \"Erro evento não existe com id_evento 5.\"\n}"
+						},
+						{
+							"name": "CreateEventos",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"titulo\":\"evento5\",\r\n    \"fotoLink\":\"https://i.pinimg.com/originals/51/fe/18/51fe180cc453fccbf05652ad051b4803.jpg\",\r\n    \"estado\":\"ativo\",\r\n    \"data\":\"2029-05-20\",\r\n    \"informacao\":\"Lorem\",\r\n    \"id_evento\":\"1\",\r\n    \"id_tipoEvento\":\"3\",\r\n    \"id_nroProfessor\":\"2000000\"\r\n    \r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://127.0.0.1:8080/eventos",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "8080",
+									"path": [
+										"eventos"
+									]
+								}
+							},
+							"_postman_previewlanguage": "json",
+							"header": [],
+							"cookie": [],
+							"body": "{\n    \"message\": \"New evento created\",\n    \"location\": \"/eventos/26\"\n}"
+						}
+					]
+				},
+				{
+					"name": "GetEventoById",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://127.0.0.1:3000/eventos/3",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "3000",
+							"path": [
+								"eventos",
+								"3"
+							]
+						},
+						"description": "Aqui obtemos a informação de um evento pelo seu Id."
+					},
+					"response": [
+						{
+							"name": "GetEventoById",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://127.0.0.1:8080/eventos/2",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "8080",
+									"path": [
+										"eventos",
+										"2"
+									]
+								}
+							},
+							"_postman_previewlanguage": "json",
+							"header": [],
+							"cookie": [],
+							"body": "{\n    \"id_eventos\": 2,\n    \"descricao\": \"evento444444\",\n    \"fotoLink\": \"https://i.pinimg.com/originals/51/fe/18/51fe180cc453fccbf05652ad051b4803.jpg\",\n    \"estado\": \"inativo\",\n        \"data\": \"2029-05-20\",\n    \"id_evento\": 1,\n    \"id_tipoEvento\": 1,\n    \"id_nroProfessor\": 1000000\n}"
+						},
+						{
+							"name": "GetEventoById-Erro",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://127.0.0.1:8080/eventos/1",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "8080",
+									"path": [
+										"eventos",
+										"1"
+									]
+								}
+							},
+							"_postman_previewlanguage": "json",
+							"header": [],
+							"cookie": [],
+							"body": "{\n    \"message\": \"Not found Evento com id 1.\"\n}"
+						}
+					]
+				}
+			],
+			"description": "Nesta secção encontra-se todas as routas de Eventos , estas routas são:\n\n1.- Obter todos os eventos existentes\n2.-Eliminar um evento pelo seu Id.\n3.- Atualizar a informaçãos de um evento pelo seu Id.\n4.-Adicionar um evento.\n5.-Obter a informação de um evento pelo seu Id."
+		},
+		{
+			"name": "Bolsas",
+			"item": [
+				{
+					"name": "GetAllBolsas",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://127.0.0.1:3000/bolsas?estado=ativo",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "3000",
+							"path": [
+								"bolsas"
+							],
+							"query": [
+								{
+									"key": "estado",
+									"value": "ativo"
+								}
+							]
+						},
+						"description": "Aqui nesta routa obtemos todas as routes que existem registadas no sistema."
+					},
+					"response": [
+						{
+							"name": "GetAllBolsas-Error",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://127.0.0.1:8080/bolsa",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "8080",
+									"path": [
+										"bolsa"
+									]
+								}
+							},
+							"_postman_previewlanguage": "Text",
+							"header": [],
+							"cookie": [],
+							"body": "{\r\n    \"message\": \"Page not found!\"\r\n}"
+						},
+						{
+							"name": "GetAllBolsas",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://127.0.0.1:8080/bolsas",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "8080",
+									"path": [
+										"bolsas"
+									]
+								}
+							},
+							"_postman_previewlanguage": "json",
+							"header": [],
+							"cookie": [],
+							"body": "[\n    {\n        \"id_bolsas\": 1,\n        \"descricao\": \"Boa oportunidade de emprego FULL-TIME\",\n        \"fotoLink\": \"https://talentportugal.com/wp-content/uploads/listing-uploads/logo/2020/03/80788861_10157714516653818_5380503984958078976_o.jpg\",\n        \"estado\": \"ativo\",\n        \"data_publicacao\": \"2021-01-22\",\n        \"data_inicio\": \"2021-01-25\",\n        \"id_empresa\": 1,\n        \"id_tipoEmprego\": 3,\n        \"id_nroProfessor\": 1000000\n    },\n    {\n        \"id_bolsas\": 2,\n        \"descricao\": \"Boa oportunidade de emprego PART-TIME\",\n        \"fotoLink\": \"https://knoow.net/wp-content/uploads/2016/04/presentation.design.jpg\",\n        \"estado\": \"ativo\",\n        \"data_publicacao\": \"2021-01-23\",\n        \"data_inicio\": \"2021-01-25\",\n        \"id_empresa\": 2,\n        \"id_tipoEmprego\": 2,\n        \"id_nroProfessor\": 2000000\n    },\n    {\n        \"id_bolsas\": 3,\n        \"descricao\": \"Estágio na área do design\",\n        \"fotoLink\": \"https://knoow.net/wp-content/uploads/2016/04/presentation.design.jpg\",\n        \"estado\": \"terminado\",\n        \"data_publicacao\": \"2021-01-23\",\n        \"data_inicio\": \"2021-01-25\",\n        \"id_empresa\": 2,\n        \"id_tipoEmprego\": 1,\n        \"id_nroProfessor\": 2000000\n    }\n]"
+						}
+					]
+				},
+				{
+					"name": "DeleteBolsas",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://127.0.0.1:3000/bolsas/2",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "3000",
+							"path": [
+								"bolsas",
+								"2"
+							]
+						},
+						"description": "Nesta routa eliminamos uma bolsa de emprego pelo seu Id."
+					},
+					"response": [
+						{
+							"name": "DeleteBolsascomSucesso",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "http://127.0.0.1:8080/bolsas/1",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "8080",
+									"path": [
+										"bolsas",
+										"1"
+									]
+								}
+							},
+							"_postman_previewlanguage": "json",
+							"header": [],
+							"cookie": [],
+							"body": "{\n    \"message\": \"Bolsa with id 1 was successfully deleted!\"\n}"
+						},
+						{
+							"name": "DeleteBolsas",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "http://127.0.0.1:8080/bolsas/1",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "8080",
+									"path": [
+										"bolsas",
+										"1"
+									]
+								}
+							},
+							"_postman_previewlanguage": "json",
+							"header": [],
+							"cookie": [],
+							"body": "{\n    \"message\": \"Erro bolsa não existe com id 1.\"\n}"
+						}
+					]
+				},
+				{
+					"name": "UpdateBolsasById",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"descricao\": \"aaaaaaaa\",\r\n    \"fotoLink\": \"https://i.pinimg.com/originals/51/fe/18/51fe180cc453fccbf05652ad051b4803.jpg\",\r\n    \"estado\": \"inativo\",\r\n    \"data_publicacao\": \"2021-05-20\",\r\n    \"data_inicio\": \"2029-05-20\",\r\n    \"id_empresa\": 1,\r\n    \"id_tipoEmprego\": 1,\r\n    \"id_nroProfessor\": 1000000\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:3000/bolsas/3",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "3000",
+							"path": [
+								"bolsas",
+								"3"
+							]
+						},
+						"description": "Nesta routa fazemos atualizações da informação de uma bolsa de emprego pelo seu Id. Esta informação é alterada no body."
+					},
+					"response": [
+						{
+							"name": "UpdateBolsasById",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"descricao\": \"bolsa444444\",\r\n    \"fotoLink\": \"https://i.pinimg.com/originals/51/fe/18/51fe180cc453fccbf05652ad051b4803.jpg\",\r\n    \"estado\": \"inativo\",\r\n    \"data_publicacao\": \"2021-05-20\",\r\n    \"data_inicio\": \"2029-05-20\",\r\n    \"id_empresa\": 1,\r\n    \"id_tipoEmprego\": 1,\r\n    \"id_nroProfessor\": 1000000\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://127.0.0.1:8080/bolsas/2",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "8080",
+									"path": [
+										"bolsas",
+										"2"
+									]
+								}
+							},
+							"_postman_previewlanguage": "json",
+							"header": [],
+							"cookie": [],
+							"body": "{\n    \"message\": \"updated bolsas \",\n    \"location\": \"/bolsas/2\"\n}"
+						},
+						{
+							"name": "UpdateBolsasById-Error",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"descricao\": \"bolsa444444\",\r\n    \"fotoLink\": \"https://i.pinimg.com/originals/51/fe/18/51fe180cc453fccbf05652ad051b4803.jpg\",\r\n    \"estado\": \"inativo\",\r\n    \"data_publicacao\": \"2021-05-20\",\r\n    \"data_inicio\": \"2029-05-20\",\r\n    \"id_empresa\": 1,\r\n    \"id_tipoEmprego\": 5,\r\n    \"id_nroProfessor\": 1000000\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://127.0.0.1:8080/bolsas/2",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "8080",
+									"path": [
+										"bolsas",
+										"2"
+									]
+								}
+							},
+							"_postman_previewlanguage": "json",
+							"header": [],
+							"cookie": [],
+							"body": "{\n    \"message\": \"Erro bolsa não existe com id_tipoEmprego 5.\"\n}"
+						}
+					]
+				},
+				{
+					"name": "CreateBolsas",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"descricao\":\"bolsa7777\",\r\n    \"fotoLink\":\"https://i.pinimg.com/originals/51/fe/18/51fe180cc453fccbf05652ad051b4803.jpg\",\r\n    \"estado\":\"ativo\",\r\n    \"data_publicacao\":\"2029-05-20\",\r\n    \"data_inicio\":\"2029-05-20\",\r\n    \"id_empresa\":\"1\",\r\n    \"id_tipoEmprego\":\"3\",\r\n    \"id_nroProfessor\":\"2000000\"\r\n    \r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:3000/bolsas",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "3000",
+							"path": [
+								"bolsas"
+							]
+						},
+						"description": "Nesta routa adicionamos uma bolsa de emprego. Esta informação é alterada no body"
+					},
+					"response": [
+						{
+							"name": "CreateBolsas-erro",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"descricao\":\"bolsa5\",\r\n    \"fotoLink\":\"https://i.pinimg.com/originals/51/fe/18/51fe180cc453fccbf05652ad051b4803.jpg\",\r\n    \"estado\":\"ativo\",\r\n    \"data_publicacao\":\"2029-05-20\",\r\n    \"data_inicio\":\"2029-05-20\",\r\n    \"id_empresa\":\"5\",\r\n    \"id_tipoEmprego\":\"3\",\r\n    \"id_nroProfessor\":\"2000000\"\r\n    \r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://127.0.0.1:8080/bolsas",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "8080",
+									"path": [
+										"bolsas"
+									]
+								}
+							},
+							"_postman_previewlanguage": "json",
+							"header": [],
+							"cookie": [],
+							"body": "{\n    \"message\": \"Erro bolsa não existe com id_empresa 5.\"\n}"
+						},
+						{
+							"name": "CreateBolsas",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"descricao\":\"bolsa5\",\r\n    \"fotoLink\":\"https://i.pinimg.com/originals/51/fe/18/51fe180cc453fccbf05652ad051b4803.jpg\",\r\n    \"estado\":\"ativo\",\r\n    \"data_publicacao\":\"2029-05-20\",\r\n    \"data_inicio\":\"2029-05-20\",\r\n    \"id_empresa\":\"1\",\r\n    \"id_tipoEmprego\":\"3\",\r\n    \"id_nroProfessor\":\"2000000\"\r\n    \r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://127.0.0.1:8080/bolsas",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "8080",
+									"path": [
+										"bolsas"
+									]
+								}
+							},
+							"_postman_previewlanguage": "json",
+							"header": [],
+							"cookie": [],
+							"body": "{\n    \"message\": \"New bolsa created\",\n    \"location\": \"/bolsas/26\"\n}"
+						}
+					]
+				},
+				{
+					"name": "GetBolsaById",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://127.0.0.1:3000/bolsas/2",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "3000",
+							"path": [
+								"bolsas",
+								"2"
+							]
+						},
+						"description": "Aqui obtemos a informação de uma bolsa de emprego pelo seu Id."
+					},
+					"response": [
+						{
+							"name": "GetBolsaById",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://127.0.0.1:8080/bolsas/2",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "8080",
+									"path": [
+										"bolsas",
+										"2"
+									]
+								}
+							},
+							"_postman_previewlanguage": "json",
+							"header": [],
+							"cookie": [],
+							"body": "{\n    \"id_bolsas\": 2,\n    \"descricao\": \"bolsa444444\",\n    \"fotoLink\": \"https://i.pinimg.com/originals/51/fe/18/51fe180cc453fccbf05652ad051b4803.jpg\",\n    \"estado\": \"inativo\",\n    \"data_publicacao\": \"2021-05-20\",\n    \"data_inicio\": \"2029-05-20\",\n    \"id_empresa\": 1,\n    \"id_tipoEmprego\": 1,\n    \"id_nroProfessor\": 1000000\n}"
+						},
+						{
+							"name": "GetBolsaById-Erro",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://127.0.0.1:8080/bolsas/1",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "8080",
+									"path": [
+										"bolsas",
+										"1"
+									]
+								}
+							},
+							"_postman_previewlanguage": "json",
+							"header": [],
+							"cookie": [],
+							"body": "{\n    \"message\": \"Not found Bolsa com id 1.\"\n}"
+						}
+					]
+				}
+			],
+			"description": "Nesta secção encontra-se todas as routas das Bolsas de Emprego, estas routas são:\n\n1.- Obter todas as bolsas de emprego existentes\n2.-Eliminar uma bolsa de emprego pelo seu Id.\n3.- Atualizar a informaçãos de uma bolsa pelo seu Id.\n4.-Adicionar uma bolsa de emprego.\n5.-Obter a informação de uma bolsa pelo seu Id."
+		},
+		{
+			"name": "Login",
+			"item": [
+				{
+					"name": "LoginAlumni",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id_nroEstudante\":\"99977337\",\r\n    \"password\":\"123456789\"\r\n    }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:3000/auth/signin/alumni",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "3000",
+							"path": [
+								"auth",
+								"signin",
+								"alumni"
+							]
+						},
+						"description": "Nesta routa no body adicionamos toda a informação do alumni tais como :\nnome,data de nascimento,morada,email,etc"
+					},
+					"response": []
+				},
+				{
+					"name": "SignupAlumni",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id_nroEstudante\":\"99977337\",\r\n    \"nome\":\"Nuno Silva\",\r\n    \"dataNascimento\":\"1998-02-18\",\r\n    \"morada\":\"Rua das Peras\",\r\n    \"email\":\"andrea@gmail.com\",\r\n    \"fotoLink\":\"https://i.pinimg.com/originals/51/fe/18/51fe180cc453fccbf05652ad051b4803.jpg\",\r\n    \"telemovel\":\"917574845\",\r\n    \"curriculumPDFLink\":\"https://www.bridgemaneducation.com/documents/how-to-guide.pdf\",\r\n    \"password\":\"123456789\",\r\n    \"id_role\":\"3\",\r\n    \"id_genero\":\"2\",\r\n    \"id_nacionalidade\":\"1\",\r\n    \"id_codigoPostal\":\"4770-440\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:3000/auth/signup/alumni",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "3000",
+							"path": [
+								"auth",
+								"signup",
+								"alumni"
+							]
+						},
+						"description": "Nesta routa no body adicionamos toda a informação do alumni tais como :\nnome,data de nascimento,morada,email,etc"
+					},
+					"response": []
+				}
+			]
 		}
-		
 	]
 }

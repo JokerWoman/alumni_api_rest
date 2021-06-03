@@ -11,50 +11,6 @@ router.use((req, res, next) => {
     next()
 })
 
-router.route('/')
-    .get(controller.home)
-
-router.route('/alumni')
-    .get(controller.getAllAlumni)
-    .post(controller.createAlumni);
-
-router.route('/alumni/:numero')
-    .get(controller.findAlumniByNumeroEstudante)
-    .put(controller.updateAlumniByNumeroEstudante);
-
-router.route('/alumni/:numero/skills/')
-    .get(controller.getSkillsFromNumeroEstudante);
-
-router.route('/alumni/:numero/tools/')
-    .get(controller.getToolsFromNumeroEstudante);
-
-router.route('/alumni/:numero/cursos/')
-    .get(controller.getCursosFromNumeroEstudante);
-
-router.route('/alumni/:numero/links/')
-    .get(controller.getLinksFromNumeroEstudante);
-
-
-router.route('/alumni/:numero/skills/:skillId')
-    .delete(controller.deleteSkillFromNumeroEstudanteBySkillId)
-    .put(controller.updateSkillFromNumeroEstudanteBySkillId)
-    .post(controller.createSkillFromNumeroEstudanteBySkillId);
-
-router.route('/alumni/:numero/tools/:toolId')
-    .delete(controller.deleteToolFromNumeroEstudanteByToolId)
-    .put(controller.updateToolFromNumeroEstudanteByToolId)
-    .post(controller.createToolFromNumeroEstudanteByToolId);
-
-router.route('/alumni/:numero/cursos/:cursoId')
-    .delete(controller.deleteCursoFromNumeroEstudanteByCursoId)
-    .put(controller.updateCursoFromNumeroEstudanteByCursoId)
-    .post(controller.createCursoFromNumeroEstudanteByCursoId);
-
-router.route('/alumni/:numero/links/:linkId')
-    .delete(controller.deleteLinkFromNumeroEstudanteByLinkId)
-    .put(controller.updateLinkFromNumeroEstudanteByLinkId)
-    .post(controller.createLinkFromNumeroEstudanteByLinkId);
-
 router.route('/bolsas')
     .get(controller.getAllBolsas)
     .post(controller.createBolsa)
@@ -75,7 +31,7 @@ router.route('/eventos/:eventoID')
 
 //send a predefined error message for invalid routes
 router.all('*', function(req, res) {
-        res.status(404).json({ message: 'Page not found!' });
+        res.status(404).json({ message: 'Route não definida!' });
     })
     // EXPORT ROUTES (required by APP)
 module.exports = router;

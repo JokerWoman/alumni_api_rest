@@ -74,4 +74,7 @@ INSERT INTO Alumni_Cursos (id_nroEstudante, id_cursos, anoCurso) VALUES(19180047
 INSERT INTO Alumni_Links (id_nroEstudante, id_links, link) VALUES(19180048, 3, 'githubcom/JokerWoman');
 INSERT INTO Alumni_Links (id_nroEstudante, id_links, link) VALUES(19180047, 2, 'behancenet/ilseweisfelt');
 
-
+-- Tipo de Evento
+INSERT INTO Tipo_Evento (id_tipoEvento, descricao) VALUES ('1', 'Workshop');
+INSERT INTO Tipo_Evento (id_tipoEvento, descricao) VALUES ('2', 'Seminário');
+INSERT INTO Tipo_Evento (id_tipoEvento, descricao) VALUES ('3', 'Formação');
