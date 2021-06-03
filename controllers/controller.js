@@ -94,7 +94,7 @@ exports.createBolsa = async function(req, res) {
         res.status(201).json({ message: "New bolsa created", location: "/bolsas/" + data.content });
     } else if (data.kind === "empresa_nao_existe") {
         res.status(417).json({ message: `Erro a empresa não existe com id ${req.body.id_empresa}.` })
-    } else if (data.kind === "emprego__nao_existe") {
+    } else if (data.kind === "emprego_nao_existe") {
         res.status(500).json({ message: `Erro o emprego não existe com id ${req.body.id_tipoEmprego}.` })
     } else if (data.kind === "erro_bolsa_insert") {
         res.status(500).json({ message: `Erro ao inserir bolsa com id ${req.body.id_nroEstudante}.` })
