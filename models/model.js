@@ -82,7 +82,7 @@ Model.prototype.createBolsa = async function (bolsa, empresaId, empregoId) {
         return { kind: "erro_bolsa_insert", content: null };
     }
 
-    return { kind: "ok", content: insertion[0].insertId };
+    return { kind: "ok", content: [insertion[0].insertId, bolsa] };
 };
 
 Model.prototype.deleteBolsa = async function (id) {
@@ -151,7 +151,7 @@ Model.prototype.updateBolsaById = async function (bolsa, bolsaId, empresaId, emp
         return { kind: "bolsa_nao_updated", content: null };
     }
 
-    return { kind: "ok", content: update };
+    return { kind: "ok", content: [update, bolsa] };
 };
 
 Model.prototype.EventoExisteNaBaseDeDados = async function (id) {
