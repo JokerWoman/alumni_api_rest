@@ -29,6 +29,15 @@ router.route('/eventos/:eventoID')
     .get(controller.getEventoById)
     .put(controller.updateEventoById)    
 
+router.route('/testemunhas')
+    .get(controller.getAllTestimonies)
+    .post(controller.createTestimony)
+
+router.route('/testemunhas/:testimonyId')
+    .get(controller.getTestimonyById)
+    .delete(controller.deleteTestimony)
+    .put(controller.updateTestimonyById)
+
 //send a predefined error message for invalid routes
 router.all('*', function(req, res) {
         res.status(404).json({ message: 'Route não definida!' });
