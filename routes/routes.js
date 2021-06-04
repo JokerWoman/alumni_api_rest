@@ -19,15 +19,7 @@ router.route('/bolsas/:bolsaID')
     .delete(controller.deleteBolsa)
     .get(controller.getBolsaById)
     .put(controller.updateBolsaById)
-    
-router.route('/eventos')
-    .get(controller.getAllEventos)
-    .post(controller.createEvento)  
-
-router.route('/eventos/:eventoID')
-    .delete(controller.deleteEvento)
-    .get(controller.getEventoById)
-    .put(controller.updateEventoById)    
+       
 
 router.route('/testemunhas')
     .get(controller.getAllTestimonies)
