@@ -91,7 +91,7 @@ exports.createBolsa = async function(req, res) {
     let data = await model.createBolsa(bolsa, req.body.id_empresa, req.body.id_tipoEmprego);
 
     if (data.kind === "ok") {
-        res.status(201).json({ message: "New bolsa created", location: "/bolsas/" + data.content });
+        res.status(201).json({ message: "New bolsa created", location: "/bolsas/"+data.content[0] , dados:data.content[1] });
     } else if (data.kind === "empresa_nao_existe") {
         res.status(417).json({ message: `Erro a empresa não existe com id ${req.body.id_empresa}.` })
     } else if (data.kind === "emprego_nao_existe") {
@@ -171,7 +171,7 @@ exports.updateBolsaById = async function(req, res) {
     let data = await model.updateBolsaById(bolsa, req.params.bolsaID, req.body.id_empresa, req.body.id_tipoEmprego);
 
     if (data.kind === "ok") {
-        res.status(200).json({ message: "updated bolsas ", location: `/bolsas/${req.params.bolsaID}` });
+        res.status(200).json({ message: "updated bolsas ", location: `/bolsas/${req.params.bolsaID}`, dados:data.content[1]});
     } else if (data.kind === "bolsa_nao_existe") {
         res.status(417).json({ message: `Erro bolsa não existe com id ${req.params.bolsaID}.` })
     } else if (data.kind === "emprego_nao_existe") {
