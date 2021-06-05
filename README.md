@@ -6,6 +6,7 @@ npm start
 
 # Para Executar os unit tests
 npm start (correr a aplicação num terminal á parte)
+
 npm run unit_tests
 
 # Para adicionar mais unit_tests
