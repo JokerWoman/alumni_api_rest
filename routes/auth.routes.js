@@ -10,6 +10,8 @@ router.use((req, res, next) => {
 router.route('/signup/alumni').post(authController.signupAlumni);
 router.route('/signin/alumni').post(authController.signinAlumni)
 
+router.route('/signin/professor').post(authController.signinProfessor)
+
 router.all('*', function(req, res) {
     res.status(404).json({ message: 'Route não definida!' });
 })

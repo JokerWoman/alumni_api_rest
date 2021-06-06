@@ -1,6 +1,7 @@
 const express = require('express');
 let router = express.Router();
 const alumniController = require('../controllers/alumni.controller');
+const authController = require('../controllers/auth.controller');
 
 router.use((req, res, next) => {
     const start = Date.now();
@@ -12,8 +13,7 @@ router.use((req, res, next) => {
 })
 
 router.route('/')
-    .get(alumniController.getAllAlumni)
-    .post(alumniController.createAlumni);
+    .get(authController.verifyToken, authController.isProfessorOrAlumni, alumniController.getAllAlumni);
 
 router.route('/:numero')
     .get(alumniController.findAlumniByNumeroEstudante)

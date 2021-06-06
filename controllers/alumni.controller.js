@@ -2,28 +2,30 @@ const alumniModel = require('../models/alumni.model.js');
 const validUrl = require('valid-url');
 
 class Alumni {
-    constructor(nome, dataNascimento, morada, email, fotoLink, telemovel, curriculumPDFLink, password, id_role, id_genero, id_nacionalidade, id_codigoPostal) {
+    constructor(nome, dataNascimento, morada, email, descricao, telemovel, password, id_role, id_genero) {
         this.nome = nome;
         this.dataNascimento = dataNascimento;
         this.morada = morada;
         this.email = email;
-        this.fotoLink = fotoLink;
+        this.descricao = descricao;
         this.telemovel = telemovel;
-        this.curriculumPDFLink = curriculumPDFLink;
         this.password = password;
         this.id_role = id_role;
         this.id_genero = id_genero;
-        this.id_nacionalidade = id_nacionalidade;
-        this.id_codigoPostal = id_codigoPostal;
     }
 }
 
 exports.getAllAlumni = async function (req, res)  {
 
-    let data = await alumniModel.getAllAlumni();
+    const filtros = {
+        nome: (req.query.nome) ? req.query.nome : "",
+        email: (req.query.email) ? req.query.email : ""
+      };
+
+    let data = await alumniModel.getAllAlumni(filtros);
 
     if (data.kind === "ok") {
-        res.status(200).json(data.content);
+        res.status(200).json({ message: JSON.stringify(data.content) });
     }
     else if (data.kind === "erro_operacao") {
         res.status(500).json({ message: "Erro a selecionar todos os alumnis" })
@@ -32,74 +34,6 @@ exports.getAllAlumni = async function (req, res)  {
         res.status(500).json({ message: "Erro Interno." })
     }
 };
-
-exports.createAlumni = async function (req, res)  {
-
-    if (!req.body) {
-        res.status(400).json({ message: "Body is empty!" });
-        return;
-    } else if (!req.body.id_nroEstudante) {
-        res.status(400).json({ message: "Id Estudante must be sent!" });
-        return;
-    } else if (!req.body.nome) {
-        res.status(400).json({ message: "Nome Estudante must be sent!" });
-        return;
-    } else if (!req.body.dataNascimento) {
-        res.status(400).json({ message: "Data Nascimento must be sent!" });
-        return;
-    } else if (!req.body.morada) {
-        res.status(400).json({ message: "Morada must be sent!" });
-        return;
-    } else if (!req.body.email) {
-        res.status(400).json({ message: "Email must be sent!" });
-        return;
-    } else if (!req.body.fotoLink) {
-        res.status(400).json({ message: "Foto must be sent!" });
-        return;
-    } else if (!req.body.telemovel) {
-        res.status(400).json({ message: "Telemovel must be sent!" });
-        return;
-    } else if (!req.body.curriculumPDFLink) {
-        res.status(400).json({ message: "Curriculum PDF Link must be sent!" });
-        return;
-    } else if (!req.body.password) {
-        res.status(400).json({ message: "Password must be sent!" });
-        return;
-    } else if (!req.body.id_role) {
-        res.status(400).json({ message: "Role ID must be sent!" });
-        return;
-    } else if (!req.body.id_genero) {
-        res.status(400).json({ message: "Id Genero must be sent!" });
-        return;
-    } else if (!req.body.id_nacionalidade) {
-        res.status(400).json({ message: "Id Nacionalidade must be sent!" });
-        return;
-    } else if (!req.body.id_codigoPostal) {
-        res.status(400).json({ message: "Id codigo postal must be sent!" });
-        return;
-    }
-
-    // criar alumni
-    let alumni = new Alumni(req.body.nome, req.body.dataNascimento, req.body.morada, req.body.email,
-        req.body.fotoLink, req.body.telemovel, req.body.curriculumPDFLink, req.body.password, req.body.id_role,
-        req.body.id_genero, req.body.id_nacionalidade, req.body.id_codigoPostal)
-
-    let data = await alumniModel.createAlumni(alumni, req.body.id_nroEstudante);
-
-    if (data.kind === "ok") {
-        res.status(201).json({ message: "New alumni created", location: "/alumni/" + data.content });
-    }
-    else if (data.kind === "alumni_existe") {
-        res.status(417).json({ message: `Erro Alumni já exsite com id ${req.body.id_nroEstudante}.` })
-    }
-    else if (data.kind === "erro_operacao") {
-        res.status(500).json({ message: `Erro a adicionar o alumni com id ${req.body.id_nroEstudante}.` })
-    }
-    else {
-        res.status(500).json({ message: `Erro Interno.` })
-    }
-};
-
 
 exports.home = async function (req, res)  {
     res.status(200).json({
@@ -112,7 +46,7 @@ exports.findAlumniByNumeroEstudante = async function (req, res) {
     let data = await alumniModel.findAlumniByNumeroEstudante(req.params.numero);
 
     if (data.kind === "ok") {
-        res.status(200).json({ message: data.content });
+        res.status(200).json({ message: JSON.stringify(data.content) });
     }
     else if (data.kind === "not_found") {
         res.status(404).json({ message: `Erro Alumni não exsite com id ${req.params.numero}.` })
@@ -517,7 +451,7 @@ exports.getSkillsFromNumeroEstudante = async function (req, res)  {
     let data = await alumniModel.getSkillsFromNumeroEstudante(req.params.numero);
 
     if (data.kind === "ok") {
-        res.status(200).json(data.content);
+        res.status(200).json({ message: data.content});
     }
     else if (data.kind === "erro_operacao") {
         res.status(500).json({ message: `Error na operação no get das skill do estudante com id ${req.params.numero}.` })
@@ -535,7 +469,7 @@ exports.getToolsFromNumeroEstudante = async function (req, res)  {
     let data = await alumniModel.getToolsFromNumeroEstudante(req.params.numero);
 
     if (data.kind === "ok") {
-        res.status(200).json(data.content);
+        res.status(200).json({ message: data.content});
     }
     else if (data.kind === "erro_operacao") {
         res.status(500).json({ message: `Error na operação no get das tools do estudante com id ${req.params.numero}.` })
@@ -553,7 +487,7 @@ exports.getCursosFromNumeroEstudante = async function (req, res)  {
     let data = await alumniModel.getCursosFromNumeroEstudante(req.params.numero);
 
     if (data.kind === "ok") {
-        res.status(200).json(data.content);
+        res.status(200).json({ message: data.content});
     }
     else if (data.kind === "erro_operacao") {
         res.status(500).json({ message: `Error na operação no get dos cursos do estudante com id ${req.params.numero}.` })
@@ -571,7 +505,7 @@ exports.getLinksFromNumeroEstudante = async function (req, res)  {
     let data = await alumniModel.getLinksFromNumeroEstudante(req.params.numero);
 
     if (data.kind === "ok") {
-        res.status(200).json(data.content);
+        res.status(200).json({ message: data.content });
     }
     else if (data.kind === "erro_operacao") {
         res.status(500).json({ message: `Error na operação no get dos links do estudante com id ${req.params.numero}.` })
@@ -602,14 +536,11 @@ exports.updateAlumniByNumeroEstudante = async function (req, res)  {
     } else if (!req.body.email) {
         res.status(400).json({ message: "Email must be sent!" });
         return;
-    } else if (!req.body.fotoLink) {
-        res.status(400).json({ message: "Foto must be sent!" });
+    } else if (!req.body.descricao) {
+        res.status(400).json({ message: "Descricao must be sent!" });
         return;
     } else if (!req.body.telemovel) {
         res.status(400).json({ message: "Telemovel must be sent!" });
-        return;
-    } else if (!req.body.curriculumPDFLink) {
-        res.status(400).json({ message: "Curriculum PDF Link must be sent!" });
         return;
     } else if (!req.body.password) {
         res.status(400).json({ message: "Password must be sent!" });
@@ -620,17 +551,11 @@ exports.updateAlumniByNumeroEstudante = async function (req, res)  {
     } else if (!req.body.id_genero) {
         res.status(400).json({ message: "Id Genero must be sent!" });
         return;
-    } else if (!req.body.id_nacionalidade) {
-        res.status(400).json({ message: "Id Nacionalidade must be sent!" });
-        return;
-    } else if (!req.body.id_codigoPostal) {
-        res.status(400).json({ message: "Id codigo postal must be sent!" });
-        return;
     }
 
     let alumni = new Alumni(req.body.nome, req.body.dataNascimento, req.body.morada, req.body.email,
-        req.body.fotoLink, req.body.telemovel, req.body.curriculumPDFLink, req.body.password, req.body.id_role,
-        req.body.id_genero, req.body.id_nacionalidade, req.body.id_codigoPostal)
+        req.body.descricao, req.body.telemovel, req.body.password, req.body.id_role,
+        req.body.id_genero)
 
     let data = await alumniModel.updateAlumniByNumeroEstudante(alumni, req.params.numero);
 

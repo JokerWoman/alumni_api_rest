@@ -2,21 +2,19 @@ const jwt = require("jsonwebtoken");
 const bcrypt = require("bcryptjs");
 const config = require("../config/auth.config.js");
 const alumniModel = require('../models/alumni.model.js');
+const professorModel = require('../models/professor.model.js');
 
 class Alumni {
-    constructor(nome, dataNascimento, morada, email, fotoLink, telemovel, curriculumPDFLink, password, id_role, id_genero, id_nacionalidade, id_codigoPostal) {
+    constructor(nome, dataNascimento, morada, email, descricao, telemovel, password, id_role, id_genero) {
         this.nome = nome;
         this.dataNascimento = dataNascimento;
         this.morada = morada;
         this.email = email;
-        this.fotoLink = fotoLink;
+        this.descricao = descricao;
         this.telemovel = telemovel;
-        this.curriculumPDFLink = curriculumPDFLink;
         this.password = password;
         this.id_role = id_role;
         this.id_genero = id_genero;
-        this.id_nacionalidade = id_nacionalidade;
-        this.id_codigoPostal = id_codigoPostal;
     }
 }
 
@@ -39,14 +37,11 @@ exports.signupAlumni = async (req, res) => {
     } else if (!req.body.email) {
         res.status(400).json({ message: "Email must be sent!" });
         return;
-    } else if (!req.body.fotoLink) {
-        res.status(400).json({ message: "Foto must be sent!" });
+    } else if (!req.body.descricao) {
+        res.status(400).json({ message: "Descricao must be sent!" });
         return;
     } else if (!req.body.telemovel) {
         res.status(400).json({ message: "Telemovel must be sent!" });
-        return;
-    } else if (!req.body.curriculumPDFLink) {
-        res.status(400).json({ message: "Curriculum PDF Link must be sent!" });
         return;
     } else if (!req.body.password) {
         res.status(400).json({ message: "Password must be sent!" });
@@ -55,8 +50,8 @@ exports.signupAlumni = async (req, res) => {
 
     // create alumni
     let alumni = new Alumni(req.body.nome, req.body.dataNascimento, req.body.morada, req.body.email,
-        req.body.fotoLink, req.body.telemovel, req.body.curriculumPDFLink, bcrypt.hashSync(req.body.password, 8), req.body.id_role,
-        req.body.id_genero, req.body.id_nacionalidade, req.body.id_codigoPostal)
+        req.body.descricao, req.body.telemovel, bcrypt.hashSync(req.body.password, 8), req.body.id_role,
+        req.body.id_genero)
 
     let data = await alumniModel.createAlumni(alumni, req.body.id_nroEstudante);
         
@@ -74,8 +69,67 @@ exports.signupAlumni = async (req, res) => {
     }   
 };
 
-exports.signinAlumni = async (req, res) => {
+exports.signinProfessor = async (req, res) => {
+    try {
+        if (!req.body) {
+            res.status(400).json({ message: "Body is empty!" });
+            return;
+        } else if (!req.body.id_nroProfessor) {
+            res.status(400).json({ message: "Id Professor must be sent!" });
+            return;
+        } else if (!req.body.password) {
+            res.status(400).json({ message: "Password must be sent!" });
+            return;
+        } 
 
+        /* Verificar se o utilizador existe */
+        let data = await professorModel.ProfessorExisteNaBaseDeDados(req.body.id_nroProfessor);
+
+        if (data.kind === "professor_nao_existe")
+        {
+            res.status(417).json({ message: "Professor não existe." });
+            return
+        }
+        else if (data.kind === "erro_operacao")
+        {
+            res.status(500).json({ message: "Erro interno." });
+            return
+        }
+
+        let userData = await professorModel.getProfessorPasswordByNumeroProfessor(req.body.id_nroProfessor)
+        
+        if (userData.kind !== "ok") 
+        {
+            res.status(500).send({
+                message: "Some error occurred while retrieving alumni."
+            });
+        }
+
+        const passwordIsValid = bcrypt.compareSync(req.body.password, userData.content.password);
+
+        if (!passwordIsValid) {
+            res.status(401).json({
+                accessToken: null, message: "Invalid Password!"
+            });
+            return
+        }
+        // sign the given payload (user ID) into a JWT payload – builds JWT token, using secret key
+        const token = jwt.sign({ id: req.body.id_nroProfessor }, config.secret, {
+            expiresIn: 86400 // 24 hours
+        });
+        
+       return res.status(200).json(JSON.stringify({
+            id: req.body.id_nroProfessor, // return mais dados para guardar depois no local storage
+            userType: "professor",
+            accessToken: token
+        }));
+
+
+    } catch (err) { 
+        return res.status(500).json({ message: err.message }); };
+};
+
+exports.signinAlumni = async (req, res) => {
     try {
         if (!req.body) {
             res.status(400).json({ message: "Body is empty!" });
@@ -102,7 +156,7 @@ exports.signinAlumni = async (req, res) => {
             return
         }
 
-        let userData = await alumniModel.getAlumniByNumeroEstudante(req.body.id_nroEstudante)
+        let userData = await alumniModel.getAlumniPasswordByNumeroEstudante(req.body.id_nroEstudante)
         
         if (userData.kind !== "ok") 
         {
@@ -110,7 +164,9 @@ exports.signinAlumni = async (req, res) => {
                 message: "Some error occurred while retrieving alumni."
             });
         }
-   
+
+
+
         const passwordIsValid = bcrypt.compareSync(req.body.password, userData.content.password);
 
         if (!passwordIsValid) {
@@ -120,14 +176,15 @@ exports.signinAlumni = async (req, res) => {
             return
         }
         // sign the given payload (user ID) into a JWT payload – builds JWT token, using secret key
-        const token = jwt.sign({ id_nroEstudante: req.body.id_nroEstudante }, config.secret, {
+        const token = jwt.sign({ id: req.body.id_nroEstudante }, config.secret, {
             expiresIn: 86400 // 24 hours
         });
         
-       return res.status(200).json({
+       return res.status(200).json(JSON.stringify({
             id: req.body.id_nroEstudante, // return mais dados para guardar depois no local storage
+            userType: "alumni",
             accessToken: token
-        });
+        }));
 
 
     } catch (err) { 
@@ -151,49 +208,96 @@ exports.verifyToken = (req, res, next) => {
     });
 };
 
-//exports.isAdmin = async (req, res, next) => {
-//    let user = await User.findByPk(req.loggedUserId);//
+exports.isProfessor = async (req, res, next) => {
+    let tipoUser = req.headers["user-type"];
 
-//    if (!user)
-//    {
-//        return res.status(400).json({ message: "Failed! Username does not exist!" });
-//    }//
+    if (!tipoUser) {
+        return res.status(403).send({
+            message: "O tipo de utilizador não foi fornecido!"
+        });
+    }
+    else if(tipoUser !== "professor")
+    {
+        return res.status(403).send({
+            message: "O tipo de utilizador têm que ser obrigatóriamente professor para aceder a esta route!"
+        });
+    }
+    else if (tipoUser === "professor")
+    {
+        let userData = await professorModel.ProfessorExisteNaBaseDeDados(req.loggedUserId)
+        
+        if (userData.kind === "professor_existe") 
+        {
+            next();
+        }
+        else if (userData.kind === "professor_nao_existe"){
+            res.status(500).send({
+                message: `O professor com id: ${req.loggedUserId} não existe.` 
+            });
+        }
+        else
+        {
+            res.status(500).send({
+                message: `Erro a verificar se o professor é valido.` 
+            });
+        }
+    }
+};
 
-//    let role = await user.getRole();//
+exports.isProfessorOrAlumni = async (req, res, next) => {
 
-//    if (!role){
-//        return res.status(400).json({ message: "Failed! Username does not have a role!" });
-//    }//
+    let tipoUser = req.headers["user-type"];
 
-//    if (role.name === "admin")
-//    {
-//        next();
-//    }
-//    else{
-//        return res.status(403).send({ message: "Require Admin Role!" });
-//    }
-// };//
+    if (!tipoUser) {
+        return res.status(403).send({
+            message: "O tipo de utilizador não foi fornecido!"
+        });
+    }
+    else if(tipoUser !== "alumni" && tipoUser !== "professor")
+    {
+        return res.status(403).send({
+            message: "O tipo de utilizador têm que ser alumni ou professor!"
+        });
+    }
+    else if (tipoUser === "alumni")
+    {
+        let userData = await alumniModel.AlumniExisteNaBaseDeDados(req.loggedUserId)
 
-//exports.isAdminOrLoggedUser = async (req, res, next) => {
-//    let user = await User.findByPk(req.loggedUserId);
-//    
-//    if (!user){
-//        return res.status(400).json({ message: "Failed! Username does not exist!" });
-//    }//
-
-//    let role = await user.getRole();//
-
-//    if (!role){
-//        return res.status(400).json({ message: "Failed! Username does not have a role!" });
-//    }//
-
-//    if (role.name === "admin" || role.name === "user")
-//    {
-//        next();
-//    }
-//    else
-//    {
-//        return res.status(403).send({ message: "Require Admin Role!" });
-//    }       
-//};
+        if (userData.kind === "alumni_existe") 
+        {
+            next();
+        }
+        else if (userData.kind === "alumni_nao_existe"){
+            res.status(500).send({
+                message: `O alumni com id: ${req.loggedUserId} não existe.` 
+            });
+        }
+        else
+        {
+            res.status(500).send({
+                message: `Erro a verificar se o alumni é valido.` 
+            });
+        }
+    }
+    else if (tipoUser === "professor")
+    {
+        let userData = await professorModel.ProfessorExisteNaBaseDeDados(req.loggedUserId)
+        
+        if (userData.kind === "professor_existe") 
+        {
+            next();
+        }
+        else if (userData.kind === "professor_nao_existe"){
+            res.status(500).send({
+                message: `O professor com id: ${req.loggedUserId} não existe.` 
+            });
+        }
+        else
+        {
+            res.status(500).send({
+                message: `Erro a verificar se o professor é valido.` 
+            });
+        }
+    }
+};
 

@@ -9,11 +9,6 @@ INSERT INTO Role_Tutor_Embaixador (id_role, descricao) VALUES ('1', 'Embaixador'
 INSERT INTO Role_Tutor_Embaixador (id_role, descricao) VALUES ('2', 'Tutor');
 INSERT INTO Role_Tutor_Embaixador (id_role, descricao) VALUES ('3', 'Alumni Normal');
 
--- Adicionar Nacionalidades
-INSERT INTO Nacionalidade (id_nacionalidade, paises, nacionalidade) VALUES ('1', 'Portugal', 'português');
-INSERT INTO Nacionalidade (id_nacionalidade, paises, nacionalidade) VALUES ('2', 'Venezuela', 'venezuelano');
-INSERT INTO Nacionalidade (id_nacionalidade, paises, nacionalidade) VALUES ('3', 'Espanha', 'espanhol');
-
 -- Adicionar Codigo Postal
 INSERT INTO CodigoPostal (id_codigoPostal, localidade) VALUES ('4770-440', 'Vila Nova de Famalicão');
 INSERT INTO CodigoPostal (id_codigoPostal, localidade) VALUES ('4715-303', 'Nogueiró');
@@ -39,10 +34,10 @@ INSERT INTO Cursos (id_cursos, tipoCurso) VALUES ('3', 'Licenciatura em Multimé
 INSERT INTO Links (id_links, tipoLink) VALUES ('1', 'GitHub');
 INSERT INTO Links (id_links, tipoLink) VALUES ('2', 'Behance');
 INSERT INTO Links (id_links, tipoLink) VALUES ('3', 'GitBucket');
+INSERT INTO Links (id_links, tipoLink) VALUES ('4', 'CV');
 
--- Adicionar professores 
-INSERT INTO Professor (id_nroProfessor,password, nome, fotoLink, telemovel,email, id_codigoPostal) VALUES ('1000000','123456789', 'Roberto Fonseca','https://livinlavidarick.files.wordpress.com/2014/03/teacher.jpeg','964328416','roberto@roberto.com','4480-004');
-INSERT INTO Professor (id_nroProfessor,password, nome, fotoLink, telemovel,email, id_codigoPostal) VALUES ('2000000','123456789', 'Guilherme Antunes','https://drmarcelodemarzo.com/wp-content/uploads/2020/07/professor-de-matematica-envelhecido-escrevendo-na-lousa_23-2148201011.jpg','914123945','guilherme@guilherme.com','4300-095');
+-- Adicionar professores (Password --> Esmad_2021)
+INSERT INTO Professor (id_nroProfessor,password, nome, telemovel,email) VALUES ('Admin','$2a$08$VvgVhjbWyBegQ31XIsIZw.s3qnfJcOtIEcL/n3adyFEbRwzu1xMma', 'Admin', '964328416','admin@esmad.com');
 
 -- Adicionar Empresas
 INSERT INTO Empresa (id_empresa,nomeEmpresa, telemovel, morada,email, id_codigoPostal) VALUES('1','Blip','932499526', 'Av. de Camilo 94','communications@blip.pt','4300-095');
@@ -53,10 +48,10 @@ INSERT INTO Tipo_Emprego (id_tipoEmprego, descricao) VALUES ('1', 'Estágio');
 INSERT INTO Tipo_Emprego (id_tipoEmprego, descricao) VALUES ('2', 'PartTime');
 INSERT INTO Tipo_Emprego (id_tipoEmprego, descricao) VALUES ('3', 'FullTime');
 
--- Adicionar Alumnis
-INSERT INTO Alumni (id_nroEstudante, nome, dataNascimento, morada, email, fotoLink, telemovel, curriculumPDFLink, password, id_role, id_genero, id_nacionalidade, id_codigoPostal) VALUES ('19180045', 'Wisin Yandel', '1998-02-18', 'Rua das Batatas', 'ansssa@gmail.com', 'https://i.pinimg.com/originals/51/fe/18/51fe180cc453fccbf05652ad051b4803.jpg', '917574845', 'https://www.bridgemaneducation.com/documents/how-to-guide.pdf', '123456789', '3', '2', '1', '4770-440');
-INSERT INTO Alumni (id_nroEstudante, nome, dataNascimento, morada, email, fotoLink, telemovel, curriculumPDFLink, password, id_role, id_genero, id_nacionalidade, id_codigoPostal) VALUES ('19180047', 'Rogelia Hernandes', '1998-02-18', 'Rua das Batatas', 'ansssa@gmail.com', 'https://i.pinimg.com/originals/51/fe/18/51fe180cc453fccbf05652ad051b4803.jpg', '917574845', 'https://www.bridgemaneducation.com/documents/how-to-guide.pdf', '123456789', '3', '2', '1', '4770-440');
-INSERT INTO Alumni (id_nroEstudante, nome, dataNascimento, morada, email, fotoLink, telemovel, curriculumPDFLink, password, id_role, id_genero, id_nacionalidade, id_codigoPostal) VALUES ('19180048', 'Rogelia Hddddernandes', '1998-02-18', 'Rua das Batatas', 'ansssa@gmail.com', 'https://i.pinimg.com/originals/51/fe/18/51fe180cc453fccbf05652ad051b4803.jpg', '917574845', 'https://www.bridgemaneducation.com/documents/how-to-guide.pdf', '123456789', '3', '2', '1', '4770-440');
+-- Adicionar Alumnis (Password --> Esmad_2021)
+INSERT INTO Alumni (id_nroEstudante, nome, dataNascimento, morada, email, descricao, telemovel, password, id_role, id_genero) VALUES ('19180045', 'Wisin Yandel', '1998-02-18', 'Rua das Batatas', 'ansssa@gmail.com', 'Sou a Yandel', '917574845', '$2a$08$VvgVhjbWyBegQ31XIsIZw.s3qnfJcOtIEcL/n3adyFEbRwzu1xMma', '3', '2');
+INSERT INTO Alumni (id_nroEstudante, nome, dataNascimento, morada, email, descricao, telemovel, password, id_role, id_genero) VALUES ('19180047', 'Rogelia Hernandes', '1998-02-18', 'Rua das Batatas', 'ansssa@gmail.com', 'Sou a Rogelia', '917574845',  '$2a$08$VvgVhjbWyBegQ31XIsIZw.s3qnfJcOtIEcL/n3adyFEbRwzu1xMma', '3', '2');
+INSERT INTO Alumni (id_nroEstudante, nome, dataNascimento, morada, email, descricao, telemovel, password, id_role, id_genero) VALUES ('19180048', 'Rogelia Hddddernandes', '1998-02-18', 'Rua das Batatas', 'ansssa@gmail.com', 'Sou a Rogelia 2', '917574845',  '$2a$08$VvgVhjbWyBegQ31XIsIZw.s3qnfJcOtIEcL/n3adyFEbRwzu1xMma', '3', '2');
 
 -- Adicionar Skill a Alumni
 INSERT INTO Alumni_Skills (id_nroEstudante, id_skills, percentagem) VALUES(19180045, 3, 50);

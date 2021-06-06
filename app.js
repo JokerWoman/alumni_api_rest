@@ -11,12 +11,13 @@ app.use(express.json()); //enable parsing JSON body data
 app.use('/auth', require('./routes/auth.routes.js'))
 app.use('/alumni', require('./routes/alumni.routes.js'))
 app.use('/testemunha', require('./routes/testemunha.routes.js'))
+app.use('/professor', require('./routes/professor.routes.js'))
 app.use('/', require('./routes/routes.js'))
 
 
 // handle invalid routes
-app.get('*', function (req, res) {
-res.status(404).json({ message: 'Route não definida' });
+app.get('*', function(req, res) {
+    res.status(404).json({ message: 'Route não definida' });
 })
 
 app.listen(port, host, () => console.log(`App listening at http://${host}:${port}/`));

@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "f0798931-d22f-4539-87f2-b1a994b65399",
+		"_postman_id": "0a5d5e39-d5dc-4feb-b509-9dcb910979e1",
 		"name": "AlumniAPIRest",
 		"description": "O AlumniAPIRest têm todas as routas implementadas para a nossa página alumni.",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
@@ -227,109 +227,21 @@
 					]
 				},
 				{
-					"name": "CreateAlumni",
-					"request": {
-						"method": "POST",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\r\n    \"id_nroEstudante\":\"99977755\",\r\n    \"nome\":\"Nuno Silva\",\r\n    \"dataNascimento\":\"1998-02-18\",\r\n    \"morada\":\"Rua das Peras\",\r\n    \"email\":\"andrea@gmail.com\",\r\n    \"fotoLink\":\"https://i.pinimg.com/originals/51/fe/18/51fe180cc453fccbf05652ad051b4803.jpg\",\r\n    \"telemovel\":\"917574845\",\r\n    \"curriculumPDFLink\":\"https://www.bridgemaneducation.com/documents/how-to-guide.pdf\",\r\n    \"password\":\"123456789\",\r\n    \"id_role\":\"3\",\r\n    \"id_genero\":\"2\",\r\n    \"id_nacionalidade\":\"1\",\r\n    \"id_codigoPostal\":\"4770-440\"\r\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "http://127.0.0.1:3000/alumni",
-							"protocol": "http",
-							"host": [
-								"127",
-								"0",
-								"0",
-								"1"
-							],
-							"port": "3000",
-							"path": [
-								"alumni"
-							]
-						},
-						"description": "Nesta routa no body adicionamos toda a informação do alumni tais como :\nnome,data de nascimento,morada,email,etc"
-					},
-					"response": [
-						{
-							"name": "Bom Resultado",
-							"originalRequest": {
-								"method": "GET",
-								"header": [
-									{
-										"key": "Content-Type",
-										"name": "Content-Type",
-										"value": "application/json",
-										"type": "text"
-									}
-								],
-								"url": {
-									"raw": "http://127.0.0.1:8080/alumni/",
-									"protocol": "http",
-									"host": [
-										"127",
-										"0",
-										"0",
-										"1"
-									],
-									"port": "8080",
-									"path": [
-										"alumni",
-										""
-									]
-								}
-							},
-							"_postman_previewlanguage": "json",
-							"header": [],
-							"cookie": [],
-							"body": "{\n    \"message\": \"New alumni created\",\n    \"location\": \"/alumni/0\"\n}"
-						},
-						{
-							"name": "Mau Resultado",
-							"originalRequest": {
-								"method": "GET",
-								"header": [
-									{
-										"key": "Content-Type",
-										"name": "Content-Type",
-										"value": "application/json",
-										"type": "text"
-									}
-								],
-								"url": {
-									"raw": "http://127.0.0.1:8080/alumni/",
-									"protocol": "http",
-									"host": [
-										"127",
-										"0",
-										"0",
-										"1"
-									],
-									"port": "8080",
-									"path": [
-										"alumni",
-										""
-									]
-								}
-							},
-							"_postman_previewlanguage": "json",
-							"header": [],
-							"cookie": [],
-							"body": "{\n    \"message\": \"Erro Alumni já exsite com id 19180047.\"\n}"
-						}
-					]
-				},
-				{
 					"name": "GetAllAlumni",
 					"request": {
 						"method": "GET",
-						"header": [],
+						"header": [
+							{
+								"key": "x-access-token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjE5MTgwMDQzIiwiaWF0IjoxNjIzMDA0ODQwLCJleHAiOjE2MjMwOTEyNDB9.eZUpn32URsTq_qgpBhbqU3za7Dje-PYaBk3JE0N-KBc",
+								"type": "text"
+							},
+							{
+								"key": "user-type",
+								"value": "professor",
+								"type": "text"
+							}
+						],
 						"url": {
 							"raw": "http://127.0.0.1:3000/alumni/",
 							"protocol": "http",
@@ -3006,7 +2918,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"id_nroEstudante\":\"99977337\",\r\n    \"password\":\"123456789\"\r\n    }",
+							"raw": "{\r\n    \"id_nroEstudante\":\"19180043\",\r\n    \"password\":\"1234\"\r\n    }",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -3027,6 +2939,40 @@
 								"auth",
 								"signin",
 								"alumni"
+							]
+						},
+						"description": "Nesta routa no body adicionamos toda a informação do alumni tais como :\nnome,data de nascimento,morada,email,etc"
+					},
+					"response": []
+				},
+				{
+					"name": "LoginProfessor",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id_nroProfessor\":\"Admin\",\r\n    \"password\":\"Esmad_2021\"\r\n    }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:3000/auth/signin/professor",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "3000",
+							"path": [
+								"auth",
+								"signin",
+								"professor"
 							]
 						},
 						"description": "Nesta routa no body adicionamos toda a informação do alumni tais como :\nnome,data de nascimento,morada,email,etc"

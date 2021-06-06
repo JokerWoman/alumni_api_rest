@@ -2,27 +2,30 @@ const pool = require("./db.js"); // get DB connection
 
 function AlumniModel() { }
 
-AlumniModel.prototype.getAllAlumni = async function () {
+AlumniModel.prototype.getAllAlumni = async function (filtros) {
 
-    let select = await pool.query("SELECT * FROM Alumni");
+    let filterQuery = " "; /* Espaço é intencional para espaçar o query antes dos filtros */
+
+    if(filtros.nome !== "" && filtros.email !== "")
+    {
+        filterQuery += `WHERE nome LIKE '%${filtros.nome}%' AND email LIKE '%${filtros.email}%'`;
+    }
+    else if(filtros.nome !== "")
+    {
+        filterQuery += `WHERE nome LIKE '%${filtros.nome}%'`;
+    }
+    else if(filtros.email !== "")
+    {
+        filterQuery += `WHERE email LIKE '%${filtros.email}%'`;
+    }
+    
+    let select = await pool.query("SELECT id_nroEstudante, nome, DATE_FORMAT(dataNascimento,'%d/%m/%Y') AS dataNascimento, morada, email, descricao, telemovel, id_role, id_genero FROM Alumni" + filterQuery);
 
     if (select === null) {
         return { kind: "erro_operacao", content: null };
     }
 
     return { kind: "ok", content: select[0] }; // array de todos os elementos
-};
-
-
-AlumniModel.prototype.getAlumniByNumeroEstudante = async function (numeroEstudante) {
-
-    let select = await pool.query('SELECT * FROM Alumni WHERE ?', { id_nroEstudante: numeroEstudante });
-
-    if (select === null) {
-        return { kind: "erro_operacao", content: null };
-    }
-
-    return { kind: "ok", content: select[0][0] }; // primeiro elemento do array
 };
 
 AlumniModel.prototype.createAlumni = async function (alumni, numeroEstudante) {
@@ -389,7 +392,7 @@ AlumniModel.prototype.getLinksFromNumeroEstudante = async function (numeroEstuda
 
 AlumniModel.prototype.findAlumniByNumeroEstudante = async function (numeroEstudante) {
 
-    let select = await pool.query('SELECT * FROM Alumni WHERE ?', { id_nroEstudante: numeroEstudante });
+    let select = await pool.query(`SELECT id_nroEstudante, nome, DATE_FORMAT(dataNascimento,'%d/%m/%Y') AS dataNascimento, morada, email, descricao, telemovel, id_role, id_genero FROM Alumni WHERE ?`, { id_nroEstudante: numeroEstudante });
 
     if (select === null) {
         return { kind: "erro_operacao", content: null };
@@ -399,7 +402,18 @@ AlumniModel.prototype.findAlumniByNumeroEstudante = async function (numeroEstuda
         return { kind: "not_found", content: null };
     }   
 
-    return { kind: "ok", content: select[0] };
+    return { kind: "ok", content: select[0][0] };
+};
+
+AlumniModel.prototype.getAlumniPasswordByNumeroEstudante = async function (numeroEstudante) {
+
+    let select = await pool.query('SELECT password FROM Alumni WHERE ?', { id_nroEstudante: numeroEstudante });
+
+    if (select === null) {
+        return { kind: "erro_operacao", content: null };
+    }
+
+    return { kind: "ok", content: select[0][0] }; // primeiro elemento do array
 };
 
 AlumniModel.prototype.updateAlumniByNumeroEstudante = async function (alumni, numeroEstudante) {
@@ -418,258 +432,6 @@ AlumniModel.prototype.updateAlumniByNumeroEstudante = async function (alumni, nu
 
     if (update.affectedRows == 0) {
         return { kind: "erro_alumni_update", content: null };
-    }
-
-    return { kind: "ok", content: update };
-};
-
-AlumniModel.prototype.BolsaExisteNaBaseDeDados = async function (id) { // todo change the controller
-
-    const select = await pool.query('SELECT COUNT(*) AS quantidade FROM Bolsa_Emprego WHERE ?', { id_bolsas: id });
-
-    if (select === null) {
-        return { kind: "erro_operacao", content: null };
-    }
-
-    if (select[0][0].quantidade !== 1) {
-        return { kind: "bolsa_nao_existe", content: select[0][0].quantidade };
-    }
-
-    return { kind: "bolsa_existe", content: select[0][0].quantidade };
-};
-
-AlumniModel.prototype.EmpresaExisteNaBaseDeDados = async function (id) {
-
-    const select = await pool.query('SELECT COUNT(*) AS quantidade FROM Empresa WHERE ?', { id_empresa: id });
-
-    if (select === null) {
-        return { kind: "erro_operacao", content: null };
-    }
-
-    if (select[0][0].quantidade !== 1) {
-        return { kind: "empresa_nao_existe", content: select[0][0].quantidade };
-    }
-
-    return { kind: "empresa_existe", content: select[0][0].quantidade };
-};
-
-AlumniModel.prototype.EmpregoExisteNaBaseDeDados = async function (id) {
-
-    const select = await pool.query('SELECT COUNT(*) AS quantidade FROM Tipo_Emprego WHERE ?', { id_tipoEmprego: id });
-
-    if (select === null) {
-        return { kind: "erro_operacao", content: null };
-    }
-
-    if (select[0][0].quantidade !== 1) {
-        return { kind: "emprego_nao_existe", content: select[0][0].quantidade };
-    }
-
-    return { kind: "emprego_existe", content: select[0][0].quantidade };
-};
-
-AlumniModel.prototype.getAllBolsas = async function () {
-
-    let select = await pool.query('SELECT * FROM Bolsa_Emprego');
-
-    if (select === null) {
-        return { kind: "erro_operacao", content: null };
-    }
-
-    return { kind: "ok", content: select[0] };
-};
-
-AlumniModel.prototype.createBolsa = async function (bolsa, empresaId, empregoId) {
-
-    let data = await this.EmpresaExisteNaBaseDeDados(empresaId);
-
-    if (data.kind !== "empresa_existe") {
-        return { kind: data.kind, content: null };
-    }
-
-    data = await this.EmpregoExisteNaBaseDeDados(empregoId);
-
-    if (data.kind !== "emprego_existe") {
-        return { kind: data.kind, content: null };
-    }
-
-    let insertion = await pool.query('INSERT INTO Bolsa_Emprego SET ?', bolsa);
-
-    if (insertion === null) {
-        return { kind: "erro_operacao", content: null };
-    }
-
-    if (insertion.affectedRows == 0) {
-        return { kind: "erro_bolsa_insert", content: null };
-    }
-
-    return { kind: "ok", content: insertion[0].insertId };
-};
-
-AlumniModel.prototype.deleteBolsa = async function (id) {
-
-    let data = await this.BolsaExisteNaBaseDeDados(id);
-
-    if (data.kind !== "bolsa_existe") {
-        return { kind: data.kind, content: null };
-    }
-
-    let deleteEntry = await pool.query('DELETE FROM Bolsa_Emprego WHERE ?', [{ id_bolsas: id }]);
-
-    if (deleteEntry === null) {
-        return { kind: "erro_operacao", content: null };
-    }
-
-    if (deleteEntry.affectedRows == 0) {
-        return { kind: "erro_bolsa_delete", content: null };
-    }
-
-    return { kind: "ok", content: deleteEntry };
-};
-
-AlumniModel.prototype.getBolsaById = async function (id) {
-
-    let select = await pool.query('SELECT * FROM Bolsa_Emprego WHERE id_bolsas = ?', [id]);
-
-    if (select === null) {
-        return { kind: "erro_operacao", content: null };
-    }
-
-    if (select[0].length !== 1) {
-        return { kind: "not_found", content: null };
-    }
-
-    return { kind: "ok", content: select[0] };
-};
-
-AlumniModel.prototype.updateBolsaById = async function (bolsa, bolsaId, empresaId, empregoId) {
-
-    let data = await this.BolsaExisteNaBaseDeDados(bolsaId);
-
-    if (data.kind !== "bolsa_existe") {
-        return { kind: data.kind, content: null };
-    }
-
-    data = await this.EmpresaExisteNaBaseDeDados(empresaId);
-
-    if (data.kind !== "empresa_existe") {
-        return { kind: data.kind, content: null };
-    }
-
-    data = await this.EmpregoExisteNaBaseDeDados(empregoId);
-
-    if (data.kind !== "emprego_existe") {
-        return { kind: data.kind, content: null };
-    }
-
-    let update = await pool.query('UPDATE Bolsa_Emprego SET ? WHERE ?', [bolsa, { id_bolsas: bolsaId }]);
-
-    if (update === null) {
-        return { kind: "erro_operacao", content: null };
-    }
-
-    if (update.affectedRows == 0) {
-        return { kind: "bolsa_nao_updated", content: null };
-    }
-
-    return { kind: "ok", content: update };
-};
-
-AlumniModel.prototype.EventoExisteNaBaseDeDados = async function (id) {
-
-    const select = await pool.query('SELECT COUNT(*) AS quantidade FROM Evento WHERE ?', { id_evento: id });
-
-    if (select === null) {
-        return { kind: "erro_operacao", content: null };
-    }
-
-    if (select[0][0].quantidade !== 1) 
-    {
-        return { kind: "evento_nao_existe", content: select[0][0].quantidade };
-    }
-
-    return { kind: "evento_existe", content: select[0][0].quantidade };
-};
-
-AlumniModel.prototype.getAllEventos = async function () {
-
-    let select = await pool.query('SELECT * FROM Evento');
-
-    if (select === null) {
-        return { kind: "erro_operacao", content: null };
-    }
-
-    return { kind: "ok", content: select[0] };
-};
-
-AlumniModel.prototype.createEvento = async function (evento) {
-
-    let insertion = await pool.query('INSERT INTO Evento SET ?', [evento]);
-
-    if (insertion === null) {
-        return { kind: "erro_operacao", content: null };
-    }
-
-    if (insertion.affectedRows == 0) {
-        return { kind: "erro_evento_insert", content: null };
-    }
-
-    return { kind: "ok", content: insertion[0].insertId };
-};
-
-AlumniModel.prototype.deleteEvento = async function (id) {
-
-    let data = await this.EventoExisteNaBaseDeDados(id);
-
-    if (data.kind !== "evento_existe") {
-        return { kind: data.kind, content: null };
-    }
-
-    let deleteEntry = await pool.query('DELETE FROM Evento WHERE id_evento = ?', [id]);
-
-    if (deleteEntry === null) {
-        return { kind: "erro_operacao", content: null };
-    }
-
-    if (deleteEntry.affectedRows == 0) {
-        return { kind: "erro_evento_delete", content: null };
-    }
-
-    return { kind: "ok", content: deleteEntry };
-};
-
-AlumniModel.prototype.getEventoById = async function (id) {
-
-    let select = await pool.query('SELECT * FROM Evento WHERE id_evento = ?', [id]);
-
-    if (select === null)
-    {
-        return { kind: "erro_operacao", content: null };
-    }
-
-    if (select[0].length !== 1) {
-        return { kind: "not_found", content: null };
-    }
-
-    return { kind: "ok", content: select[0] };
-};
-
-AlumniModel.prototype.updateEventoById = async function (evento, id) {
-
-    let data = await this.EventoExisteNaBaseDeDados(id);
-
-    if (data.kind !== "evento_existe") {
-        return { kind: data.kind, content: null };
-    }
-
-    let update = await pool.query('UPDATE Evento SET ? WHERE ?', [evento, { id_evento: id }]);
-
-    if (update === null) {
-        return { kind: "erro_operacao", content: null };
-    }
-
-    if (update.affectedRows == 0) {
-        return { kind: "evento_nao_updated", content: null };
     }
 
     return { kind: "ok", content: update };
