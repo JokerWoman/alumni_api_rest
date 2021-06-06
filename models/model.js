@@ -1,4 +1,5 @@
 const pool = require("./db.js"); // get DB connection
+const alumniModel = require('./alumni.model.js')
 
 function Model() { }
 
@@ -170,10 +171,6 @@ Model.prototype.getAllTestimonies = async function (){
 Model.prototype.testimonyExists = async function (id){
 
     let select = await pool.query('SELECT COUNT(*) AS quantity FROM Testemunha WHERE id_testemunha = ?', id)
-
-    if (select === null) {
-        return { kind: "erro_operacao", content: null };
-    }
     
     if (select[0][0].quantity !== 1) {
         return { kind: "Testemuha não existe", content: null };
@@ -207,9 +204,9 @@ Model.prototype.deleteTestimony = async function (id) {
     if(testimonyExists.kind === "ok"){
         let deleteEntry = await pool.query('DELETE FROM Testemunha WHERE id_testemunha = ?',id)
         if(deleteEntry ===  null){
-            return {kind:"erro_interno"}
+            return {kind:"erro_interno", content: null}
         }
-        return { kind: "ok"}
+        return {kind: "ok"}
     }
     else{
         return {kind:"erro_nao_existe", content:null}
@@ -217,6 +214,12 @@ Model.prototype.deleteTestimony = async function (id) {
 }
 
 Model.prototype.createTestimony = async function (testimony) {
+
+    let exists = alumniModel.AlumniExisteNaBaseDeDados(testimony.id_nroEstudante)
+
+    if(exists.kind != "ok"){
+        return {kind:"erro_nroestudante_nao_existe", content: null}
+    }
 
     let insertion = await pool.query('INSERT INTO Testemunha SET ?', [testimony])
 
@@ -232,6 +235,12 @@ Model.prototype.createTestimony = async function (testimony) {
 }
 
 Model.prototype.updateTestimony = async function (testimony,id){  
+
+    let exists = alumniModel.AlumniExisteNaBaseDeDados(testimony.id_nroEstudante)
+
+    if(exists.kind != "ok"){
+        return {kind:"erro_nroestudante_nao_existe", content: null}
+    }
 
     let testimonyExists = await this.testimonyExists(id)
 
