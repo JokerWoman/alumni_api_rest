@@ -213,13 +213,7 @@ Model.prototype.deleteTestimony = async function (id) {
     }
 }
 
-Model.prototype.createTestimony = async function (testimony) {
-
-    let exists = alumniModel.AlumniExisteNaBaseDeDados(testimony.id_nroEstudante)
-
-    if(exists.kind != "ok"){
-        return {kind:"erro_nroestudante_nao_existe", content: null}
-    }
+Model.prototype.createTestimony = async function (testimony,id) {
 
     let insertion = await pool.query('INSERT INTO Testemunha SET ?', [testimony])
 
@@ -231,14 +225,14 @@ Model.prototype.createTestimony = async function (testimony) {
         return { kind: "error_testimony_insert", content:null};
     }
 
-    return {kind:"ok", content:insertion[0].insertId}
+    return {kind:"ok", content:[insertion[0].insertId,testimony]}
 }
 
 Model.prototype.updateTestimony = async function (testimony,id){  
 
     let exists = alumniModel.AlumniExisteNaBaseDeDados(testimony.id_nroEstudante)
 
-    if(exists.kind != "ok"){
+    if(exists.kind != "alumni_existe"){
         return {kind:"erro_nroestudante_nao_existe", content: null}
     }
 

@@ -71,10 +71,10 @@ exports.createTestimony = async function(req,res){
 
     let testimony = new Testemunha(req.body.nome,req.body.id_nroEstudante, req.body.descricao, req.body.id_cursos, req.body.fotoLink)
 
-    let data = await model.createTestimony(testimony);
+    let data = await model.createTestimony(testimony,req.body.id_nroEstudante);
 
     if (data.kind === "ok") {
-        res.status(201).json({ message: "New Testimony created", location: "/testemunhas/" + data.content });
+        res.status(201).json({ message: "New Testimony created", location: "/testemunhas/" + data.content,dados:data.content[1] });
     } else if (data.kind === "error_testimony_insert") {
         res.status(500).json({ message: `Erro ao inserir Testemunha.` })
     } else if (data.kind === "erro_nroestudante_nao_existe") {
