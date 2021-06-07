@@ -521,21 +521,11 @@ exports.getLinksFromNumeroEstudante = async function (req, res)  {
 
 
 exports.updateAlumniByNumeroEstudante = async function (req, res)  {
-
     if (!req.body) {
         res.status(400).json({ message: "Body is empty!" });
         return;
-    } else if (!req.body.nome) {
-        res.status(400).json({ message: "Nome Estudante must be sent!" });
-        return;
-    } else if (!req.body.dataNascimento) {
-        res.status(400).json({ message: "Data Nascimento must be sent!" });
-        return;
     } else if (!req.body.morada) {
         res.status(400).json({ message: "Morada must be sent!" });
-        return;
-    } else if (!req.body.email) {
-        res.status(400).json({ message: "Email must be sent!" });
         return;
     } else if (!req.body.descricao) {
         res.status(400).json({ message: "Descricao must be sent!" });
@@ -543,20 +533,13 @@ exports.updateAlumniByNumeroEstudante = async function (req, res)  {
     } else if (!req.body.telemovel) {
         res.status(400).json({ message: "Telemovel must be sent!" });
         return;
-    } else if (!req.body.password) {
-        res.status(400).json({ message: "Password must be sent!" });
-        return;
-    } else if (!req.body.id_role) {
-        res.status(400).json({ message: "Role ID must be sent!" });
-        return;
-    } else if (!req.body.id_genero) {
-        res.status(400).json({ message: "Id Genero must be sent!" });
-        return;
     }
 
-    let alumni = new Alumni(req.body.nome, req.body.dataNascimento, req.body.morada, req.body.email,
-        req.body.descricao, req.body.telemovel, req.body.password, req.body.id_role,
-        req.body.id_genero)
+    const alumni = {
+        morada: req.body.morada,
+        telemovel: req.body.telemovel,
+        descricao: req.body.descricao
+      };
 
     let data = await alumniModel.updateAlumniByNumeroEstudante(alumni, req.params.numero);
 
