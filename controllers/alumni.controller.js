@@ -450,8 +450,9 @@ exports.getSkillsFromNumeroEstudante = async function (req, res)  {
 
     let data = await alumniModel.getSkillsFromNumeroEstudante(req.params.numero);
 
+    
     if (data.kind === "ok") {
-        res.status(200).json({ message: data.content});
+        res.status(200).json({ message: JSON.stringify(data.content)});
     }
     else if (data.kind === "erro_operacao") {
         res.status(500).json({ message: `Error na operação no get das skill do estudante com id ${req.params.numero}.` })
@@ -469,7 +470,7 @@ exports.getToolsFromNumeroEstudante = async function (req, res)  {
     let data = await alumniModel.getToolsFromNumeroEstudante(req.params.numero);
 
     if (data.kind === "ok") {
-        res.status(200).json({ message: data.content});
+        res.status(200).json({ message: JSON.stringify(data.content)});
     }
     else if (data.kind === "erro_operacao") {
         res.status(500).json({ message: `Error na operação no get das tools do estudante com id ${req.params.numero}.` })
@@ -487,7 +488,7 @@ exports.getCursosFromNumeroEstudante = async function (req, res)  {
     let data = await alumniModel.getCursosFromNumeroEstudante(req.params.numero);
 
     if (data.kind === "ok") {
-        res.status(200).json({ message: data.content});
+        res.status(200).json({ message: JSON.stringify(data.content)});
     }
     else if (data.kind === "erro_operacao") {
         res.status(500).json({ message: `Error na operação no get dos cursos do estudante com id ${req.params.numero}.` })
@@ -505,7 +506,7 @@ exports.getLinksFromNumeroEstudante = async function (req, res)  {
     let data = await alumniModel.getLinksFromNumeroEstudante(req.params.numero);
 
     if (data.kind === "ok") {
-        res.status(200).json({ message: data.content });
+        res.status(200).json({ message: JSON.stringify(data.content) });
     }
     else if (data.kind === "erro_operacao") {
         res.status(500).json({ message: `Error na operação no get dos links do estudante com id ${req.params.numero}.` })
