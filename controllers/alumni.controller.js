@@ -66,7 +66,7 @@ exports.createSkillFromNumeroEstudanteBySkillId = async function (req, res)  {
         return;
     }
 
-    if (!req.body.percentagem.match(/^(0|[1-9]\d*)$/g)) {
+    if (!String(req.body.percentagem).match(/^(0|[1-9]\d*)$/g)) {
         res.status(400).json({ message: 'Percentagem tem que ser maior que zero e um numero positivo' });
         return;
     }
@@ -109,7 +109,7 @@ exports.createToolFromNumeroEstudanteByToolId = async function (req, res)  {
         return;
     }
 
-    if (!req.body.percentagem.match(/^(0|[1-9]\d*)$/g)) {
+    if (!String(req.body.percentagem).match(/^(0|[1-9]\d*)$/g)) {
         res.status(400).json({ message: 'Percentagem tem que ser maior que zero e um numero positivo' });
         return;
     }
@@ -150,8 +150,8 @@ exports.createCursoFromNumeroEstudanteByCursoId = async function (req, res)  {
         res.status(400).json({ message: "Ano do curso é obrigatorio no body!" });
         return;
     }
-
-    if (!req.body.anoCurso.match(/^(0|[1-9]\d*)$/g)) {
+    console.log(req.body.anoCurso)
+    if (!String(req.body.anoCurso).match(/^(0|[1-9]\d*)$/g)) {
         res.status(400).json({ message: 'o Ano do curso tem que ser maior que zero e um numero positivo' });
         return;
     }
@@ -225,7 +225,7 @@ exports.updateSkillFromNumeroEstudanteBySkillId = async function (req, res)  {
         return;
     }
 
-    if (!req.body.percentagem.match(/^(0|[1-9]\d*)$/g)) {
+    if (!String(req.body.percentagem).match(/^(0|[1-9]\d*)$/g)) {
         res.status(400).json({ message: 'Percentagem tem que ser maior que zero e um numero positivo' });
         return;
     }
@@ -261,7 +261,7 @@ exports.updateToolFromNumeroEstudanteByToolId = async function (req, res)  {
         return;
     }
 
-    if (!req.body.percentagem.match(/^(0|[1-9]\d*)$/g)) {
+    if (!String(req.body.percentagem).match(/^(0|[1-9]\d*)$/g)) {
         res.status(400).json({ message: 'Percentagem tem que ser maior que zero e um numero positivo' });
         return;
     }
@@ -297,7 +297,7 @@ exports.updateCursoFromNumeroEstudanteByCursoId = async function (req, res)  {
         return;
     }
 
-    if (!req.body.anoCurso.match(/^(0|[1-9]\d*)$/g)) {
+    if (!String(req.body.anoCurso).match(/^(0|[1-9]\d*)$/g)) {
         res.status(400).json({ message: 'Ano Curso tem que ser maior que zero e um numero positivo' });
         return;
     }

@@ -366,7 +366,7 @@ AlumniModel.prototype.getCursosFromNumeroEstudante = async function (numeroEstud
         return { kind: data.kind, content: null };
     }
 
-    let select = await pool.query('SELECT tipoCurso, anoCurso FROM Alumni_Cursos INNER JOIN Cursos ON Cursos.id_cursos = Alumni_Cursos.id_cursos WHERE id_nroEstudante = ?', [numeroEstudante]);
+    let select = await pool.query('SELECT Alumni_Cursos.id_cursos AS id_cursos, tipoCurso, anoCurso FROM Alumni_Cursos INNER JOIN Cursos ON Cursos.id_cursos = Alumni_Cursos.id_cursos WHERE id_nroEstudante = ?', [numeroEstudante]);
 
     if (select === null) {
         return { kind: "erro_operacao", content: null };
