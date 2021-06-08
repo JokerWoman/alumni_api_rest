@@ -56,6 +56,7 @@ AlumniModel.prototype.AlumniExisteNaBaseDeDados = async function (numeroEstudant
     }
 
     if (select[0][0].quantidade !== 1) {
+
         return { kind: "alumni_nao_existe", content: select[0][0].quantidade }; // alumni não existe
     }
 
@@ -138,10 +139,13 @@ AlumniModel.prototype.createLinkFromNumeroEstudanteByLinkId = async function (li
     let insertion = await pool.query('INSERT INTO Alumni_Links SET ?', link);
 
     if (insertion === null) {
+        console.log("aaa")
         return { kind: "erro_operacao", content: null };
     }
 
     if (insertion.affectedRows === 0) {
+        console.log("bb")
+
         return { kind: "erro_link_insert", content: null };
     }
 
@@ -328,7 +332,7 @@ AlumniModel.prototype.getSkillsFromNumeroEstudante = async function (numeroEstud
         return { kind: data.kind, content: null };
     }
 
-    let select = await pool.query('SELECT tipoSkill, percentagem FROM Alumni_Skills INNER JOIN Skills ON Skills.id_skills = Alumni_Skills.id_skills WHERE id_nroEstudante = ?', [numeroEstudante]);
+    let select = await pool.query('SELECT Alumni_Skills.id_skills AS id_skills, tipoSkill, percentagem FROM Alumni_Skills INNER JOIN Skills ON Skills.id_skills = Alumni_Skills.id_skills WHERE id_nroEstudante = ?', [numeroEstudante]);
 
     if (select === null) {
         return { kind: "erro_operacao", content: null };
@@ -380,7 +384,7 @@ AlumniModel.prototype.getLinksFromNumeroEstudante = async function (numeroEstuda
         return { kind: data.kind, content: null };
     }
 
-    let select = await pool.query('SELECT tipoLink, link FROM Alumni_Links INNER JOIN Links ON Links.id_links = Alumni_Links.id_links WHERE id_nroEstudante = ?', [numeroEstudante]);
+    let select = await pool.query('SELECT Alumni_Links.id_links AS id_links, tipoLink, link FROM Alumni_Links INNER JOIN Links ON Links.id_links = Alumni_Links.id_links WHERE id_nroEstudante = ?', [numeroEstudante]);
 
     if (select === null) {
 

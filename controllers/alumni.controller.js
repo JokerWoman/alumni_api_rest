@@ -187,13 +187,9 @@ exports.createCursoFromNumeroEstudanteByCursoId = async function (req, res)  {
 };
 
 exports.createLinkFromNumeroEstudanteByLinkId = async function (req, res)  {
+    
     if (!req.body || !req.body.link) {
         res.status(400).json({ message: "link é obrigatorio no body!" });
-        return;
-    }
-
-    if (!validUrl.isUri(req.body.link)) {
-        res.status(400).json({ message: 'o link deve ser valido ' });
         return;
     }
 
