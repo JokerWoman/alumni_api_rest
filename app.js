@@ -14,7 +14,7 @@ app.use('/links', require('./routes/link.routes.js'))
 app.use('/cursos', require('./routes/curso.routes.js'))
 app.use('/testemunha', require('./routes/testemunha.routes.js'))
 app.use('/professor', require('./routes/professor.routes.js'))
-app.use('/', require('./routes/routes.js'))
+app.use('/bolsas', require('./routes/bolsas.routes.js'))
 
 
 // handle invalid routes

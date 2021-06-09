@@ -1,6 +1,6 @@
 const express = require('express');
 let router = express.Router();
-const controller = require('../controllers/controller');
+const controller = require('../controllers/bolsas.controller');
 // middleware for all routes related with alumni
 router.use((req, res, next) => {
     const start = Date.now();

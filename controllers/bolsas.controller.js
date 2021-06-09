@@ -1,4 +1,4 @@
-const model = require('../models/model.js');
+const model = require('../models/bolsas.model.js');
 const validUrl = require('valid-url');
 const { TIMESTAMP } = require('mysql/lib/protocol/constants/types');
 
