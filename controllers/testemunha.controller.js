@@ -15,7 +15,7 @@ exports.getAllTestimonies = async function(req,res){
     let data = await model.getAllTestimonies()
 
     if (data.kind === "ok") {
-        res.status(200).json(data.content);
+        res.status(200).json({message: JSON.stringify(data.content)});
     } else if (data.kind === "erro_operacao") {
         res.status(500).json({ message: `Error na operação` })
     } else {
