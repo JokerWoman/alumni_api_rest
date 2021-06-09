@@ -1262,6 +1262,103 @@
 							"body": "{\n    \"message\": \"Updated tool.\"\n}"
 						}
 					]
+				},
+				{
+					"name": "GetAvailableToolsByNumeroEstudante",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://127.0.0.1:3000/tools/alumni/19180047/disponiveis",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "3000",
+							"path": [
+								"tools",
+								"alumni",
+								"19180047",
+								"disponiveis"
+							]
+						},
+						"description": "Obtemos todos os links de um alumni pelo seu numero de estudante."
+					},
+					"response": [
+						{
+							"name": "GetCursocomSucesso Copy",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://127.0.0.1:8080/alumni/19180047/links",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "8080",
+									"path": [
+										"alumni",
+										"19180047",
+										"links"
+									]
+								}
+							},
+							"_postman_previewlanguage": "json",
+							"header": [],
+							"cookie": [],
+							"body": "[\n    {\n        \"tipoLink\": \"GitHub\",\n        \"link\": \"https://github.com/JokerWoman\"\n    },\n    {\n        \"tipoLink\": \"Behance\",\n        \"link\": \"behancenet/ilseweisfelt\"\n    }\n]"
+						},
+						{
+							"name": "ErroMessage",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "http://127.0.0.1:8080/alumni/19180046/links",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "8080",
+									"path": [
+										"alumni",
+										"19180046",
+										"links"
+									]
+								}
+							},
+							"_postman_previewlanguage": "json",
+							"header": [],
+							"cookie": [],
+							"body": "{\r\n    \"message\": \"Erro alumni não existe com id 19180046.\"\r\n}"
+						}
+					]
 				}
 			],
 			"description": "Aqui encontra-se documentadas todas as routas das tools dos alumnis, aquelas routas são:\n1.- Obter todas as tools pelo numero de estudante.\n2.- Eliminar uma as tools  pelo numero de estudante e seu id.\n3.- Criar uma tools pelo numero de estudante e seu id.\n4.- Atualizar uma tools pelo numero de estudante e seu id."

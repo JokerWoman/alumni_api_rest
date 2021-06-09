@@ -61,7 +61,7 @@ exports.findAlumniByNumeroEstudante = async function (req, res) {
 
 exports.createSkillFromNumeroEstudanteBySkillId = async function (req, res)  {
 
-    if (!req.body || !req.body.percentagem) {
+    if (!req.body || (req.body.percentagem == null)) {
         res.status(400).json({ message: "Percentagem é obrigatorio no body!" });
         return;
     }
@@ -256,7 +256,7 @@ exports.updateSkillFromNumeroEstudanteBySkillId = async function (req, res)  {
 
 exports.updateToolFromNumeroEstudanteByToolId = async function (req, res)  {
 
-    if (!req.body || !req.body.percentagem) {
+    if (!req.body || (req.body.percentagem == null)) {
         res.status(400).json({ message: "Percentagem é obrigatorio no body!" });
         return;
     }

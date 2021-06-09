@@ -349,7 +349,7 @@ AlumniModel.prototype.getToolsFromNumeroEstudante = async function (numeroEstuda
         return { kind: data.kind, content: null };
     }
 
-    let select = await pool.query('SELECT tipoTool, percentagem FROM Alumni_Tools INNER JOIN Tools ON Tools.id_tools = Alumni_Tools.id_tools WHERE id_nroEstudante = ?', [numeroEstudante]);
+    let select = await pool.query('SELECT Alumni_Tools.id_tools AS id_tools, tipoTool, percentagem FROM Alumni_Tools INNER JOIN Tools ON Tools.id_tools = Alumni_Tools.id_tools WHERE id_nroEstudante = ?', [numeroEstudante]);
 
     if (select === null) {
         return { kind: "erro_operacao", content: null };
