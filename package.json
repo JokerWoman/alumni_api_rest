@@ -4,8 +4,7 @@
     "description": "",
     "main": "app.js",
     "scripts": {
-        "start": "npx nodemon app.js -w",
-        "unit_tests": "mocha unit_tests/*.js --timeout 15000"
+        "start": "npx nodemon app.js -w"
     },
     "keywords": [],
     "author": "",
