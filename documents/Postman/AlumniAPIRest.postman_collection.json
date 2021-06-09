@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "0a5d5e39-d5dc-4feb-b509-9dcb910979e1",
+		"_postman_id": "59b83548-3626-4a47-a2a6-169c70eab2ba",
 		"name": "AlumniAPIRest",
 		"description": "O AlumniAPIRest têm todas as routas implementadas para a nossa página alumni.",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
@@ -746,6 +746,103 @@
 							"header": [],
 							"cookie": [],
 							"body": "{\n    \"message\": \"Updated skill.\"\n}"
+						}
+					]
+				},
+				{
+					"name": "GetAvailableSkillsByNumeroEstudante",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://127.0.0.1:3000/skills/alumni/19180047/disponiveis",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "3000",
+							"path": [
+								"skills",
+								"alumni",
+								"19180047",
+								"disponiveis"
+							]
+						},
+						"description": "Obtemos todos os links de um alumni pelo seu numero de estudante."
+					},
+					"response": [
+						{
+							"name": "GetCursocomSucesso Copy",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://127.0.0.1:8080/alumni/19180047/links",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "8080",
+									"path": [
+										"alumni",
+										"19180047",
+										"links"
+									]
+								}
+							},
+							"_postman_previewlanguage": "json",
+							"header": [],
+							"cookie": [],
+							"body": "[\n    {\n        \"tipoLink\": \"GitHub\",\n        \"link\": \"https://github.com/JokerWoman\"\n    },\n    {\n        \"tipoLink\": \"Behance\",\n        \"link\": \"behancenet/ilseweisfelt\"\n    }\n]"
+						},
+						{
+							"name": "ErroMessage",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "http://127.0.0.1:8080/alumni/19180046/links",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "8080",
+									"path": [
+										"alumni",
+										"19180046",
+										"links"
+									]
+								}
+							},
+							"_postman_previewlanguage": "json",
+							"header": [],
+							"cookie": [],
+							"body": "{\r\n    \"message\": \"Erro alumni não existe com id 19180046.\"\r\n}"
 						}
 					]
 				}
