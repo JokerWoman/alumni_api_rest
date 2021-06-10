@@ -1,6 +1,7 @@
 const express = require('express');
 let router = express.Router();
 const eventoController = require('../controllers/evento.controller');
+const authController = require('../controllers/auth.controller');
 
 router.use((req, res, next) => {
     const start = Date.now();
@@ -12,13 +13,13 @@ router.use((req, res, next) => {
 })
 
 router.route('/')
-    .get(authController.verifyToken, authController.isProfessorOrAlumni,eventoController.getAllEventos)
-    .post(authController.verifyToken, authController.isProfessorOrAlumni,eventoController.createEvento)
+    .get(authController.verifyToken, authController.isProfessorOrAlumni, eventoController.getAllEventos)
+    .post(authController.verifyToken, authController.isProfessorOrAlumni, eventoController.createEvento)
 
 router.route('/:eventoID')
-    .delete(authController.verifyToken, authController.isProfessorOrAlumni,eventoController.deleteEvento)
-    .get(authController.verifyToken, authController.isProfessorOrAlumni,eventoController.getEventoById)
-    .put(authController.verifyToken, authController.isProfessorOrAlumni,eventoController.updateEventoById)
+    .delete(authController.verifyToken, authController.isProfessorOrAlumni, eventoController.deleteEvento)
+    .get(authController.verifyToken, authController.isProfessorOrAlumni, eventoController.getEventoById)
+    .put(authController.verifyToken, authController.isProfessorOrAlumni, eventoController.updateEventoById)
 
 router.route('/subscribe')
     .post(eventoController.subscribeEvent)
