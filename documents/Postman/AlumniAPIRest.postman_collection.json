@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "59b83548-3626-4a47-a2a6-169c70eab2ba",
+		"_postman_id": "eb775e2f-3a60-4354-b38c-c18dde4be0c6",
 		"name": "AlumniAPIRest",
 		"description": "O AlumniAPIRest têm todas as routas implementadas para a nossa página alumni.",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
@@ -3409,6 +3409,143 @@
 							]
 						},
 						"description": "Nesta routa no body adicionamos toda a informação do alumni tais como :\nnome,data de nascimento,morada,email,etc"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Testemunha",
+			"item": [
+				{
+					"name": "DeleteTestimony",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://127.0.0.1:3000/testemunha/5",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "3000",
+							"path": [
+								"testemunha",
+								"5"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "UpdateTestimony",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nome\":\"Ana Fernandes\",\r\n    \"id_nroEstudante\":\"19180050\",\r\n    \"descricao\":\"Adoro o Site!\",\r\n    \"id_cursos\":\"2\",\r\n    \"fotoLink\":\"eu\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:3000/testemunha/7",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "3000",
+							"path": [
+								"testemunha",
+								"7"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "CreateTestimony",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nome\":\"Andrea Fernandes\",\r\n    \"id_nroEstudante\":\"19180042\",\r\n    \"descricao\":\"Plataforma incrivel para os antigos alunos!\",\r\n    \"id_cursos\":\"1\",\r\n    \"fotoLink\":\"@/assets/img/testemunhos/testemunho2.webp\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:3000/testemunha",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "3000",
+							"path": [
+								"testemunha"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GetTestimonyById",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://127.0.0.1:3000/testemunha/5",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "3000",
+							"path": [
+								"testemunha",
+								"5"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GetAllTestimonies",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://127.0.0.1:3000/testemunha/",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "3000",
+							"path": [
+								"testemunha",
+								""
+							]
+						}
 					},
 					"response": []
 				}
