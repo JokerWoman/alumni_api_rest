@@ -13,48 +13,48 @@ router.use((req, res, next) => {
 })
 
 router.route('/')
-    .get(authController.verifyToken, authController.isProfessorOrAlumni, alumniController.getAllAlumni);
+    .get(authController.verifyToken, authController.isAlumni, alumniController.getAllAlumni);
 
 router.route('/:numero')
-    .get(alumniController.findAlumniByNumeroEstudante)
-    .put(alumniController.updateAlumniByNumeroEstudante);
+    .get(authController.verifyToken, authController.isAlumni, alumniController.findAlumniByNumeroEstudante)
+    .put(authController.verifyToken, authController.isAlumni, alumniController.updateAlumniByNumeroEstudante);
 
 router.route('/:numero/skills/')
-    .get(alumniController.getSkillsFromNumeroEstudante);
+    .get(authController.verifyToken, authController.isAlumni, alumniController.getSkillsFromNumeroEstudante);
 
 router.route('/:numero/tools/')
-    .get(alumniController.getToolsFromNumeroEstudante);
+    .get(authController.verifyToken, authController.isAlumni, alumniController.getToolsFromNumeroEstudante);
 
 router.route('/:numero/cursos/')
-    .get(alumniController.getCursosFromNumeroEstudante);
+    .get(authController.verifyToken, authController.isAlumni, alumniController.getCursosFromNumeroEstudante);
 
 router.route('/:numero/links/')
-    .get(alumniController.getLinksFromNumeroEstudante);
+    .get(authController.verifyToken, authController.isAlumni, alumniController.getLinksFromNumeroEstudante);
 
 
 router.route('/:numero/skills/:skillId')
-    .delete(alumniController.deleteSkillFromNumeroEstudanteBySkillId)
-    .put(alumniController.updateSkillFromNumeroEstudanteBySkillId)
-    .post(alumniController.createSkillFromNumeroEstudanteBySkillId);
+    .delete(authController.verifyToken, authController.isAlumni, alumniController.deleteSkillFromNumeroEstudanteBySkillId)
+    .put(authController.verifyToken, authController.isAlumni, alumniController.updateSkillFromNumeroEstudanteBySkillId)
+    .post(authController.verifyToken, authController.isAlumni, alumniController.createSkillFromNumeroEstudanteBySkillId);
 
 router.route('/:numero/tools/:toolId')
-    .delete(alumniController.deleteToolFromNumeroEstudanteByToolId)
-    .put(alumniController.updateToolFromNumeroEstudanteByToolId)
-    .post(alumniController.createToolFromNumeroEstudanteByToolId);
+    .delete(authController.verifyToken, authController.isAlumni, alumniController.deleteToolFromNumeroEstudanteByToolId)
+    .put(authController.verifyToken, authController.isAlumni, alumniController.updateToolFromNumeroEstudanteByToolId)
+    .post(authController.verifyToken, authController.isAlumni, alumniController.createToolFromNumeroEstudanteByToolId);
 
 router.route('/:numero/cursos/:cursoId')
-    .delete(alumniController.deleteCursoFromNumeroEstudanteByCursoId)
-    .put(alumniController.updateCursoFromNumeroEstudanteByCursoId)
-    .post(alumniController.createCursoFromNumeroEstudanteByCursoId);
+    .delete(authController.verifyToken, authController.isAlumni, alumniController.deleteCursoFromNumeroEstudanteByCursoId)
+    .put(authController.verifyToken, authController.isAlumni, alumniController.updateCursoFromNumeroEstudanteByCursoId)
+    .post(authController.verifyToken, authController.isAlumni, alumniController.createCursoFromNumeroEstudanteByCursoId);
 
 router.route('/:numero/links/:linkId')
-    .delete(alumniController.deleteLinkFromNumeroEstudanteByLinkId)
-    .put(alumniController.updateLinkFromNumeroEstudanteByLinkId)
-    .post(alumniController.createLinkFromNumeroEstudanteByLinkId);
+    .delete(authController.verifyToken, authController.isAlumni, alumniController.deleteLinkFromNumeroEstudanteByLinkId)
+    .put(authController.verifyToken, authController.isAlumni, alumniController.updateLinkFromNumeroEstudanteByLinkId)
+    .post(authController.verifyToken, authController.isAlumni, alumniController.createLinkFromNumeroEstudanteByLinkId);
 
 //send a predefined error message for invalid routes
 router.all('*', function(req, res) {
-        res.status(404).json({ message: 'Route Alumni não definida!' });
-    })
+    res.status(404).json({ message: 'Route Alumni não definida!' });
+})
 
 module.exports = router;
