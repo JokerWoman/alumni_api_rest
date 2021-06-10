@@ -30,7 +30,7 @@ exports.getTestimonyById = async function(req,res){
     if (data.kind === "ok") {
         res.status(200).json(data.content);
     } else if (data.kind === "erro_nao_existe") {
-        res.status(500).json({ message: `Testemunha não existe!` })
+        res.status(404).json({ message: `Testemunha não existe!` })
     } else {
         res.status(500).json({ message: `Erro Interno.` })
     }
@@ -45,7 +45,7 @@ exports.deleteTestimony = async function(req,res){
     if (data.kind === "ok") {
         res.status(200).json({ message: `Testemunha com o id ${id} foi eliminada com sucesso!` });
     } else if (data.kind === "erro_nao_existe") {
-        res.status(500).json({ message: `Testemunha não existe!` })
+        res.status(404).json({ message: `Testemunha não existe!` })
     } else {
         res.status(500).json({ message: `Erro Interno.` })
     }
@@ -78,7 +78,7 @@ exports.createTestimony = async function(req,res){
     } else if (data.kind === "error_testimony_insert") {
         res.status(500).json({ message: `Erro ao inserir Testemunha.` })
     } else if (data.kind === "erro_nroestudante_nao_existe") {
-        res.status(500).json({ message: `Numero de estudante não registado na base de dados!` })
+        res.status(404).json({ message: `Numero de estudante não registado na base de dados!` })
     } else {
         res.status(500).json({ message: `Erro Interno.` })
     }
@@ -111,9 +111,9 @@ exports.updateTestimonyById = async function(req,res){
     if (data.kind === "ok") {
         res.status(201).json({ message: `Testimony with id ${id} updated successfully`});
     } else if (data.kind === "erro_nroestudante_nao_existe") {
-        res.status(500).json({ message: `Numero de estudante não registado na base de dados!` })
+        res.status(404).json({ message: `Numero de estudante não registado na base de dados!` })
     } else if (data.kind === "error_nao_existe") {
-        res.status(500).json({ message: `Testemunha não existe` })
+        res.status(404).json({ message: `Testemunha não existe` })
     } else {
         res.status(500).json({ message: `Erro Interno.` })
     }
