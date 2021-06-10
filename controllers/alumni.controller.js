@@ -540,7 +540,7 @@ exports.updateAlumniByNumeroEstudante = async function (req, res)  {
     let data = await alumniModel.updateAlumniByNumeroEstudante(alumni, req.params.numero);
 
     if (data.kind === "ok") {
-        res.status(200).json({ message: "Updated alumni" });
+        res.status(200).json({ message: data.content });
     }
     else if (data.kind === "alumni_nao_existe") {
         res.status(404).json({ message: `Erro alumni não existe com id ${req.params.numero}.` })

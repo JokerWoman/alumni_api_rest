@@ -56,7 +56,7 @@ exports.signupAlumni = async(req, res) => {
     let data = await alumniModel.createAlumni(alumni, req.body.id_nroEstudante);
 
     if (data.kind === "ok") {
-        res.status(201).json({ message: "New alumni created", location: "/alumni/" + data.content });
+        res.status(201).json({ message: data.content });
     } else if (data.kind === "alumni_existe") {
         res.status(417).json({ message: `Erro Alumni já exsite com id ${req.body.id_nroEstudante}.` })
     } else if (data.kind === "erro_operacao") {

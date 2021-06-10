@@ -45,7 +45,7 @@ AlumniModel.prototype.createAlumni = async function (alumni, numeroEstudante) {
     if (insertion.affectedRows == 0) {
         return { kind: "erro_alumni_insert", content: null };
     }
-    return { kind: "ok", content: numeroEstudante }; /* No caso do alumni o insertion[0].insertId nunca irá ter o id porque a coluna não existe */
+    return { kind: "ok", content: alumni }; /* No caso do alumni o insertion[0].insertId nunca irá ter o id porque a coluna não existe */
 };
 
 AlumniModel.prototype.AlumniExisteNaBaseDeDados = async function (numeroEstudante) {
@@ -438,7 +438,7 @@ AlumniModel.prototype.updateAlumniByNumeroEstudante = async function (alumni, nu
         return { kind: "erro_alumni_update", content: null };
     }
 
-    return { kind: "ok", content: update };
+    return { kind: "ok", content: alumni };
 };
 
 
