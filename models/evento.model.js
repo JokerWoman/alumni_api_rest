@@ -4,7 +4,7 @@ function EventoModel() { }
 
 EventoModel.prototype.getAllEventos = async function () {
 
-    let select = await pool.query("SELECT * FROM evento");
+    let select = await pool.query("SELECT * FROM Evento");
 
     if (select === null) {
         return { kind: "erro_operacao", content: null };
@@ -110,7 +110,7 @@ EventoModel.prototype.subscribeEvent = async function ( evento ) {
         return { kind: data.kind, content: null };
     }
 
-    let insertion = await pool.query('INSERT INTO Alumni_evento SET ?' , [evento]);
+    let insertion = await pool.query('INSERT INTO Alumni_Evento SET ?' , [evento]);
     if (insertion === null) {
         return { kind: "erro_operacao", content: null };
     }
