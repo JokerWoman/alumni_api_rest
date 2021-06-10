@@ -2663,7 +2663,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://127.0.0.1:3000/evento",
+							"raw": "http://127.0.0.1:3000/eventos",
 							"protocol": "http",
 							"host": [
 								"127",
@@ -2673,7 +2673,7 @@
 							],
 							"port": "3000",
 							"path": [
-								"evento"
+								"eventos"
 							]
 						},
 						"description": "Aqui nesta routa obtemos todas as routes que existem registadas no sistema."
@@ -2685,7 +2685,7 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "http://127.0.0.1:8080/evento",
+									"raw": "http://127.0.0.1:8080/eventos",
 									"protocol": "http",
 									"host": [
 										"127",
@@ -2695,7 +2695,7 @@
 									],
 									"port": "8080",
 									"path": [
-										"evento"
+										"eventos"
 									]
 								}
 							},
@@ -2710,7 +2710,7 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "http://127.0.0.1:8080/evento",
+									"raw": "http://127.0.0.1:8080/eventos",
 									"protocol": "http",
 									"host": [
 										"127",
@@ -2720,7 +2720,7 @@
 									],
 									"port": "8080",
 									"path": [
-										"evento"
+										"eventos"
 									]
 								}
 							},
@@ -2748,7 +2748,7 @@
 							}
 						],
 						"url": {
-							"raw": "http://127.0.0.1:3000/evento/3",
+							"raw": "http://127.0.0.1:3000/eventos/3",
 							"protocol": "http",
 							"host": [
 								"127",
@@ -2758,7 +2758,7 @@
 							],
 							"port": "3000",
 							"path": [
-								"evento",
+								"eventos",
 								"3"
 							]
 						},
@@ -2771,7 +2771,7 @@
 								"method": "DELETE",
 								"header": [],
 								"url": {
-									"raw": "http://127.0.0.1:8080/evento/1",
+									"raw": "http://127.0.0.1:8080/eventos/1",
 									"protocol": "http",
 									"host": [
 										"127",
@@ -2781,7 +2781,7 @@
 									],
 									"port": "8080",
 									"path": [
-										"evento",
+										"eventos",
 										"1"
 									]
 								}
@@ -2797,7 +2797,7 @@
 								"method": "DELETE",
 								"header": [],
 								"url": {
-									"raw": "http://127.0.0.1:8080/evento/1",
+									"raw": "http://127.0.0.1:8080/eventos/1",
 									"protocol": "http",
 									"host": [
 										"127",
@@ -2807,7 +2807,7 @@
 									],
 									"port": "8080",
 									"path": [
-										"evento",
+										"eventos",
 										"1"
 									]
 								}
@@ -2845,7 +2845,7 @@
 							}
 						},
 						"url": {
-							"raw": "http://127.0.0.1:3000/evento/3",
+							"raw": "http://127.0.0.1:3000/eventos/3",
 							"protocol": "http",
 							"host": [
 								"127",
@@ -2855,7 +2855,7 @@
 							],
 							"port": "3000",
 							"path": [
-								"evento",
+								"eventos",
 								"3"
 							]
 						},
@@ -2877,7 +2877,7 @@
 									}
 								},
 								"url": {
-									"raw": "http://127.0.0.1:8080/evento/2",
+									"raw": "http://127.0.0.1:8080/eventos/2",
 									"protocol": "http",
 									"host": [
 										"127",
@@ -2887,7 +2887,7 @@
 									],
 									"port": "8080",
 									"path": [
-										"evento",
+										"eventos",
 										"2"
 									]
 								}
@@ -2912,7 +2912,7 @@
 									}
 								},
 								"url": {
-									"raw": "http://127.0.0.1:8080/evento/2",
+									"raw": "http://127.0.0.1:8080/eventos/2",
 									"protocol": "http",
 									"host": [
 										"127",
@@ -2922,7 +2922,7 @@
 									],
 									"port": "8080",
 									"path": [
-										"evento",
+										"eventos",
 										"2"
 									]
 								}
@@ -2960,7 +2960,7 @@
 							}
 						},
 						"url": {
-							"raw": "http://127.0.0.1:3000/evento",
+							"raw": "http://127.0.0.1:3000/eventos",
 							"protocol": "http",
 							"host": [
 								"127",
@@ -2970,7 +2970,7 @@
 							],
 							"port": "3000",
 							"path": [
-								"evento"
+								"eventos"
 							]
 						},
 						"description": "Nesta routa adicionamos um evento. Esta informação é alterada no body"
@@ -2991,7 +2991,7 @@
 									}
 								},
 								"url": {
-									"raw": "http://127.0.0.1:8080/evento",
+									"raw": "http://127.0.0.1:8080/eventos",
 									"protocol": "http",
 									"host": [
 										"127",
@@ -3001,7 +3001,7 @@
 									],
 									"port": "8080",
 									"path": [
-										"evento"
+										"eventos"
 									]
 								}
 							},
@@ -3025,7 +3025,7 @@
 									}
 								},
 								"url": {
-									"raw": "http://127.0.0.1:8080/evento",
+									"raw": "http://127.0.0.1:8080/eventos",
 									"protocol": "http",
 									"host": [
 										"127",
@@ -3035,7 +3035,7 @@
 									],
 									"port": "8080",
 									"path": [
-										"evento"
+										"eventos"
 									]
 								}
 							},
@@ -3052,7 +3052,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://127.0.0.1:3000/evento/3",
+							"raw": "http://127.0.0.1:3000/eventos/3",
 							"protocol": "http",
 							"host": [
 								"127",
@@ -3062,7 +3062,7 @@
 							],
 							"port": "3000",
 							"path": [
-								"evento",
+								"eventos",
 								"3"
 							]
 						},
@@ -3075,7 +3075,7 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "http://127.0.0.1:8080/evento/2",
+									"raw": "http://127.0.0.1:8080/eventos/2",
 									"protocol": "http",
 									"host": [
 										"127",
@@ -3085,7 +3085,7 @@
 									],
 									"port": "8080",
 									"path": [
-										"evento",
+										"eventos",
 										"2"
 									]
 								}
@@ -3101,7 +3101,7 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "http://127.0.0.1:8080/evento/1",
+									"raw": "http://127.0.0.1:8080/eventos/1",
 									"protocol": "http",
 									"host": [
 										"127",
@@ -3111,7 +3111,7 @@
 									],
 									"port": "8080",
 									"path": [
-										"evento",
+										"eventos",
 										"1"
 									]
 								}
