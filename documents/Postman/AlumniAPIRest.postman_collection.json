@@ -2663,7 +2663,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://127.0.0.1:3000/eventos",
+							"raw": "http://127.0.0.1:3000/evento",
 							"protocol": "http",
 							"host": [
 								"127",
@@ -2673,7 +2673,7 @@
 							],
 							"port": "3000",
 							"path": [
-								"eventos"
+								"evento"
 							]
 						},
 						"description": "Aqui nesta routa obtemos todas as routes que existem registadas no sistema."
@@ -2685,7 +2685,7 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "http://127.0.0.1:8080/eventos",
+									"raw": "http://127.0.0.1:8080/evento",
 									"protocol": "http",
 									"host": [
 										"127",
@@ -2695,7 +2695,7 @@
 									],
 									"port": "8080",
 									"path": [
-										"eventos"
+										"evento"
 									]
 								}
 							},
@@ -2710,7 +2710,7 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "http://127.0.0.1:8080/eventos",
+									"raw": "http://127.0.0.1:8080/evento",
 									"protocol": "http",
 									"host": [
 										"127",
@@ -2720,7 +2720,7 @@
 									],
 									"port": "8080",
 									"path": [
-										"eventos"
+										"evento"
 									]
 								}
 							},
@@ -2732,12 +2732,23 @@
 					]
 				},
 				{
-					"name": "DeleteEventos",
+					"name": "DeleteEvento",
 					"request": {
 						"method": "DELETE",
-						"header": [],
+						"header": [
+							{
+								"key": "x-access-token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IkFkbWluIiwiaWF0IjoxNjIzMzM2NjI5LCJleHAiOjE2MjM0MjMwMjl9.Rd6xNorkXcbL2pHe0Ft61vi62zFu7tqWk3qzYvz8zVU",
+								"type": "text"
+							},
+							{
+								"key": "user-type",
+								"value": "professor",
+								"type": "text"
+							}
+						],
 						"url": {
-							"raw": "http://127.0.0.1:3000/eventos/3",
+							"raw": "http://127.0.0.1:3000/evento/3",
 							"protocol": "http",
 							"host": [
 								"127",
@@ -2747,7 +2758,7 @@
 							],
 							"port": "3000",
 							"path": [
-								"eventos",
+								"evento",
 								"3"
 							]
 						},
@@ -2755,12 +2766,12 @@
 					},
 					"response": [
 						{
-							"name": "DeleteEventoscomSucesso",
+							"name": "DeleteEventocomSucesso",
 							"originalRequest": {
 								"method": "DELETE",
 								"header": [],
 								"url": {
-									"raw": "http://127.0.0.1:8080/eventos/1",
+									"raw": "http://127.0.0.1:8080/evento/1",
 									"protocol": "http",
 									"host": [
 										"127",
@@ -2770,7 +2781,7 @@
 									],
 									"port": "8080",
 									"path": [
-										"eventos",
+										"evento",
 										"1"
 									]
 								}
@@ -2781,12 +2792,12 @@
 							"body": "{\n    \"message\": \"Evento with id 1 was successfully deleted!\"\n}"
 						},
 						{
-							"name": "DeleteEventos",
+							"name": "DeleteEvento",
 							"originalRequest": {
 								"method": "DELETE",
 								"header": [],
 								"url": {
-									"raw": "http://127.0.0.1:8080/eventos/1",
+									"raw": "http://127.0.0.1:8080/evento/1",
 									"protocol": "http",
 									"host": [
 										"127",
@@ -2796,7 +2807,7 @@
 									],
 									"port": "8080",
 									"path": [
-										"eventos",
+										"evento",
 										"1"
 									]
 								}
@@ -2812,7 +2823,18 @@
 					"name": "UpdateEventoById",
 					"request": {
 						"method": "PUT",
-						"header": [],
+						"header": [
+							{
+								"key": "x-access-token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IkFkbWluIiwiaWF0IjoxNjIzMzM2NjI5LCJleHAiOjE2MjM0MjMwMjl9.Rd6xNorkXcbL2pHe0Ft61vi62zFu7tqWk3qzYvz8zVU",
+								"type": "text"
+							},
+							{
+								"key": "user-type",
+								"value": "professor",
+								"type": "text"
+							}
+						],
 						"body": {
 							"mode": "raw",
 							"raw": "{\r\n    \"titulo\": \"evento444444\",\r\n    \"fotoLink\": \"https://i.pinimg.com/originals/51/fe/18/51fe180cc453fccbf05652ad051b4803.jpg\",\r\n    \"estado\": \"inativo\",\r\n    \"data\": \"2029-05-20\",\r\n    \"informacao\":\"Lorem\",\r\n    \"id_evento\": 1,\r\n    \"id_tipoEvento\": 1,\r\n    \"id_nroProfessor\": 1000000\r\n}",
@@ -2823,7 +2845,7 @@
 							}
 						},
 						"url": {
-							"raw": "http://127.0.0.1:3000/eventos/3",
+							"raw": "http://127.0.0.1:3000/evento/3",
 							"protocol": "http",
 							"host": [
 								"127",
@@ -2833,7 +2855,7 @@
 							],
 							"port": "3000",
 							"path": [
-								"eventos",
+								"evento",
 								"3"
 							]
 						},
@@ -2841,7 +2863,7 @@
 					},
 					"response": [
 						{
-							"name": "UpdateEventosById",
+							"name": "UpdateEventoById",
 							"originalRequest": {
 								"method": "PUT",
 								"header": [],
@@ -2855,7 +2877,7 @@
 									}
 								},
 								"url": {
-									"raw": "http://127.0.0.1:8080/eventos/2",
+									"raw": "http://127.0.0.1:8080/evento/2",
 									"protocol": "http",
 									"host": [
 										"127",
@@ -2865,7 +2887,7 @@
 									],
 									"port": "8080",
 									"path": [
-										"eventos",
+										"evento",
 										"2"
 									]
 								}
@@ -2890,7 +2912,7 @@
 									}
 								},
 								"url": {
-									"raw": "http://127.0.0.1:8080/eventos/2",
+									"raw": "http://127.0.0.1:8080/evento/2",
 									"protocol": "http",
 									"host": [
 										"127",
@@ -2900,7 +2922,7 @@
 									],
 									"port": "8080",
 									"path": [
-										"eventos",
+										"evento",
 										"2"
 									]
 								}
@@ -2913,10 +2935,21 @@
 					]
 				},
 				{
-					"name": "CreateEventos",
+					"name": "CreateEvento",
 					"request": {
 						"method": "POST",
-						"header": [],
+						"header": [
+							{
+								"key": "x-access-token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IkFkbWluIiwiaWF0IjoxNjIzMzM2NjI5LCJleHAiOjE2MjM0MjMwMjl9.Rd6xNorkXcbL2pHe0Ft61vi62zFu7tqWk3qzYvz8zVU",
+								"type": "text"
+							},
+							{
+								"key": "user-type",
+								"value": "professor",
+								"type": "text"
+							}
+						],
 						"body": {
 							"mode": "raw",
 							"raw": "{\r\n    \"titulo\":\"evento5\",\r\n    \"fotoLink\":\"https://i.pinimg.com/originals/51/fe/18/51fe180cc453fccbf05652ad051b4803.jpg\",\r\n    \"estado\":\"ativo\",\r\n    \"data\":\"2029-05-20\",\r\n    \"informacao\":\"Lorem\",\r\n    \"id_evento\":\"1\",\r\n    \"id_tipoEvento\":\"3\",\r\n    \"id_nroProfessor\":\"2000000\"\r\n}",
@@ -2927,7 +2960,7 @@
 							}
 						},
 						"url": {
-							"raw": "http://127.0.0.1:3000/eventos",
+							"raw": "http://127.0.0.1:3000/evento",
 							"protocol": "http",
 							"host": [
 								"127",
@@ -2937,14 +2970,14 @@
 							],
 							"port": "3000",
 							"path": [
-								"eventos"
+								"evento"
 							]
 						},
 						"description": "Nesta routa adicionamos um evento. Esta informação é alterada no body"
 					},
 					"response": [
 						{
-							"name": "CreateEventos-erro",
+							"name": "CreateEvento-erro",
 							"originalRequest": {
 								"method": "POST",
 								"header": [],
@@ -2958,7 +2991,7 @@
 									}
 								},
 								"url": {
-									"raw": "http://127.0.0.1:8080/eventos",
+									"raw": "http://127.0.0.1:8080/evento",
 									"protocol": "http",
 									"host": [
 										"127",
@@ -2968,7 +3001,7 @@
 									],
 									"port": "8080",
 									"path": [
-										"eventos"
+										"evento"
 									]
 								}
 							},
@@ -2978,7 +3011,7 @@
 							"body": "{\n    \"message\": \"Erro evento não existe com id_evento 5.\"\n}"
 						},
 						{
-							"name": "CreateEventos",
+							"name": "CreateEvento",
 							"originalRequest": {
 								"method": "POST",
 								"header": [],
@@ -2992,7 +3025,7 @@
 									}
 								},
 								"url": {
-									"raw": "http://127.0.0.1:8080/eventos",
+									"raw": "http://127.0.0.1:8080/evento",
 									"protocol": "http",
 									"host": [
 										"127",
@@ -3002,7 +3035,7 @@
 									],
 									"port": "8080",
 									"path": [
-										"eventos"
+										"evento"
 									]
 								}
 							},
@@ -3019,7 +3052,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://127.0.0.1:3000/eventos/3",
+							"raw": "http://127.0.0.1:3000/evento/3",
 							"protocol": "http",
 							"host": [
 								"127",
@@ -3029,7 +3062,7 @@
 							],
 							"port": "3000",
 							"path": [
-								"eventos",
+								"evento",
 								"3"
 							]
 						},
@@ -3042,7 +3075,7 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "http://127.0.0.1:8080/eventos/2",
+									"raw": "http://127.0.0.1:8080/evento/2",
 									"protocol": "http",
 									"host": [
 										"127",
@@ -3052,7 +3085,7 @@
 									],
 									"port": "8080",
 									"path": [
-										"eventos",
+										"evento",
 										"2"
 									]
 								}
@@ -3068,7 +3101,7 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "http://127.0.0.1:8080/eventos/1",
+									"raw": "http://127.0.0.1:8080/evento/1",
 									"protocol": "http",
 									"host": [
 										"127",
@@ -3078,7 +3111,7 @@
 									],
 									"port": "8080",
 									"path": [
-										"eventos",
+										"evento",
 										"1"
 									]
 								}

@@ -129,7 +129,7 @@ exports.updateEventoById = async function(req, res) {
     let data = await model.updateEventoById(evento, req.params.eventoID);
 
     if (data.kind === "ok") {
-        res.status(200).json({ message: "updated evento ", location: `/eventos/${req.params.eventoID}` });
+        res.status(200).json({ message: "updated evento ", location: `/evento/${req.params.eventoID}` });
     } else if (data.kind === "evento_nao_existe") {
         res.status(404).json({ message: `Erro evento não existe com id ${req.params.eventoID}.` })
     } else if (data.kind === "evento_nao_updated") {
@@ -153,5 +153,15 @@ exports.subscribeEvent = async function(req , res){
     }
     let subscription = new Subscricao(req.body.id_nroEstudante, req.body.id_evento);
 
-    let data = await model.subscribeEvent( id_nroEstudante, id_evento);
+    let data = await model.subscribeEvent( subscription );
+
+    if (data.kind === "ok") {
+        res.status(201).json({ message: "New evento created", location: "/evento/" + data.content });
+    } else if (data.kind === "erro_evento_insert") {
+        res.status(500).json({ message: `Erro ao inserir evento.` })
+    } else if (data.kind === "erro_operacao") {
+        res.status(500).json({ message: `Erro na operação de inserir um evento` })
+    } else {
+        res.status(500).json({ message: `Erro Interno.` })
+    }
 }

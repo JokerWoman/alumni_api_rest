@@ -29,16 +29,7 @@ EventoModel.prototype.EventoExisteNaBaseDeDados = async function (id) {
     return { kind: "evento_existe", content: select[0][0].quantidade };
 };
 
-EventoModel.prototype.getAllEventos = async function () {
 
-    let select = await pool.query('SELECT * FROM Evento');
-
-    if (select === null) {
-        return { kind: "erro_operacao", content: null };
-    }
-
-    return { kind: "ok", content: select[0] };
-};
 
 EventoModel.prototype.createEvento = async function (evento) {
 
@@ -113,8 +104,24 @@ EventoModel.prototype.updateEventoById = async function (evento, id) {
     return { kind: "ok", content: update };
 };
 
-EventoModel.prototype.subscribeEvent = async function (evento , id) {
-    let insert = await subscribeEvent()
+EventoModel.prototype.subscribeEvent = async function ( evento ) {
+    let data = await this.EventoExisteNaBaseDeDados(evento.id_evento);
+    if (data.kind !== "evento_existe") {
+        return { kind: data.kind, content: null };
+    }
+
+    let insertion = await pool.query('INSERT INTO Alumni_evento SET ?' , [evento]);
+    if (insertion === null) {
+        return { kind: "erro_operacao", content: null };
+    }
+
+    if (insertion.affectedRows == 0) {
+        return { kind: "erro_evento_insert", content: null };
+    }
+
+    return { kind: "ok", content: insertion[0].insertId };
+
+
 }
 
 module.exports = new EventoModel;
