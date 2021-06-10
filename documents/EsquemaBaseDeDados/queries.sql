@@ -50,7 +50,7 @@ INSERT INTO Tipo_Emprego (id_tipoEmprego, descricao) VALUES ('3', 'FullTime');
 
 -- Adicionar Alumnis (Password --> Esmad_2021)
 INSERT INTO Alumni (id_nroEstudante, nome, dataNascimento, morada, email, descricao, telemovel, password, id_role, id_genero) VALUES ('19180045', 'Camila Medina', '1992-03-18', 'Rua das Aves', 'camila@gmail.com', 'Sou a Camila', '917574845', '$2a$08$VvgVhjbWyBegQ31XIsIZw.s3qnfJcOtIEcL/n3adyFEbRwzu1xMma', '3', '2');
-INSERT INTO Alumni (id_nroEstudante, nome, dataNascimento, morada, email, descricao, telemovel, password, id_role, id_genero) VALUES ('19180047', 'Antonio Hernandes', '2000-04-18', 'Rua das Batatas', 'rogelia@gmail.com', 'Sou a Rogelia', '914564845',  '$2a$08$VvgVhjbWyBegQ31XIsIZw.s3qnfJcOtIEcL/n3adyFEbRwzu1xMma', '3', '1');
+INSERT INTO Alumni (id_nroEstudante, nome, dataNascimento, morada, email, descricao, telemovel, password, id_role, id_genero) VALUES ('19180047', 'Antonio Hernandes', '2000-04-18', 'Rua das Batatas', 'antonio@gmail.com', 'Sou o Antonio', '914564845',  '$2a$08$VvgVhjbWyBegQ31XIsIZw.s3qnfJcOtIEcL/n3adyFEbRwzu1xMma', '3', '1');
 INSERT INTO Alumni (id_nroEstudante, nome, dataNascimento, morada, email, descricao, telemovel, password, id_role, id_genero) VALUES ('19180048', 'Andrea Fernandes', '1998-02-18', 'Rua das Cebolas', 'andrea@gmail.com', 'Sou a Andrea 2', '922345634',  '$2a$08$VvgVhjbWyBegQ31XIsIZw.s3qnfJcOtIEcL/n3adyFEbRwzu1xMma', '3', '2');
 
 -- Adicionar Skill a Alumni
