@@ -12,6 +12,13 @@ class Evento {
     }
 }
 
+class Subscriçao{
+    constructor(id_nroEstudante, id_evento) {
+        this.id_nroEstudante = id_nroEstudante;
+        this.id_evento = id_evento;
+    }
+}
+
 exports.getAllEventos = async function(req, res) {
 
     let data = await model.getAllEventos();
@@ -133,3 +140,18 @@ exports.updateEventoById = async function(req, res) {
         res.status(500).json({ message: `Erro Interno.` })
     }
 };
+
+exports.subscribeEvent = async function(req , res){
+
+    if (!req.body.id_nroEstudante) {
+        res.status(400).json({ message: "numero de estudante is empty!" });
+        return;
+    }
+    if (!req.body.id_evento) {
+        res.status(400).json({ message: "Evento is empty!" });
+        return;
+    }
+    let subscription = new Subscriçao(req.body.id_nroEstudante, req.body.id_evento);
+
+    let data = await model.subscribeEvent( id_nroEstudante, id_evento);
+}

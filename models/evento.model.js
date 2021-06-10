@@ -13,7 +13,7 @@ EventoModel.prototype.getAllEventos = async function () {
     return { kind: "ok", content: select[0] }; // array de todos os elementos
 };
 
-Model.prototype.EventoExisteNaBaseDeDados = async function (id) {
+EventoModel.prototype.EventoExisteNaBaseDeDados = async function (id) {
 
     const select = await pool.query('SELECT COUNT(*) AS quantidade FROM Evento WHERE ?', { id_evento: id });
 
@@ -29,7 +29,7 @@ Model.prototype.EventoExisteNaBaseDeDados = async function (id) {
     return { kind: "evento_existe", content: select[0][0].quantidade };
 };
 
-Model.prototype.getAllEventos = async function () {
+EventoModel.prototype.getAllEventos = async function () {
 
     let select = await pool.query('SELECT * FROM Evento');
 
@@ -40,7 +40,7 @@ Model.prototype.getAllEventos = async function () {
     return { kind: "ok", content: select[0] };
 };
 
-Model.prototype.createEvento = async function (evento) {
+EventoModel.prototype.createEvento = async function (evento) {
 
     let insertion = await pool.query('INSERT INTO Evento SET ?', [evento]);
 
@@ -55,7 +55,7 @@ Model.prototype.createEvento = async function (evento) {
     return { kind: "ok", content: insertion[0].insertId };
 };
 
-Model.prototype.deleteEvento = async function (id) {
+EventoModel.prototype.deleteEvento = async function (id) {
 
     let data = await this.EventoExisteNaBaseDeDados(id);
 
@@ -76,7 +76,7 @@ Model.prototype.deleteEvento = async function (id) {
     return { kind: "ok", content: deleteEntry };
 };
 
-Model.prototype.getEventoById = async function (id) {
+EventoModel.prototype.getEventoById = async function (id) {
 
     let select = await pool.query('SELECT * FROM Evento WHERE id_evento = ?', [id]);
 
@@ -92,7 +92,7 @@ Model.prototype.getEventoById = async function (id) {
     return { kind: "ok", content: select[0] };
 };
 
-Model.prototype.updateEventoById = async function (evento, id) {
+EventoModel.prototype.updateEventoById = async function (evento, id) {
 
     let data = await this.EventoExisteNaBaseDeDados(id);
 
@@ -112,4 +112,9 @@ Model.prototype.updateEventoById = async function (evento, id) {
 
     return { kind: "ok", content: update };
 };
+
+EventoModel.prototype.subscribeEvent = async function (evento , id) {
+    let insert = await subscribeEvent()
+}
+
 module.exports = new EventoModel;
