@@ -11,11 +11,11 @@ router.use((req, res, next) => {
     next()
 })
 
-router.route('/bolsas')
+router.route('/')
     .get(controller.getAllBolsas)
     .post(controller.createBolsa)
 
-router.route('/bolsas/:bolsaID')
+router.route('/:bolsaID')
     .delete(controller.deleteBolsa)
     .get(controller.getBolsaById)
     .put(controller.updateBolsaById)
