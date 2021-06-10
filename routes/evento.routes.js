@@ -1,6 +1,6 @@
 const express = require('express');
 let router = express.Router();
-const alumniController = require('../controllers/evento.controller');
+const eventoController = require('../controllers/evento.controller');
 
 router.use((req, res, next) => {
     const start = Date.now();
@@ -12,18 +12,18 @@ router.use((req, res, next) => {
 })
 
 router.route('/')
-    .get(controller.getAllEventos)
-    .post(controller.createEvento)  
+    .get(eventoController.getAllEventos)
+    .post(eventoController.createEvento)
 
 router.route('/:eventoID')
-    .delete(controller.deleteEvento)
-    .get(controller.getEventoById)
-    .put(controller.updateEventoById)
+    .delete(eventoController.deleteEvento)
+    .get(eventoController.getEventoById)
+    .put(eventoController.updateEventoById)
 
 router.route('/subscribe')
-    .post(controller.subscribeEvent)
-    
-    router.all('*', function(req, res) {
+    .post(eventoController.subscribeEvent)
+
+router.all('*', function(req, res) {
         res.status(404).json({ message: 'Route de eventos não definida!' });
     })
     // EXPORT ROUTES (required by APP)

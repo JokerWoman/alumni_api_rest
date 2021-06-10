@@ -1,6 +1,7 @@
 const express = require('express');
 let router = express.Router();
 const linkController = require('../controllers/link.controller');
+const authController = require('../controllers/auth.controller');
 
 router.use((req, res, next) => {
     const start = Date.now();
@@ -11,11 +12,11 @@ router.use((req, res, next) => {
     next()
 })
 
-router.route('/alumni/:numeroEstudante/disponiveis').get(linkController.getAllLinksAvailableForAlumni);
+router.route('/alumni/:numeroEstudante/disponiveis').get(authController.verifyToken, authController.isAlumni, linkController.getAllLinksAvailableForAlumni);
 
 //send a predefined error message for invalid routes
 router.all('*', function(req, res) {
-        res.status(404).json({ message: 'Route Links não definida!' });
-    })
+    res.status(404).json({ message: 'Route Links não definida!' });
+})
 
 module.exports = router;

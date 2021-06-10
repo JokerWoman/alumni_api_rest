@@ -1,6 +1,7 @@
 const express = require('express');
 let router = express.Router();
 const controller = require('../controllers/bolsas.controller');
+const authController = require('../controllers/auth.controller');
 // middleware for all routes related with alumni
 router.use((req, res, next) => {
     const start = Date.now();
@@ -11,14 +12,14 @@ router.use((req, res, next) => {
     next()
 })
 
-router.route('/bolsas')
-    .get(controller.getAllBolsas)
-    .post(controller.createBolsa)
+router.route('/')
+    .get(authController.verifyToken, authController.isProfessorOrAlumni,controller.getAllBolsas)
+    .post(authController.verifyToken, authController.isProfessor,controller.createBolsa)
 
-router.route('/bolsas/:bolsaID')
-    .delete(controller.deleteBolsa)
-    .get(controller.getBolsaById)
-    .put(controller.updateBolsaById)
+router.route('/:bolsaID')
+    .delete(authController.verifyToken, authController.isProfessor,controller.deleteBolsa)
+    .get(authController.verifyToken, authController.isProfessorOrAlumni,controller.getBolsaById)
+    .put(authController.verifyToken, authController.isProfessor,controller.updateBolsaById)
 
 //send a predefined error message for invalid routes
 router.all('*', function(req, res) {

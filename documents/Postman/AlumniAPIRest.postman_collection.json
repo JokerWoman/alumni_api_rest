@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "59b83548-3626-4a47-a2a6-169c70eab2ba",
+		"_postman_id": "36c1c9bf-417a-4c58-9091-7a0c72620fa5",
 		"name": "AlumniAPIRest",
 		"description": "O AlumniAPIRest têm todas as routas implementadas para a nossa página alumni.",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
@@ -13,7 +13,18 @@
 					"name": "UpdateAlumniByNumeroEstudante",
 					"request": {
 						"method": "PUT",
-						"header": [],
+						"header": [
+							{
+								"key": "x-access-token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjE5MTgwMDQ4IiwiaWF0IjoxNjIzMzMzODY3LCJleHAiOjE2MjM0MjAyNjd9.w2wOeRjJk6E22I_-qxYPo7K6pMWd8n2if-dkPWv8oyA",
+								"type": "text"
+							},
+							{
+								"key": "user-type",
+								"value": "alumni",
+								"type": "text"
+							}
+						],
 						"body": {
 							"mode": "raw",
 							"raw": "{\r\n    \"morada\":\"Rua das Loucas\",\r\n    \"descricao\":\"Sou uma developer.\",\r\n    \"telemovel\":\"9175744444\"\r\n}",
@@ -123,7 +134,18 @@
 					},
 					"request": {
 						"method": "GET",
-						"header": [],
+						"header": [
+							{
+								"key": "x-access-token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjE5MTgwMDQ4IiwiaWF0IjoxNjIzMzMzODY3LCJleHAiOjE2MjM0MjAyNjd9.w2wOeRjJk6E22I_-qxYPo7K6pMWd8n2if-dkPWv8oyA",
+								"type": "text"
+							},
+							{
+								"key": "user-type",
+								"value": "alumni",
+								"type": "text"
+							}
+						],
 						"body": {
 							"mode": "raw",
 							"raw": "{\r\n    \"nome\":\"Andrea Fernandes\",\r\n    \"dataNascimento\":\"1998-02-18\",\r\n    \"morada\":\"Rua das Batatas\",\r\n    \"email\":\"andrea@gmail.com\",\r\n    \"fotoLink\":\"https://ep00.epimg.net/verne/imagenes/2019/11/13/album/1573641411_551713_1573641467_album_normal.jpg\",\r\n    \"telemovel\":\"917574845\",\r\n    \"curriculumPDFLink\":\"https://www.bridgemaneducation.com/documents/how-to-guide.pdf\",\r\n    \"password\":\"8125468\",\r\n    \"id_role\":\"3\",\r\n    \"id_genero\":\"2\",\r\n    \"id_nacionalidade\":\"1\",\r\n    \"id_codigoPostal\":\"4770-440\"\r\n}",
@@ -233,7 +255,7 @@
 						"header": [
 							{
 								"key": "x-access-token",
-								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjE5MTgwMDQ4IiwiaWF0IjoxNjIzMTAxMTMzLCJleHAiOjE2MjMxODc1MzN9.z9idoN5COiUSPuAYlExfjmyMEgPY84Eh0YXtkzxB7Bs",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjE5MTgwMDQ4IiwiaWF0IjoxNjIzMzMzODY3LCJleHAiOjE2MjM0MjAyNjd9.w2wOeRjJk6E22I_-qxYPo7K6pMWd8n2if-dkPWv8oyA",
 								"type": "text"
 							},
 							{
@@ -331,9 +353,20 @@
 					"name": "DeleteSkillFromNumeroEstudanteBySkillId",
 					"request": {
 						"method": "DELETE",
-						"header": [],
+						"header": [
+							{
+								"key": "x-access-token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjE5MTgwMDQ4IiwiaWF0IjoxNjIzMzMzODY3LCJleHAiOjE2MjM0MjAyNjd9.w2wOeRjJk6E22I_-qxYPo7K6pMWd8n2if-dkPWv8oyA",
+								"type": "text"
+							},
+							{
+								"key": "user-type",
+								"value": "alumni",
+								"type": "text"
+							}
+						],
 						"url": {
-							"raw": "http://127.0.0.1:3000/alumni/19180048/skills/2",
+							"raw": "http://127.0.0.1:3000/alumni/19180048/skills/3",
 							"protocol": "http",
 							"host": [
 								"127",
@@ -346,7 +379,7 @@
 								"alumni",
 								"19180048",
 								"skills",
-								"2"
+								"3"
 							]
 						},
 						"description": "Nesta routa elimina uma skill pelo id e numero de estudante."
@@ -414,7 +447,18 @@
 					"name": "CreateSkillFromNumeroEstudanteBySkill",
 					"request": {
 						"method": "POST",
-						"header": [],
+						"header": [
+							{
+								"key": "x-access-token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjE5MTgwMDQ4IiwiaWF0IjoxNjIzMzMzODY3LCJleHAiOjE2MjM0MjAyNjd9.w2wOeRjJk6E22I_-qxYPo7K6pMWd8n2if-dkPWv8oyA",
+								"type": "text"
+							},
+							{
+								"key": "user-type",
+								"value": "alumni",
+								"type": "text"
+							}
+						],
 						"body": {
 							"mode": "raw",
 							"raw": "{\r\n    \"percentagem\":\"99\"\r\n}",
@@ -524,8 +568,8 @@
 						"method": "GET",
 						"header": [
 							{
-								"key": "access-token",
-								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjE5MTgwMDQ4IiwiaWF0IjoxNjIzMDk1Nzg0LCJleHAiOjE2MjMxODIxODR9.uU0Nrxt0iA2nfp-88ucqJoci8Np0Z7fnV4YfgZxkzsc",
+								"key": "x-access-token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjE5MTgwMDQ4IiwiaWF0IjoxNjIzMzMzODY3LCJleHAiOjE2MjM0MjAyNjd9.w2wOeRjJk6E22I_-qxYPo7K6pMWd8n2if-dkPWv8oyA",
 								"type": "text"
 							},
 							{
@@ -629,7 +673,18 @@
 					"name": "UpdateSkillFromNumeroEstudanteBySkill",
 					"request": {
 						"method": "PUT",
-						"header": [],
+						"header": [
+							{
+								"key": "x-access-token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjE5MTgwMDQ4IiwiaWF0IjoxNjIzMzMzODY3LCJleHAiOjE2MjM0MjAyNjd9.w2wOeRjJk6E22I_-qxYPo7K6pMWd8n2if-dkPWv8oyA",
+								"type": "text"
+							},
+							{
+								"key": "user-type",
+								"value": "alumni",
+								"type": "text"
+							}
+						],
 						"body": {
 							"mode": "raw",
 							"raw": "{\r\n    \"percentagem\":\"60\"\r\n}",
@@ -753,7 +808,18 @@
 					"name": "GetAvailableSkillsByNumeroEstudante",
 					"request": {
 						"method": "GET",
-						"header": [],
+						"header": [
+							{
+								"key": "x-access-token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjE5MTgwMDQ4IiwiaWF0IjoxNjIzMzMzODY3LCJleHAiOjE2MjM0MjAyNjd9.w2wOeRjJk6E22I_-qxYPo7K6pMWd8n2if-dkPWv8oyA",
+								"type": "text"
+							},
+							{
+								"key": "user-type",
+								"value": "alumni",
+								"type": "text"
+							}
+						],
 						"url": {
 							"raw": "http://127.0.0.1:3000/skills/alumni/19180047/disponiveis",
 							"protocol": "http",
@@ -856,7 +922,18 @@
 					"name": "DeleteToolFromNumeroEstudanteByToolId",
 					"request": {
 						"method": "DELETE",
-						"header": [],
+						"header": [
+							{
+								"key": "x-access-token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjE5MTgwMDQ4IiwiaWF0IjoxNjIzMzMzODY3LCJleHAiOjE2MjM0MjAyNjd9.w2wOeRjJk6E22I_-qxYPo7K6pMWd8n2if-dkPWv8oyA",
+								"type": "text"
+							},
+							{
+								"key": "user-type",
+								"value": "alumni",
+								"type": "text"
+							}
+						],
 						"url": {
 							"raw": "http://127.0.0.1:3000/alumni/19180047/tools/3",
 							"protocol": "http",
@@ -939,7 +1016,18 @@
 					"name": "CreateToolFromNumeroEstudanteByTool",
 					"request": {
 						"method": "POST",
-						"header": [],
+						"header": [
+							{
+								"key": "x-access-token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjE5MTgwMDQ4IiwiaWF0IjoxNjIzMzMzODY3LCJleHAiOjE2MjM0MjAyNjd9.w2wOeRjJk6E22I_-qxYPo7K6pMWd8n2if-dkPWv8oyA",
+								"type": "text"
+							},
+							{
+								"key": "user-type",
+								"value": "alumni",
+								"type": "text"
+							}
+						],
 						"body": {
 							"mode": "raw",
 							"raw": "{\r\n    \"percentagem\":\"99\"\r\n}",
@@ -1047,7 +1135,18 @@
 					"name": "GetToolsByNumeroEstudante",
 					"request": {
 						"method": "GET",
-						"header": [],
+						"header": [
+							{
+								"key": "x-access-token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjE5MTgwMDQ4IiwiaWF0IjoxNjIzMzMzODY3LCJleHAiOjE2MjM0MjAyNjd9.w2wOeRjJk6E22I_-qxYPo7K6pMWd8n2if-dkPWv8oyA",
+								"type": "text"
+							},
+							{
+								"key": "user-type",
+								"value": "alumni",
+								"type": "text"
+							}
+						],
 						"url": {
 							"raw": "http://127.0.0.1:3000/alumni/19180047/tools",
 							"protocol": "http",
@@ -1143,7 +1242,18 @@
 					"name": "UpdateToolFromNumeroEstudanteByTool",
 					"request": {
 						"method": "PUT",
-						"header": [],
+						"header": [
+							{
+								"key": "x-access-token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjE5MTgwMDQ4IiwiaWF0IjoxNjIzMzMzODY3LCJleHAiOjE2MjM0MjAyNjd9.w2wOeRjJk6E22I_-qxYPo7K6pMWd8n2if-dkPWv8oyA",
+								"type": "text"
+							},
+							{
+								"key": "user-type",
+								"value": "alumni",
+								"type": "text"
+							}
+						],
 						"body": {
 							"mode": "raw",
 							"raw": "{\r\n    \"percentagem\":\"99\"\r\n}",
@@ -1267,7 +1377,18 @@
 					"name": "GetAvailableToolsByNumeroEstudante",
 					"request": {
 						"method": "GET",
-						"header": [],
+						"header": [
+							{
+								"key": "x-access-token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjE5MTgwMDQ4IiwiaWF0IjoxNjIzMzMzODY3LCJleHAiOjE2MjM0MjAyNjd9.w2wOeRjJk6E22I_-qxYPo7K6pMWd8n2if-dkPWv8oyA",
+								"type": "text"
+							},
+							{
+								"key": "user-type",
+								"value": "alumni",
+								"type": "text"
+							}
+						],
 						"url": {
 							"raw": "http://127.0.0.1:3000/tools/alumni/19180047/disponiveis",
 							"protocol": "http",
@@ -1370,7 +1491,18 @@
 					"name": "GetAvailableCursosByNumeroEstudante",
 					"request": {
 						"method": "GET",
-						"header": [],
+						"header": [
+							{
+								"key": "x-access-token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjE5MTgwMDQ4IiwiaWF0IjoxNjIzMzMzODY3LCJleHAiOjE2MjM0MjAyNjd9.w2wOeRjJk6E22I_-qxYPo7K6pMWd8n2if-dkPWv8oyA",
+								"type": "text"
+							},
+							{
+								"key": "user-type",
+								"value": "alumni",
+								"type": "text"
+							}
+						],
 						"url": {
 							"raw": "http://127.0.0.1:3000/cursos/alumni/19180047/disponiveis",
 							"protocol": "http",
@@ -1467,7 +1599,18 @@
 					"name": "DeleteCursoFromNumeroEstudanteByCursod",
 					"request": {
 						"method": "DELETE",
-						"header": [],
+						"header": [
+							{
+								"key": "x-access-token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjE5MTgwMDQ4IiwiaWF0IjoxNjIzMzMzODY3LCJleHAiOjE2MjM0MjAyNjd9.w2wOeRjJk6E22I_-qxYPo7K6pMWd8n2if-dkPWv8oyA",
+								"type": "text"
+							},
+							{
+								"key": "user-type",
+								"value": "alumni",
+								"type": "text"
+							}
+						],
 						"url": {
 							"raw": "http://127.0.0.1:3000/alumni/19180047/cursos/1",
 							"protocol": "http",
@@ -1550,7 +1693,18 @@
 					"name": "CreateCursoFromNumeroEstudanteByCurso",
 					"request": {
 						"method": "POST",
-						"header": [],
+						"header": [
+							{
+								"key": "x-access-token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjE5MTgwMDQ4IiwiaWF0IjoxNjIzMzMzODY3LCJleHAiOjE2MjM0MjAyNjd9.w2wOeRjJk6E22I_-qxYPo7K6pMWd8n2if-dkPWv8oyA",
+								"type": "text"
+							},
+							{
+								"key": "user-type",
+								"value": "alumni",
+								"type": "text"
+							}
+						],
 						"body": {
 							"mode": "raw",
 							"raw": "{\r\n    \"anoCurso\":\"2016\"\r\n}",
@@ -1674,7 +1828,18 @@
 					"name": "GetCursoByNumeroEstudante",
 					"request": {
 						"method": "GET",
-						"header": [],
+						"header": [
+							{
+								"key": "x-access-token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjE5MTgwMDQ4IiwiaWF0IjoxNjIzMzMzODY3LCJleHAiOjE2MjM0MjAyNjd9.w2wOeRjJk6E22I_-qxYPo7K6pMWd8n2if-dkPWv8oyA",
+								"type": "text"
+							},
+							{
+								"key": "user-type",
+								"value": "alumni",
+								"type": "text"
+							}
+						],
 						"url": {
 							"raw": "http://127.0.0.1:3000/alumni/19180047/cursos",
 							"protocol": "http",
@@ -1770,7 +1935,18 @@
 					"name": "UpdateCursoFromNumeroEstudanteByCurso",
 					"request": {
 						"method": "PUT",
-						"header": [],
+						"header": [
+							{
+								"key": "x-access-token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjE5MTgwMDQ4IiwiaWF0IjoxNjIzMzMzODY3LCJleHAiOjE2MjM0MjAyNjd9.w2wOeRjJk6E22I_-qxYPo7K6pMWd8n2if-dkPWv8oyA",
+								"type": "text"
+							},
+							{
+								"key": "user-type",
+								"value": "alumni",
+								"type": "text"
+							}
+						],
 						"body": {
 							"mode": "raw",
 							"raw": "{\r\n    \"anoCurso\":\"2034\"\r\n}",
@@ -1900,7 +2076,18 @@
 					"name": "DeleteLinkFromNumeroEstudanteByLinkid",
 					"request": {
 						"method": "DELETE",
-						"header": [],
+						"header": [
+							{
+								"key": "x-access-token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjE5MTgwMDQ4IiwiaWF0IjoxNjIzMzMzODY3LCJleHAiOjE2MjM0MjAyNjd9.w2wOeRjJk6E22I_-qxYPo7K6pMWd8n2if-dkPWv8oyA",
+								"type": "text"
+							},
+							{
+								"key": "user-type",
+								"value": "alumni",
+								"type": "text"
+							}
+						],
 						"url": {
 							"raw": "http://127.0.0.1:3000/alumni/19180047/links/1",
 							"protocol": "http",
@@ -1983,7 +2170,18 @@
 					"name": "CreateLinkFromNumeroEstudanteByLink",
 					"request": {
 						"method": "POST",
-						"header": [],
+						"header": [
+							{
+								"key": "x-access-token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjE5MTgwMDQ4IiwiaWF0IjoxNjIzMzMzODY3LCJleHAiOjE2MjM0MjAyNjd9.w2wOeRjJk6E22I_-qxYPo7K6pMWd8n2if-dkPWv8oyA",
+								"type": "text"
+							},
+							{
+								"key": "user-type",
+								"value": "alumni",
+								"type": "text"
+							}
+						],
 						"body": {
 							"mode": "raw",
 							"raw": "{\r\n    \"link\":\"https://github.com/aasdsa\"\r\n}",
@@ -2107,7 +2305,18 @@
 					"name": "GetLinkByNumeroEstudante",
 					"request": {
 						"method": "GET",
-						"header": [],
+						"header": [
+							{
+								"key": "x-access-token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjE5MTgwMDQ4IiwiaWF0IjoxNjIzMzMzODY3LCJleHAiOjE2MjM0MjAyNjd9.w2wOeRjJk6E22I_-qxYPo7K6pMWd8n2if-dkPWv8oyA",
+								"type": "text"
+							},
+							{
+								"key": "user-type",
+								"value": "alumni",
+								"type": "text"
+							}
+						],
 						"url": {
 							"raw": "http://127.0.0.1:3000/alumni/19180047/links",
 							"protocol": "http",
@@ -2203,7 +2412,18 @@
 					"name": "GetAvailableLinkByNumeroEstudante",
 					"request": {
 						"method": "GET",
-						"header": [],
+						"header": [
+							{
+								"key": "x-access-token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjE5MTgwMDQ4IiwiaWF0IjoxNjIzMzMzODY3LCJleHAiOjE2MjM0MjAyNjd9.w2wOeRjJk6E22I_-qxYPo7K6pMWd8n2if-dkPWv8oyA",
+								"type": "text"
+							},
+							{
+								"key": "user-type",
+								"value": "alumni",
+								"type": "text"
+							}
+						],
 						"url": {
 							"raw": "http://127.0.0.1:3000/links/alumni/19180047/disponiveis",
 							"protocol": "http",
@@ -2300,7 +2520,18 @@
 					"name": "UpdateLinkFromNumeroEstudanteByLink",
 					"request": {
 						"method": "PUT",
-						"header": [],
+						"header": [
+							{
+								"key": "x-access-token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjE5MTgwMDQ4IiwiaWF0IjoxNjIzMzMzODY3LCJleHAiOjE2MjM0MjAyNjd9.w2wOeRjJk6E22I_-qxYPo7K6pMWd8n2if-dkPWv8oyA",
+								"type": "text"
+							},
+							{
+								"key": "user-type",
+								"value": "alumni",
+								"type": "text"
+							}
+						],
 						"body": {
 							"mode": "raw",
 							"raw": "{\r\n    \"link\":\"https://github.com/JokerWoman5\"\r\n}",
@@ -2869,7 +3100,18 @@
 					"name": "GetAllBolsas",
 					"request": {
 						"method": "GET",
-						"header": [],
+						"header": [
+							{
+								"key": "x-access-token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjE5MTgwMDQ4IiwiaWF0IjoxNjIzMzM2MjU5LCJleHAiOjE2MjM0MjI2NTl9.4BawzhcajnWKXj0RMPd6qwTdYTXzrd2hVUvA9tHhvfg",
+								"type": "text"
+							},
+							{
+								"key": "user-type",
+								"value": "alumni",
+								"type": "text"
+							}
+						],
 						"url": {
 							"raw": "http://127.0.0.1:3000/bolsas?estado=ativo",
 							"protocol": "http",
@@ -2949,9 +3191,20 @@
 					"name": "DeleteBolsas",
 					"request": {
 						"method": "DELETE",
-						"header": [],
+						"header": [
+							{
+								"key": "x-access-token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IkFkbWluIiwiaWF0IjoxNjIzMzM2MjA4LCJleHAiOjE2MjM0MjI2MDh9.aUJ-MCy7oWcJzWqdfAd6ER1LsqkmxdsnPvosRa-7JIQ",
+								"type": "text"
+							},
+							{
+								"key": "user-type",
+								"value": "professor",
+								"type": "text"
+							}
+						],
 						"url": {
-							"raw": "http://127.0.0.1:3000/bolsas/2",
+							"raw": "http://127.0.0.1:3000/bolsas/15",
 							"protocol": "http",
 							"host": [
 								"127",
@@ -2962,7 +3215,7 @@
 							"port": "3000",
 							"path": [
 								"bolsas",
-								"2"
+								"15"
 							]
 						},
 						"description": "Nesta routa eliminamos uma bolsa de emprego pelo seu Id."
@@ -3026,10 +3279,21 @@
 					"name": "UpdateBolsasById",
 					"request": {
 						"method": "PUT",
-						"header": [],
+						"header": [
+							{
+								"key": "x-access-token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IkFkbWluIiwiaWF0IjoxNjIzMzM2MjA4LCJleHAiOjE2MjM0MjI2MDh9.aUJ-MCy7oWcJzWqdfAd6ER1LsqkmxdsnPvosRa-7JIQ",
+								"type": "text"
+							},
+							{
+								"key": "user-type",
+								"value": "professor",
+								"type": "text"
+							}
+						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"descricao\": \"aaaaaaaa\",\r\n    \"fotoLink\": \"https://i.pinimg.com/originals/51/fe/18/51fe180cc453fccbf05652ad051b4803.jpg\",\r\n    \"estado\": \"inativo\",\r\n    \"data_publicacao\": \"2021-05-20\",\r\n    \"data_inicio\": \"2029-05-20\",\r\n    \"id_empresa\": 1,\r\n    \"id_tipoEmprego\": 1,\r\n    \"id_nroProfessor\": 1000000\r\n}",
+							"raw": "{\r\n    \"descricao\": \"aaaaaaaa\",\r\n    \"fotoLink\": \"https://i.pinimg.com/originals/51/fe/18/51fe180cc453fccbf05652ad051b4803.jpg\",\r\n    \"estado\": \"inativo\",\r\n    \"data_publicacao\": \"2021-05-20\",\r\n    \"data_inicio\": \"2029-05-20\",\r\n    \"id_empresa\": 1,\r\n    \"id_tipoEmprego\": 1,\r\n    \"id_nroProfessor\": \"Admin\",\r\n    \"ofertaLink\": \"https://blip.pt/\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -3130,10 +3394,21 @@
 					"name": "CreateBolsas",
 					"request": {
 						"method": "POST",
-						"header": [],
+						"header": [
+							{
+								"key": "x-access-token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IkFkbWluIiwiaWF0IjoxNjIzMzM2NjI5LCJleHAiOjE2MjM0MjMwMjl9.Rd6xNorkXcbL2pHe0Ft61vi62zFu7tqWk3qzYvz8zVU",
+								"type": "text"
+							},
+							{
+								"key": "user-type",
+								"value": "professor",
+								"type": "text"
+							}
+						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"descricao\":\"bolsa7777\",\r\n    \"fotoLink\":\"https://i.pinimg.com/originals/51/fe/18/51fe180cc453fccbf05652ad051b4803.jpg\",\r\n    \"estado\":\"ativo\",\r\n    \"data_publicacao\":\"2029-05-20\",\r\n    \"data_inicio\":\"2029-05-20\",\r\n    \"id_empresa\":\"1\",\r\n    \"id_tipoEmprego\":\"3\",\r\n    \"id_nroProfessor\":\"2000000\"\r\n    \r\n}",
+							"raw": "{\r\n    \"descricao\":\"bolsa7777\",\r\n    \"fotoLink\":\"https://i.pinimg.com/originals/51/fe/18/51fe180cc453fccbf05652ad051b4803.jpg\",\r\n    \"estado\":\"ativo\",\r\n    \"data_publicacao\":\"2029-05-20\",\r\n    \"data_inicio\":\"2029-05-20\",\r\n    \"id_empresa\":\"1\",\r\n    \"id_tipoEmprego\":\"3\",\r\n    \"id_nroProfessor\":\"Admin\",\r\n    \"ofertaLink\": \"https://blip.pt/\"\r\n    \r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -3231,7 +3506,18 @@
 					"name": "GetBolsaById",
 					"request": {
 						"method": "GET",
-						"header": [],
+						"header": [
+							{
+								"key": "x-access-token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjE5MTgwMDQ4IiwiaWF0IjoxNjIzMzM2MjU5LCJleHAiOjE2MjM0MjI2NTl9.4BawzhcajnWKXj0RMPd6qwTdYTXzrd2hVUvA9tHhvfg",
+								"type": "text"
+							},
+							{
+								"key": "user-type",
+								"value": "alumni",
+								"type": "text"
+							}
+						],
 						"url": {
 							"raw": "http://127.0.0.1:3000/bolsas/2",
 							"protocol": "http",
@@ -3245,6 +3531,13 @@
 							"path": [
 								"bolsas",
 								"2"
+							],
+							"query": [
+								{
+									"key": "",
+									"value": null,
+									"disabled": true
+								}
 							]
 						},
 						"description": "Aqui obtemos a informação de uma bolsa de emprego pelo seu Id."
@@ -3409,6 +3702,143 @@
 							]
 						},
 						"description": "Nesta routa no body adicionamos toda a informação do alumni tais como :\nnome,data de nascimento,morada,email,etc"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Testemunha",
+			"item": [
+				{
+					"name": "DeleteTestimony",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://127.0.0.1:3000/testemunha/5",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "3000",
+							"path": [
+								"testemunha",
+								"5"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "UpdateTestimony",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nome\":\"Ana Fernandes\",\r\n    \"id_nroEstudante\":\"19180050\",\r\n    \"descricao\":\"Adoro o Site!\",\r\n    \"id_cursos\":\"2\",\r\n    \"fotoLink\":\"eu\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:3000/testemunha/7",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "3000",
+							"path": [
+								"testemunha",
+								"7"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "CreateTestimony",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nome\":\"Andrea Fernandes\",\r\n    \"id_nroEstudante\":\"19180042\",\r\n    \"descricao\":\"Plataforma incrivel para os antigos alunos!\",\r\n    \"id_cursos\":\"1\",\r\n    \"fotoLink\":\"@/assets/img/testemunhos/testemunho2.webp\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:3000/testemunha",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "3000",
+							"path": [
+								"testemunha"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GetTestimonyById",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://127.0.0.1:3000/testemunha/1",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "3000",
+							"path": [
+								"testemunha",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GetAllTestimonies",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://127.0.0.1:3000/testemunha/",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "3000",
+							"path": [
+								"testemunha",
+								""
+							]
+						}
 					},
 					"response": []
 				}
