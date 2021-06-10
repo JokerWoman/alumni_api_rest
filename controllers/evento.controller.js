@@ -151,7 +151,7 @@ exports.subscribeEvent = async function(req , res){
         res.status(400).json({ message: "Evento is empty!" });
         return;
     }
-    let subscription = new Subscriçao(req.body.id_nroEstudante, req.body.id_evento);
+    let subscription = new Subscricao(req.body.id_nroEstudante, req.body.id_evento);
 
     let data = await model.subscribeEvent( id_nroEstudante, id_evento);
 }
