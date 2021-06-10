@@ -1,7 +1,7 @@
 const express = require('express');
 let router = express.Router();
-const controller = require('../controllers/controller');
-// middleware for all routes related with alumni
+const skillController = require('../controllers/skill.controller');
+
 router.use((req, res, next) => {
     const start = Date.now();
     res.on("finish", () => { //finish event is emitted once the response is sent to the client
@@ -11,18 +11,11 @@ router.use((req, res, next) => {
     next()
 })
 
-router.route('/bolsas')
-    .get(controller.getAllBolsas)
-    .post(controller.createBolsa)
-
-router.route('/bolsas/:bolsaID')
-    .delete(controller.deleteBolsa)
-    .get(controller.getBolsaById)
-    .put(controller.updateBolsaById)
+router.route('/alumni/:numeroEstudante/disponiveis').get(skillController.getAllSkillsAvailableForAlumni);
 
 //send a predefined error message for invalid routes
 router.all('*', function(req, res) {
-        res.status(404).json({ message: 'Route não definida!' });
+        res.status(404).json({ message: 'Route Skills não definida!' });
     })
-    // EXPORT ROUTES (required by APP)
+
 module.exports = router;

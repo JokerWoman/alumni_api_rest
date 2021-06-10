@@ -1,8 +1,9 @@
-const model = require('../models/model.js');
+const model = require('../models/bolsas.model.js');
 const validUrl = require('valid-url');
+const { TIMESTAMP } = require('mysql/lib/protocol/constants/types');
 
 class Bolsa {
-    constructor(descricao, fotoLink, estado, data_publicacao, data_inicio, id_empresa, id_tipoEmprego, id_nroProfessor) {
+    constructor(descricao, fotoLink, estado, data_publicacao, data_inicio, id_empresa, id_tipoEmprego, id_nroProfessor, ofertaLink) {
         this.descricao = descricao;
         this.fotoLink = fotoLink;
         this.estado = estado;
@@ -11,6 +12,7 @@ class Bolsa {
         this.id_empresa = id_empresa;
         this.id_tipoEmprego = id_tipoEmprego;
         this.id_nroProfessor = id_nroProfessor;
+        this.ofertaLink = ofertaLink;
 
     }
 }
@@ -39,7 +41,8 @@ exports.getAllBolsas = async function(req, res) {
 
             return isValid;
         });
-        res.status(200).json(filteredBolsas); // send OK response with all bolsas data
+        console.log((filteredBolsas))
+        res.status(200).json(JSON.stringify(filteredBolsas)); // send OK response with all bolsas data
     } else if (data.kind === "erro_operacao") {
         res.status(500).json({ message: `Error na operação no get das bolsas.` })
     } else {
@@ -75,8 +78,12 @@ exports.createBolsa = async function(req, res) {
         res.status(400).json({ message: "ID Nro Professor must be sent!" });
         return;
     }
+    else if (!req.body.ofertaLink) {
+        res.status(400).json({ message: "Link da oferta must be sent" });
+        return;
+    }
     let bolsa = new Bolsa(req.body.descricao, req.body.fotoLink, req.body.estado, req.body.data_publicacao,
-        req.body.data_inicio, req.body.id_empresa, req.body.id_tipoEmprego, req.body.id_nroProfessor)
+        req.body.data_inicio, req.body.id_empresa, req.body.id_tipoEmprego, req.body.id_nroProfessor, req.body.ofertaLink)
 
     let data = await model.createBolsa(bolsa, req.body.id_empresa, req.body.id_tipoEmprego);
 
@@ -117,7 +124,7 @@ exports.getBolsaById = async function(req, res) {
     let data = await model.getBolsaById(req.params.bolsaID);
 
     if (data.kind === "ok") {
-        res.status(200).json({ message: data.content });
+        res.status(200).json({ message: JSON.stringify(data.content) });
     } else if (data.kind === "not_found") {
         res.status(404).json({ message: `Erro a bolsa não existe com id ${req.params.bolsaID}.` })
     } else if (data.kind === "erro_operacao") {
@@ -155,8 +162,12 @@ exports.updateBolsaById = async function(req, res) {
         res.status(400).json({ message: "ID Nro Professor must be sent!" });
         return;
     }
+    else if (!req.body.ofertaLink) {
+        res.status(400).json({ message: "Link da oferta must be sent" });
+        return;
+    }
     let bolsa = new Bolsa(req.body.descricao, req.body.fotoLink, req.body.estado, req.body.data_publicacao,
-        req.body.data_inicio, req.body.id_empresa, req.body.id_tipoEmprego, req.body.id_nroProfessor)
+        req.body.data_inicio, req.body.id_empresa, req.body.id_tipoEmprego, req.body.id_nroProfessor, req.body.ofertaLink)
 
     let data = await model.updateBolsaById(bolsa, req.params.bolsaID, req.body.id_empresa, req.body.id_tipoEmprego);
 

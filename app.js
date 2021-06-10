@@ -12,10 +12,16 @@ app.use('/auth', require('./routes/auth.routes.js'))
 app.use('/alumni', require('./routes/alumni.routes.js'))
 app.use('/links', require('./routes/link.routes.js'))
 app.use('/cursos', require('./routes/curso.routes.js'))
+app.use('/skills', require('./routes/skill.routes.js'))
+app.use('/tools', require('./routes/tool.routes.js'))
 app.use('/testemunha', require('./routes/testemunha.routes.js'))
 app.use('/professor', require('./routes/professor.routes.js'))
+<<<<<<< HEAD
 app.use('/', require('./routes/routes.js'))
 app.use('/eventos', require('./routes/evento.routes.js'))
+=======
+app.use('/bolsas', require('./routes/bolsas.routes.js'))
+>>>>>>> 0b2eff3ba3f7751c5fa4cea7c048455172c0c9a4
 
 
 // handle invalid routes
