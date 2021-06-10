@@ -16,7 +16,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"nome\":\"Andrea Fernandes\",\r\n    \"dataNascimento\":\"1998-02-18\",\r\n    \"morada\":\"Rua das Loucas\",\r\n    \"email\":\"andrea@gmail.com\",\r\n    \"fotoLink\":\"https://ep00.epimg.net/verne/imagenes/2019/11/13/album/1573641411_551713_1573641467_album_normal.jpg\",\r\n    \"telemovel\":\"9175744444\",\r\n    \"curriculumPDFLink\":\"https://www.bridgemaneducation.com/documents/how-to-guide.pdf\",\r\n    \"password\":\"8125468\",\r\n    \"id_role\":\"3\",\r\n    \"id_genero\":\"1\",\r\n    \"id_nacionalidade\":\"1\",\r\n    \"id_codigoPostal\":\"4770-440\"\r\n}",
+							"raw": "{\r\n    \"morada\":\"Rua das Loucas\",\r\n    \"descricao\":\"Sou uma developer.\",\r\n    \"telemovel\":\"9175744444\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -24,7 +24,7 @@
 							}
 						},
 						"url": {
-							"raw": "http://127.0.0.1:3000/alumni/8888888",
+							"raw": "http://127.0.0.1:3000/alumni/19180041",
 							"protocol": "http",
 							"host": [
 								"127",
@@ -35,7 +35,7 @@
 							"port": "3000",
 							"path": [
 								"alumni",
-								"8888888"
+								"19180041"
 							]
 						},
 						"description": "Atualizamos todos os dados de um alumni pelo o numero de estudante."
@@ -134,7 +134,7 @@
 							}
 						},
 						"url": {
-							"raw": "http://127.0.0.1:3000/alumni/8888888",
+							"raw": "http://127.0.0.1:3000/alumni/19180048",
 							"protocol": "http",
 							"host": [
 								"127",
@@ -145,7 +145,7 @@
 							"port": "3000",
 							"path": [
 								"alumni",
-								"8888888"
+								"19180048"
 							]
 						},
 						"description": "obtemos todos os dados de um alumni pelo o numero de estudante."
@@ -233,12 +233,12 @@
 						"header": [
 							{
 								"key": "x-access-token",
-								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjE5MTgwMDQzIiwiaWF0IjoxNjIzMDA0ODQwLCJleHAiOjE2MjMwOTEyNDB9.eZUpn32URsTq_qgpBhbqU3za7Dje-PYaBk3JE0N-KBc",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjE5MTgwMDQ4IiwiaWF0IjoxNjIzMTAxMTMzLCJleHAiOjE2MjMxODc1MzN9.z9idoN5COiUSPuAYlExfjmyMEgPY84Eh0YXtkzxB7Bs",
 								"type": "text"
 							},
 							{
 								"key": "user-type",
-								"value": "professor",
+								"value": "alumni",
 								"type": "text"
 							}
 						],
@@ -333,7 +333,7 @@
 						"method": "DELETE",
 						"header": [],
 						"url": {
-							"raw": "http://127.0.0.1:3000/alumni/19180047/skills/2",
+							"raw": "http://127.0.0.1:3000/alumni/19180048/skills/2",
 							"protocol": "http",
 							"host": [
 								"127",
@@ -344,7 +344,7 @@
 							"port": "3000",
 							"path": [
 								"alumni",
-								"19180047",
+								"19180048",
 								"skills",
 								"2"
 							]
@@ -425,7 +425,7 @@
 							}
 						},
 						"url": {
-							"raw": "http://127.0.0.1:3000/alumni/19180047/skills/1",
+							"raw": "http://127.0.0.1:3000/alumni/19180048/skills/3",
 							"protocol": "http",
 							"host": [
 								"127",
@@ -436,9 +436,9 @@
 							"port": "3000",
 							"path": [
 								"alumni",
-								"19180047",
+								"19180048",
 								"skills",
-								"1"
+								"3"
 							]
 						},
 						"description": "Nesta routa cria uma skill pelo id e numero de estudante.No body adicionamos uma percentagem de experiencia na skills escolhida"
@@ -522,7 +522,18 @@
 					"name": "GetSkillsByNumeroEstudante",
 					"request": {
 						"method": "GET",
-						"header": [],
+						"header": [
+							{
+								"key": "access-token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjE5MTgwMDQ4IiwiaWF0IjoxNjIzMDk1Nzg0LCJleHAiOjE2MjMxODIxODR9.uU0Nrxt0iA2nfp-88ucqJoci8Np0Z7fnV4YfgZxkzsc",
+								"type": "text"
+							},
+							{
+								"key": "user-type",
+								"value": "alumni",
+								"type": "text"
+							}
+						],
 						"url": {
 							"raw": "http://127.0.0.1:3000/alumni/19180047/skills",
 							"protocol": "http",
@@ -1162,6 +1173,103 @@
 			"name": "AlumniCurso",
 			"item": [
 				{
+					"name": "GetAvailableCursosByNumeroEstudante",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://127.0.0.1:3000/cursos/alumni/19180047/disponiveis",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "3000",
+							"path": [
+								"cursos",
+								"alumni",
+								"19180047",
+								"disponiveis"
+							]
+						},
+						"description": "Obtemos todos os links de um alumni pelo seu numero de estudante."
+					},
+					"response": [
+						{
+							"name": "GetCursocomSucesso Copy",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://127.0.0.1:8080/alumni/19180047/links",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "8080",
+									"path": [
+										"alumni",
+										"19180047",
+										"links"
+									]
+								}
+							},
+							"_postman_previewlanguage": "json",
+							"header": [],
+							"cookie": [],
+							"body": "[\n    {\n        \"tipoLink\": \"GitHub\",\n        \"link\": \"https://github.com/JokerWoman\"\n    },\n    {\n        \"tipoLink\": \"Behance\",\n        \"link\": \"behancenet/ilseweisfelt\"\n    }\n]"
+						},
+						{
+							"name": "ErroMessage",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "http://127.0.0.1:8080/alumni/19180046/links",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "8080",
+									"path": [
+										"alumni",
+										"19180046",
+										"links"
+									]
+								}
+							},
+							"_postman_previewlanguage": "json",
+							"header": [],
+							"cookie": [],
+							"body": "{\r\n    \"message\": \"Erro alumni não existe com id 19180046.\"\r\n}"
+						}
+					]
+				},
+				{
 					"name": "DeleteCursoFromNumeroEstudanteByCursod",
 					"request": {
 						"method": "DELETE",
@@ -1692,7 +1800,7 @@
 							}
 						},
 						"url": {
-							"raw": "http://127.0.0.1:3000/alumni/19180047/links/1",
+							"raw": "http://127.0.0.1:3000/alumni/19180048/links/1",
 							"protocol": "http",
 							"host": [
 								"127",
@@ -1703,7 +1811,7 @@
 							"port": "3000",
 							"path": [
 								"alumni",
-								"19180047",
+								"19180048",
 								"links",
 								"1"
 							]
@@ -1820,6 +1928,103 @@
 								"alumni",
 								"19180047",
 								"links"
+							]
+						},
+						"description": "Obtemos todos os links de um alumni pelo seu numero de estudante."
+					},
+					"response": [
+						{
+							"name": "GetCursocomSucesso Copy",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://127.0.0.1:8080/alumni/19180047/links",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "8080",
+									"path": [
+										"alumni",
+										"19180047",
+										"links"
+									]
+								}
+							},
+							"_postman_previewlanguage": "json",
+							"header": [],
+							"cookie": [],
+							"body": "[\n    {\n        \"tipoLink\": \"GitHub\",\n        \"link\": \"https://github.com/JokerWoman\"\n    },\n    {\n        \"tipoLink\": \"Behance\",\n        \"link\": \"behancenet/ilseweisfelt\"\n    }\n]"
+						},
+						{
+							"name": "ErroMessage",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "http://127.0.0.1:8080/alumni/19180046/links",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "8080",
+									"path": [
+										"alumni",
+										"19180046",
+										"links"
+									]
+								}
+							},
+							"_postman_previewlanguage": "json",
+							"header": [],
+							"cookie": [],
+							"body": "{\r\n    \"message\": \"Erro alumni não existe com id 19180046.\"\r\n}"
+						}
+					]
+				},
+				{
+					"name": "GetAvailableLinkByNumeroEstudante",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://127.0.0.1:3000/links/alumni/19180047/disponiveis",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "3000",
+							"path": [
+								"links",
+								"alumni",
+								"19180047",
+								"disponiveis"
 							]
 						},
 						"description": "Obtemos todos os links de um alumni pelo seu numero de estudante."
@@ -2918,7 +3123,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"id_nroEstudante\":\"19180043\",\r\n    \"password\":\"1234\"\r\n    }",
+							"raw": "{\r\n    \"id_nroEstudante\":\"19180048\",\r\n    \"password\":\"Esmad_2021\"\r\n    }",
 							"options": {
 								"raw": {
 									"language": "json"

@@ -11,15 +11,17 @@ router.use((req, res, next) => {
     next()
 })
 
-router.route('/eventos')
+router.route('/')
     .get(controller.getAllEventos)
     .post(controller.createEvento)  
 
-router.route('/eventos/:eventoID')
+router.route('/:eventoID')
     .delete(controller.deleteEvento)
     .get(controller.getEventoById)
-    .put(controller.updateEventoById)   
+    .put(controller.updateEventoById)
 
+router.route('/subscribe')
+    .post(controller.subscribeEvent)
     
     router.all('*', function(req, res) {
         res.status(404).json({ message: 'Route de eventos não definida!' });

@@ -66,7 +66,7 @@ exports.createSkillFromNumeroEstudanteBySkillId = async function (req, res)  {
         return;
     }
 
-    if (!req.body.percentagem.match(/^(0|[1-9]\d*)$/g)) {
+    if (!String(req.body.percentagem).match(/^(0|[1-9]\d*)$/g)) {
         res.status(400).json({ message: 'Percentagem tem que ser maior que zero e um numero positivo' });
         return;
     }
@@ -109,7 +109,7 @@ exports.createToolFromNumeroEstudanteByToolId = async function (req, res)  {
         return;
     }
 
-    if (!req.body.percentagem.match(/^(0|[1-9]\d*)$/g)) {
+    if (!String(req.body.percentagem).match(/^(0|[1-9]\d*)$/g)) {
         res.status(400).json({ message: 'Percentagem tem que ser maior que zero e um numero positivo' });
         return;
     }
@@ -150,8 +150,8 @@ exports.createCursoFromNumeroEstudanteByCursoId = async function (req, res)  {
         res.status(400).json({ message: "Ano do curso é obrigatorio no body!" });
         return;
     }
-
-    if (!req.body.anoCurso.match(/^(0|[1-9]\d*)$/g)) {
+    console.log(req.body.anoCurso)
+    if (!String(req.body.anoCurso).match(/^(0|[1-9]\d*)$/g)) {
         res.status(400).json({ message: 'o Ano do curso tem que ser maior que zero e um numero positivo' });
         return;
     }
@@ -187,13 +187,9 @@ exports.createCursoFromNumeroEstudanteByCursoId = async function (req, res)  {
 };
 
 exports.createLinkFromNumeroEstudanteByLinkId = async function (req, res)  {
+    
     if (!req.body || !req.body.link) {
         res.status(400).json({ message: "link é obrigatorio no body!" });
-        return;
-    }
-
-    if (!validUrl.isUri(req.body.link)) {
-        res.status(400).json({ message: 'o link deve ser valido ' });
         return;
     }
 
@@ -229,7 +225,7 @@ exports.updateSkillFromNumeroEstudanteBySkillId = async function (req, res)  {
         return;
     }
 
-    if (!req.body.percentagem.match(/^(0|[1-9]\d*)$/g)) {
+    if (!String(req.body.percentagem).match(/^(0|[1-9]\d*)$/g)) {
         res.status(400).json({ message: 'Percentagem tem que ser maior que zero e um numero positivo' });
         return;
     }
@@ -265,7 +261,7 @@ exports.updateToolFromNumeroEstudanteByToolId = async function (req, res)  {
         return;
     }
 
-    if (!req.body.percentagem.match(/^(0|[1-9]\d*)$/g)) {
+    if (!String(req.body.percentagem).match(/^(0|[1-9]\d*)$/g)) {
         res.status(400).json({ message: 'Percentagem tem que ser maior que zero e um numero positivo' });
         return;
     }
@@ -301,7 +297,7 @@ exports.updateCursoFromNumeroEstudanteByCursoId = async function (req, res)  {
         return;
     }
 
-    if (!req.body.anoCurso.match(/^(0|[1-9]\d*)$/g)) {
+    if (!String(req.body.anoCurso).match(/^(0|[1-9]\d*)$/g)) {
         res.status(400).json({ message: 'Ano Curso tem que ser maior que zero e um numero positivo' });
         return;
     }
@@ -450,8 +446,9 @@ exports.getSkillsFromNumeroEstudante = async function (req, res)  {
 
     let data = await alumniModel.getSkillsFromNumeroEstudante(req.params.numero);
 
+    
     if (data.kind === "ok") {
-        res.status(200).json({ message: data.content});
+        res.status(200).json({ message: JSON.stringify(data.content)});
     }
     else if (data.kind === "erro_operacao") {
         res.status(500).json({ message: `Error na operação no get das skill do estudante com id ${req.params.numero}.` })
@@ -469,7 +466,7 @@ exports.getToolsFromNumeroEstudante = async function (req, res)  {
     let data = await alumniModel.getToolsFromNumeroEstudante(req.params.numero);
 
     if (data.kind === "ok") {
-        res.status(200).json({ message: data.content});
+        res.status(200).json({ message: JSON.stringify(data.content)});
     }
     else if (data.kind === "erro_operacao") {
         res.status(500).json({ message: `Error na operação no get das tools do estudante com id ${req.params.numero}.` })
@@ -487,7 +484,7 @@ exports.getCursosFromNumeroEstudante = async function (req, res)  {
     let data = await alumniModel.getCursosFromNumeroEstudante(req.params.numero);
 
     if (data.kind === "ok") {
-        res.status(200).json({ message: data.content});
+        res.status(200).json({ message: JSON.stringify(data.content)});
     }
     else if (data.kind === "erro_operacao") {
         res.status(500).json({ message: `Error na operação no get dos cursos do estudante com id ${req.params.numero}.` })
@@ -505,7 +502,7 @@ exports.getLinksFromNumeroEstudante = async function (req, res)  {
     let data = await alumniModel.getLinksFromNumeroEstudante(req.params.numero);
 
     if (data.kind === "ok") {
-        res.status(200).json({ message: data.content });
+        res.status(200).json({ message: JSON.stringify(data.content) });
     }
     else if (data.kind === "erro_operacao") {
         res.status(500).json({ message: `Error na operação no get dos links do estudante com id ${req.params.numero}.` })
@@ -520,21 +517,11 @@ exports.getLinksFromNumeroEstudante = async function (req, res)  {
 
 
 exports.updateAlumniByNumeroEstudante = async function (req, res)  {
-
     if (!req.body) {
         res.status(400).json({ message: "Body is empty!" });
         return;
-    } else if (!req.body.nome) {
-        res.status(400).json({ message: "Nome Estudante must be sent!" });
-        return;
-    } else if (!req.body.dataNascimento) {
-        res.status(400).json({ message: "Data Nascimento must be sent!" });
-        return;
     } else if (!req.body.morada) {
         res.status(400).json({ message: "Morada must be sent!" });
-        return;
-    } else if (!req.body.email) {
-        res.status(400).json({ message: "Email must be sent!" });
         return;
     } else if (!req.body.descricao) {
         res.status(400).json({ message: "Descricao must be sent!" });
@@ -542,20 +529,13 @@ exports.updateAlumniByNumeroEstudante = async function (req, res)  {
     } else if (!req.body.telemovel) {
         res.status(400).json({ message: "Telemovel must be sent!" });
         return;
-    } else if (!req.body.password) {
-        res.status(400).json({ message: "Password must be sent!" });
-        return;
-    } else if (!req.body.id_role) {
-        res.status(400).json({ message: "Role ID must be sent!" });
-        return;
-    } else if (!req.body.id_genero) {
-        res.status(400).json({ message: "Id Genero must be sent!" });
-        return;
     }
 
-    let alumni = new Alumni(req.body.nome, req.body.dataNascimento, req.body.morada, req.body.email,
-        req.body.descricao, req.body.telemovel, req.body.password, req.body.id_role,
-        req.body.id_genero)
+    const alumni = {
+        morada: req.body.morada,
+        telemovel: req.body.telemovel,
+        descricao: req.body.descricao
+      };
 
     let data = await alumniModel.updateAlumniByNumeroEstudante(alumni, req.params.numero);
 
