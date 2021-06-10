@@ -12,13 +12,13 @@ router.use((req, res, next) => {
 })
 
 router.route('/')
-    .get(eventoController.getAllEventos)
-    .post(eventoController.createEvento)
+    .get(authController.verifyToken, authController.isProfessorOrAlumni,eventoController.getAllEventos)
+    .post(authController.verifyToken, authController.isProfessorOrAlumni,eventoController.createEvento)
 
 router.route('/:eventoID')
-    .delete(eventoController.deleteEvento)
-    .get(eventoController.getEventoById)
-    .put(eventoController.updateEventoById)
+    .delete(authController.verifyToken, authController.isProfessorOrAlumni,eventoController.deleteEvento)
+    .get(authController.verifyToken, authController.isProfessorOrAlumni,eventoController.getEventoById)
+    .put(authController.verifyToken, authController.isProfessorOrAlumni,eventoController.updateEventoById)
 
 router.route('/subscribe')
     .post(eventoController.subscribeEvent)
