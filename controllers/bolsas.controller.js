@@ -41,7 +41,7 @@ exports.getAllBolsas = async function(req, res) {
 
             return isValid;
         });
-        console.log((filteredBolsas))
+        console.log({message: (filteredBolsas) })
         res.status(200).json(JSON.stringify(filteredBolsas)); // send OK response with all bolsas data
     } else if (data.kind === "erro_operacao") {
         res.status(500).json({ message: `Error na operação no get das bolsas.` })
