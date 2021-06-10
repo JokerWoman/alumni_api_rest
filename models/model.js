@@ -62,6 +62,12 @@ Model.prototype.deleteTestimony = async function (id) {
 
 Model.prototype.createTestimony = async function (testimony,id) {
 
+    let data = alumniModel.AlumniExisteNaBaseDeDados(id)
+
+    if(data.kind == "alumni_nao_existe"){
+        return { kind: "error_operation", content: null }
+    }
+
     let insertion = await pool.query('INSERT INTO Testemunha SET ?', [testimony])
 
     if(insertion === null){
