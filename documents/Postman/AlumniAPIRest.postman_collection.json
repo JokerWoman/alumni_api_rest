@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "ff13209d-2100-403b-99d5-c1499b818485",
+		"_postman_id": "36c1c9bf-417a-4c58-9091-7a0c72620fa5",
 		"name": "AlumniAPIRest",
 		"description": "O AlumniAPIRest têm todas as routas implementadas para a nossa página alumni.",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
@@ -3100,7 +3100,18 @@
 					"name": "GetAllBolsas",
 					"request": {
 						"method": "GET",
-						"header": [],
+						"header": [
+							{
+								"key": "x-access-token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjE5MTgwMDQ4IiwiaWF0IjoxNjIzMzM2MjU5LCJleHAiOjE2MjM0MjI2NTl9.4BawzhcajnWKXj0RMPd6qwTdYTXzrd2hVUvA9tHhvfg",
+								"type": "text"
+							},
+							{
+								"key": "user-type",
+								"value": "alumni",
+								"type": "text"
+							}
+						],
 						"url": {
 							"raw": "http://127.0.0.1:3000/bolsas?estado=ativo",
 							"protocol": "http",
@@ -3180,9 +3191,20 @@
 					"name": "DeleteBolsas",
 					"request": {
 						"method": "DELETE",
-						"header": [],
+						"header": [
+							{
+								"key": "x-access-token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IkFkbWluIiwiaWF0IjoxNjIzMzM2MjA4LCJleHAiOjE2MjM0MjI2MDh9.aUJ-MCy7oWcJzWqdfAd6ER1LsqkmxdsnPvosRa-7JIQ",
+								"type": "text"
+							},
+							{
+								"key": "user-type",
+								"value": "professor",
+								"type": "text"
+							}
+						],
 						"url": {
-							"raw": "http://127.0.0.1:3000/bolsas/2",
+							"raw": "http://127.0.0.1:3000/bolsas/15",
 							"protocol": "http",
 							"host": [
 								"127",
@@ -3193,7 +3215,7 @@
 							"port": "3000",
 							"path": [
 								"bolsas",
-								"2"
+								"15"
 							]
 						},
 						"description": "Nesta routa eliminamos uma bolsa de emprego pelo seu Id."
@@ -3257,10 +3279,21 @@
 					"name": "UpdateBolsasById",
 					"request": {
 						"method": "PUT",
-						"header": [],
+						"header": [
+							{
+								"key": "x-access-token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IkFkbWluIiwiaWF0IjoxNjIzMzM2MjA4LCJleHAiOjE2MjM0MjI2MDh9.aUJ-MCy7oWcJzWqdfAd6ER1LsqkmxdsnPvosRa-7JIQ",
+								"type": "text"
+							},
+							{
+								"key": "user-type",
+								"value": "professor",
+								"type": "text"
+							}
+						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"descricao\": \"aaaaaaaa\",\r\n    \"fotoLink\": \"https://i.pinimg.com/originals/51/fe/18/51fe180cc453fccbf05652ad051b4803.jpg\",\r\n    \"estado\": \"inativo\",\r\n    \"data_publicacao\": \"2021-05-20\",\r\n    \"data_inicio\": \"2029-05-20\",\r\n    \"id_empresa\": 1,\r\n    \"id_tipoEmprego\": 1,\r\n    \"id_nroProfessor\": 1000000\r\n}",
+							"raw": "{\r\n    \"descricao\": \"aaaaaaaa\",\r\n    \"fotoLink\": \"https://i.pinimg.com/originals/51/fe/18/51fe180cc453fccbf05652ad051b4803.jpg\",\r\n    \"estado\": \"inativo\",\r\n    \"data_publicacao\": \"2021-05-20\",\r\n    \"data_inicio\": \"2029-05-20\",\r\n    \"id_empresa\": 1,\r\n    \"id_tipoEmprego\": 1,\r\n    \"id_nroProfessor\": \"Admin\",\r\n    \"ofertaLink\": \"https://blip.pt/\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -3361,10 +3394,21 @@
 					"name": "CreateBolsas",
 					"request": {
 						"method": "POST",
-						"header": [],
+						"header": [
+							{
+								"key": "x-access-token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IkFkbWluIiwiaWF0IjoxNjIzMzM2NjI5LCJleHAiOjE2MjM0MjMwMjl9.Rd6xNorkXcbL2pHe0Ft61vi62zFu7tqWk3qzYvz8zVU",
+								"type": "text"
+							},
+							{
+								"key": "user-type",
+								"value": "professor",
+								"type": "text"
+							}
+						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"descricao\":\"bolsa7777\",\r\n    \"fotoLink\":\"https://i.pinimg.com/originals/51/fe/18/51fe180cc453fccbf05652ad051b4803.jpg\",\r\n    \"estado\":\"ativo\",\r\n    \"data_publicacao\":\"2029-05-20\",\r\n    \"data_inicio\":\"2029-05-20\",\r\n    \"id_empresa\":\"1\",\r\n    \"id_tipoEmprego\":\"3\",\r\n    \"id_nroProfessor\":\"2000000\"\r\n    \r\n}",
+							"raw": "{\r\n    \"descricao\":\"bolsa7777\",\r\n    \"fotoLink\":\"https://i.pinimg.com/originals/51/fe/18/51fe180cc453fccbf05652ad051b4803.jpg\",\r\n    \"estado\":\"ativo\",\r\n    \"data_publicacao\":\"2029-05-20\",\r\n    \"data_inicio\":\"2029-05-20\",\r\n    \"id_empresa\":\"1\",\r\n    \"id_tipoEmprego\":\"3\",\r\n    \"id_nroProfessor\":\"Admin\",\r\n    \"ofertaLink\": \"https://blip.pt/\"\r\n    \r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -3462,7 +3506,18 @@
 					"name": "GetBolsaById",
 					"request": {
 						"method": "GET",
-						"header": [],
+						"header": [
+							{
+								"key": "x-access-token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjE5MTgwMDQ4IiwiaWF0IjoxNjIzMzM2MjU5LCJleHAiOjE2MjM0MjI2NTl9.4BawzhcajnWKXj0RMPd6qwTdYTXzrd2hVUvA9tHhvfg",
+								"type": "text"
+							},
+							{
+								"key": "user-type",
+								"value": "alumni",
+								"type": "text"
+							}
+						],
 						"url": {
 							"raw": "http://127.0.0.1:3000/bolsas/2",
 							"protocol": "http",
@@ -3476,6 +3531,13 @@
 							"path": [
 								"bolsas",
 								"2"
+							],
+							"query": [
+								{
+									"key": "",
+									"value": null,
+									"disabled": true
+								}
 							]
 						},
 						"description": "Aqui obtemos a informação de uma bolsa de emprego pelo seu Id."
